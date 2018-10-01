@@ -10,7 +10,7 @@
     "build:cp": "cp ./package.json build/ && cp -R ./.elasticbeanstalk build/ && cp ./dbconnection.js build/ && cp ./webpack.config.js build/ && cp -R ./services build/ && cp -R ./routes build/ && cp -R ./public build/ && cp -R ./models build/",
     "local": "rm -rf build public/bundle.js && ./node_modules/.bin/babel server --out-dir build && ./node_modules/.bin/webpack --progress && nodemon ./build/main.js",
     "start": "node app.js",
-    "production": "npm run clean && webpack --config webpack.production.config.js --progress --profile --colors"
+    "production": "cross-env npm run clean && webpack --config webpack.production.config.js --progress --profile --colors"
   },
   "private": true,
   "author": "",
