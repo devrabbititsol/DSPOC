@@ -34,7 +34,7 @@ export default <Router history={browserHistory}>
 	      }} />
 				<Route exact path="/logout"
 	                render={(data) => {
-	                return decide() ? <Logout {...data}/> : <Login {...data}/>;
+	                return decide() ? <Logout {...data}/> : <Logout {...data}/>;
 	      }} />
 				<Route exact path="/login"
 	                render={(data) => {

@@ -1022,6 +1022,10 @@ border-radius: 50%;
   overflow-y: scroll;
 }
 
+.contacts_list{
+    max-height: 350px;
+    overflow-y: scroll;
+  }
 
 
 
@@ -1048,7 +1052,7 @@ border-radius: 50%;
     width: 100%
 }
 .noDataFound img {
-    width: 20%
+    width: 20% !important
 }
 .loader img {
     width: 2%

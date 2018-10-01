@@ -16,13 +16,15 @@ class Home extends React.Component {
       visitPropertyDetails:[],
       archivePropertyDetails:[],
       length:'',
-      loaderStatus:false
+			loaderStatus:false,
+			chatId:0
     }
     this.updateDataToVisit = this.updateDataToVisit.bind(this);
     this.updateDataToArchive = this.updateDataToArchive.bind(this);
     this.calLength = this.calLength.bind(this);
 		this.deleteConfirm = this.deleteConfirm.bind(this);
 		this.updateDataToArchiveFromVisits = this.updateDataToArchiveFromVisits.bind(this);
+		this.updateChatId = this.updateChatId.bind(this);
 
   }
   async componentWillMount() {
@@ -42,7 +44,11 @@ class Home extends React.Component {
 			})
 			console.log(this.state);
 	 }
-  }
+	}
+	async updateChatId(Id, event){
+		event.persist();
+		await this.setState({chatId:Id});
+	}
   async updateDataToVisit(Id, event){
     event.persist();
     let updatedProperties = this.state.propertyDetails;
@@ -112,7 +118,8 @@ class Home extends React.Component {
  }
 
  async calLength(typeId, event){
-  event.persist();
+	event.persist();
+	await this.setState({chatId:0});
   //let propertyLenght = this.state.length;
    if(typeId == 1){
      await this.setState({length:Object.keys(this.state.propertyDetails).length})
@@ -194,7 +201,7 @@ class Home extends React.Component {
 							
 						</div>
 						<div className="propertie-footer d-flex">
-							<a href="#"><i className="fa fa-comments"></i>Chat</a>
+							<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="fa fa-comments"></i>Chat</a>
 							<a href="javascript:void(0)" onClick={this.updateDataToVisit.bind(this, row.ItineraryPropertyID)}><i className="fa fa-heart"></i>Favorite</a>
 							<a href="javascript:void(0)" onClick={this.deleteConfirm.bind(this, row.ItineraryPropertyID, 'consider')}><i className="fa fa-trash"></i>Delete</a>
 						</div>
@@ -248,7 +255,7 @@ class Home extends React.Component {
 							
 						</div>
 						<div className="propertie-footer d-flex">
-							<a href="#"><i className="fa fa-comments"></i>Chat</a>
+						<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="fa fa-comments"></i>Chat</a>
 							<a href="javascript:void(0)" className="propertyDisabled"><i className="fa fa-heart"></i>Favorite</a>
 							<a href="javascript:void(0)"onClick={this.deleteConfirm.bind(this, row.ItineraryPropertyID, 'fav')}><i className="fa fa-trash"></i>Delete</a>
   </div>
@@ -302,7 +309,7 @@ class Home extends React.Component {
 							
 						</div>
 						<div className="propertie-footer d-flex">
-							<a href="#"><i className="fa fa-comments"></i>Chat</a>
+						<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="fa fa-comments"></i>Chat</a>
 							<a href="javascript:void(0)" className="propertyDisabled"><i className="fa fa-heart"></i>Favorite</a>
 							<a href="javascript:void(0)" className="propertyDisabled"><i className="fa fa-trash"></i>Delete</a>
   </div>
@@ -318,7 +325,7 @@ class Home extends React.Component {
 	</div>	
 	
 </div>
-<Footer/>
+<Footer chatId={this.state.chatId}/>
       </div>
     )
   }

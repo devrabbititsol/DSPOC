@@ -20,6 +20,7 @@ class logout extends React.Component {
   async componentWillMount() {
 
   localStorage.clear();
+  this.props.history.push('/login');
 
   }
 
@@ -30,12 +31,13 @@ class logout extends React.Component {
     return (
       <div>
 
-        <div className="logout-wrap">
+        <div className="login-container d-flex justify-content-center align-items-center">
           <div className="mc_logo">
             <img src="images/ReloTool-logo.png" />
           </div>
+          <div className="clear-both"/>
           <div className="logout-text">
-            <h1>Logout successfully</h1>
+            <h2>Logout successfully</h2>
           </div>
           <div className="logout-btn">
             <Link to="/login" className="btn btn-primary btn-rounded">Login Page</Link>

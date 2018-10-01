@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import chatMessage from '../../../services/chatMessageService';
+import userHome from '../../../services/userHomeService';
 import $ from 'jquery';
 
 class Footer extends React.Component {
@@ -24,10 +25,18 @@ class Footer extends React.Component {
     this._handleKeyPress = this._handleKeyPress.bind(this);
   }
   async componentWillMount() {
+  
+
     await this.setState({
       ChartLitst : localStorage.getItem("OriginalPropertyDetails") !== null ? JSON.parse(localStorage.getItem("OriginalPropertyDetails")) : []
     })
     this.chatUpdate();
+  }
+  async componentWillReceiveProps(nextProps){
+    if(nextProps.chatId > 0){
+      this.openChatBox(nextProps.chatId);
+    }
+
   }
   async chatUpdate(){
     
@@ -43,7 +52,9 @@ class Footer extends React.Component {
     setTimeout(function(){ _this.chatUpdate(); }, 3000);
   }
   async openChatList(){
-   
+    await this.setState({
+      ChartLitst : localStorage.getItem("OriginalPropertyDetails") !== null ? JSON.parse(localStorage.getItem("OriginalPropertyDetails")) : []
+    })
     await this.setState({openPropetyChatList:!this.state.openPropetyChatList,openChatBox:false});
   }
   async openChatBox(Id){
