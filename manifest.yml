@@ -1,0 +1,6 @@
+---
+applications:
+  - name: AGN
+    buildpack : https://github.com/cloudfoundry/staticfile-buildpack.git
+    path: public
+    memory: 1G

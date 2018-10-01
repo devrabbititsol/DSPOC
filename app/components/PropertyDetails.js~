@@ -1,0 +1,47 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Constants from '../../constants';
+import userHome from '../../services/userHomeService';;
+import Header from './common/Header';
+import { confirmAlert } from 'react-confirm-alert';
+
+
+class PropertyDetails extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      propertyDetails: [],
+      visitPropertyDetails:[],
+      archivePropertyDetails:[],
+      length:'',
+      loaderStatus:false
+    }
+    
+  }
+  async componentWillMount() {
+    await this.setState({loaderStatus:true})
+    const propertyDetails = await userHome.getDetails({companyName: "nopricing", FileNum: "163288", itineraryId: "2"});
+    await this.setState({loaderStatus:false, propertyDetails:propertyDetails.recordset,length:propertyDetails.recordset.length})
+
+  }
+
+  render() {
+
+
+    return (
+      <div>
+
+        <Header/>
+        <div className="main_content">
+         Details
+	
+</div>
+
+      </div>
+    )
+  }
+
+
+}
+
+export default PropertyDetails
