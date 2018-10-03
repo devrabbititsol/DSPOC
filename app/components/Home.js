@@ -103,7 +103,7 @@ class Home extends React.Component {
  async deleteConfirm(Id, type, event){
   confirmAlert({
     title: '',
-    message: 'Are you sure you want to delete this property?',
+    message: 'Are you sure you want to move this property to Not Interested?',
     buttons: [
       {
         label: 'Yes',
@@ -146,13 +146,13 @@ class Home extends React.Component {
 
 		<ul className="nav nav-pills mb-5 mt-5 properties" id="pills-tab" role="tablist">
 		  <li className="nav-item">
-			<a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" onClick={this.calLength.bind(this, 1)}><i className="fa fa-thumbs-up"></i> Considering</a>
+			<a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" onClick={this.calLength.bind(this, 1)}><i className="mdi mdi-view-list"></i> Options</a>
 		  </li>
 		  <li className="nav-item">
-			<a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onClick={this.calLength.bind(this, 2)}><i className="zmdi zmdi-walk"></i> Visits</a>
+			<a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onClick={this.calLength.bind(this, 2)}><i className="mdi mdi-thumb-up"></i> Interested</a>
 		  </li>
 		  <li className="nav-item">
-			<a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={this.calLength.bind(this, 3)}><i className="fa fa-archive"></i> Archived</a>
+			<a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={this.calLength.bind(this, 3)}><i className="mdi mdi-thumb-down"></i> Not Interested</a>
 		  </li>
 		</ul>
 		<div className="tab-content" id="pills-tabContent">
@@ -201,9 +201,9 @@ class Home extends React.Component {
 							
 						</div>
 						<div className="propertie-footer d-flex">
-							<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="fa fa-comments"></i>Chat</a>
-							<a href="javascript:void(0)" onClick={this.updateDataToVisit.bind(this, row.ItineraryPropertyID)}><i className="fa fa-heart"></i>Favorite</a>
-							<a href="javascript:void(0)" onClick={this.deleteConfirm.bind(this, row.ItineraryPropertyID, 'consider')}><i className="fa fa-trash"></i>Delete</a>
+							<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="mdi mdi-message-text"></i>Chat</a>
+							<a href="javascript:void(0)" onClick={this.updateDataToVisit.bind(this, row.ItineraryPropertyID)}><i className="mdi mdi-thumb-up"></i>Interested</a>
+							<a href="javascript:void(0)" onClick={this.deleteConfirm.bind(this, row.ItineraryPropertyID, 'consider')}><i className="mdi mdi-thumb-down"></i>Not Interested</a>
 						</div>
 					</div>
 				</div> })
@@ -255,9 +255,9 @@ class Home extends React.Component {
 							
 						</div>
 						<div className="propertie-footer d-flex">
-						<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="fa fa-comments"></i>Chat</a>
-							<a href="javascript:void(0)" className="propertyDisabled"><i className="fa fa-heart"></i>Favorite</a>
-							<a href="javascript:void(0)"onClick={this.deleteConfirm.bind(this, row.ItineraryPropertyID, 'fav')}><i className="fa fa-trash"></i>Delete</a>
+						<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i  className="mdi mdi-message-text"></i>Chat</a>
+							<a href="javascript:void(0)" className="propertyDisabled"><i className="mdi mdi-thumb-up"></i>Interested</a>
+							<a href="javascript:void(0)"onClick={this.deleteConfirm.bind(this, row.ItineraryPropertyID, 'fav')}><i className="mdi mdi-thumb-down"></i>Not Interested</a>
   </div>
 					</div>
 				</div> })
@@ -309,9 +309,9 @@ class Home extends React.Component {
 							
 						</div>
 						<div className="propertie-footer d-flex">
-						<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i className="fa fa-comments"></i>Chat</a>
-							<a href="javascript:void(0)" className="propertyDisabled"><i className="fa fa-heart"></i>Favorite</a>
-							<a href="javascript:void(0)" className="propertyDisabled"><i className="fa fa-trash"></i>Delete</a>
+						<a href="javascript:void(0)" onClick={this.updateChatId.bind(this,row.ItineraryPropertyID)}><i  className="mdi mdi-message-text"></i>Chat</a>
+							<a href="javascript:void(0)" className="propertyDisabled"><i className="mdi mdi-thumb-up"></i>Interested</a>
+							<a href="javascript:void(0)" className="propertyDisabled"><i className="mdi mdi-thumb-down"></i>Not Interested</a>
   </div>
 					</div>
 				</div> })

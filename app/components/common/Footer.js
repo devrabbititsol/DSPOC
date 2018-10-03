@@ -14,7 +14,8 @@ class Footer extends React.Component {
       ChatProperty:{},
       chatItineraryPropertyID:0,
       TextMessage:"",
-      propertyChat:[]
+      propertyChat:[],
+      openChatboxPopup:false
     }
 
     this.chatUpdate = this.chatUpdate.bind(this);
@@ -23,6 +24,7 @@ class Footer extends React.Component {
     this.messageText = this.messageText.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this._handleKeyPress = this._handleKeyPress.bind(this);
+    this.openChatboxPopup = this.openChatboxPopup.bind(this);
   }
   async componentWillMount() {
   
@@ -58,17 +60,34 @@ class Footer extends React.Component {
     await this.setState({openPropetyChatList:!this.state.openPropetyChatList,openChatBox:false});
   }
   async openChatBox(Id){
+    console.log(Id);
     let ChatPropertyDetails = _.find(this.state.ChartLitst,{ItineraryPropertyID:Id});
     
     await this.setState({chatItineraryPropertyID:ChatPropertyDetails.ItineraryPropertyID,ChatProperty:ChatPropertyDetails,openChatBox:true,openPropetyChatList:false});
+    $(".activeItem").removeClass('activeItem');
+    $("#highlight"+this.state.chatItineraryPropertyID).addClass('activeItem');
     let chatDetails = await chatMessage.getChatDetails({ItineraryPropertyID:this.state.chatItineraryPropertyID});
     await this.setState({propertyChat:chatDetails.recordset});
+    
     //console.log(this.state, this.state.propertyChat);
+  }
+  async openChatboxPopup(){
+    $(".activeItem").removeClass('activeItem');
+    $("#highlight"+this.state.chatItineraryPropertyID).addClass('activeItem');
+    await this.setState({propertyChat:[]});
+    this.openChatBox(this.state.chatItineraryPropertyID);
+
+         await this.setState({
+          openChatboxPopup:true,
+          openPropetyChatList:false
+         })
   }
   async closeChatList(){
     await this.setState({
       openPropetyChatList:false,
-      openChatBox:false
+      openChatBox:false,
+      openChatboxPopup:false,
+      chatItineraryPropertyID:0
     })
   }
   async messageText(event){
@@ -82,6 +101,7 @@ class Footer extends React.Component {
       chartDetails.push({ChatMessage:this.state.TextMessage,FromPersonID:2,ToPersonID:1});
       this.scrollDivBottom();
       $("#InputMsg").val("");
+      $("#InputMsg2").val("");
       await this.setState({propertyChat:chartDetails});
       let chatInsert = await chatMessage.inputChat({ItineraryPropertyID:this.state.chatItineraryPropertyID,From:2,To:1, TextMessage:this.state.TextMessage});
       let _this = this;
@@ -94,10 +114,12 @@ class Footer extends React.Component {
     
   }
   async scrollDivBottom(){
-    var objDiv =$("#chat_msgs").height();
+    var objDiv =$("#chatPopup").height();
     //console.log(objDiv);
-    $("#chat_msgs").scrollTop(objDiv*100);
-    
+    $("#chatPopup").scrollTop(objDiv*100);
+
+    var objDiv2 =$("#chat_msgs").height();
+    $("#chat_msgs").scrollTop(objDiv2*100);
   }
   _handleKeyPress(e){
     e.persist();
@@ -110,6 +132,8 @@ class Footer extends React.Component {
     return (    
     
 <div className="chat_footer">
+{this.state.openChatboxPopup == false ?
+<div>  
 {this.state.openPropetyChatList == false && this.state.openChatBox == false ?
 	<a href="javascript:void(0)" className="chaticon" onClick={this.openChatList.bind(this)}>
 		<img src="/images/Group 74.png" alt=""/>
@@ -118,12 +142,13 @@ class Footer extends React.Component {
   <img src="/images/close.png" alt=""/>
 
 </a> }
+</div>:""}
 	
-{this.state.openChatBox == true ?	<div className="communitie_single_item">
+{this.state.openChatBox == true && this.state.openChatboxPopup == false ?	<div className="communitie_single_item">
 		<div className="communities_header d-flex align-items-center">
 			<i className="fa fa-chevron-left" onClick={this.openChatList.bind(this)}></i>
 			<p>Communities</p>
-			<a href="#"><i className="fa fa-expand"></i></a>
+			<a href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-lg"><i className="fa fa-expand" onClick={this.openChatboxPopup.bind(this)}></i></a>
 		</div>
     {Object.keys(this.state.ChatProperty).length > 0 ? 
 		 <div className="item_full">
@@ -155,7 +180,7 @@ class Footer extends React.Component {
 	{this.state.openPropetyChatList == true ? <div id="chat">
 		<div className="communities_header d-flex justify-content-between">
 			<p>Communities</p>
-			<a href="#"><i className="fa fa-expand"></i></a>
+			<a href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-lg" onClick={this.openChatboxPopup.bind(this)}><i className="fa fa-expand"></i></a>
 		</div>
 		<div className="contacts_list">
     {this.state.ChartLitst.map((row,index) =>{
@@ -174,7 +199,58 @@ class Footer extends React.Component {
     })}
 		</div>
 		
+  </div> : ""}
+  
+{this.state.openChatboxPopup == true ?
+  <div className="modal fade bd-example-modal-lg communitie_pop">
+	  <div className="modal-dialog modal-lg modal-dialog-centered">
+		<div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalCenterTitle">Communities</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.closeChatList.bind(this)} aria-label="Close">
+          <span aria-hidden="true" className="fa fa-times"></span>
+        </button>
+      </div>
+      <div className="modal-body text-left p-0 ">
+        <div className="d-flex">
+			<div className="">
+				<div className="contacts_list">
+        {this.state.ChartLitst.map((row,index) =>{
+			return <div key={index} className={"chat_item d-flex align-items-center justify-content-start"} id={"highlight"+row.ItineraryPropertyID} onClick={this.openChatBox.bind(this, row.ItineraryPropertyID)}>
+						<div className="item_img bd-highlight">
+            <img src={'https://s3-us-west-1.amazonaws.com/destination-services-itinerary/'+row.Photo+'.jpg'} alt=""/>
+						</div>
+						<div className="chat_dtls">
+            <p>{row.Community}</p>
+            <span>{row.Address}, {row.City} {row.StateCode} {row.ZipCode}</span>
+						</div>
+						<div className="msg_count">
+						{/*<span className="badge">5</span>*/}
+						</div>
+					</div> })}
+				</div>
+			</div>  
+			<div className="">
+				
+		<div className="chat_msgs" id="chatPopup">
+    {this.state.propertyChat.map((row,index) =>{
+			return <div key={index}>{row.FromPersonID == 2 ? <div  className="right_chat">{row.ChatMessage}</div> :<div key={index} className="left_chat">{row.ChatMessage}</div>}</div>
+      })}
+			<div className="clearfix"></div>
+		</div>
+		<div className="sent_box d-flex align-items-center">
+    <input type="text" onKeyPress={this._handleKeyPress} id="InputMsg2" defaultValue={this.state.TextMessage} placeholder="Type message here" onChange={this.messageText.bind(this)} />
+    <span onClick={this.sendMessage.bind(this)}><i className="fa fa-paper-plane"></i></span>
+		</div>
+			</div>  
+		</div>
+      </div>
+      
+    </div>
+	  </div>
 	</div> : ""}
+
+
 </div>
     )
   }

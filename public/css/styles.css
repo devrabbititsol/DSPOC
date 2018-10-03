@@ -381,7 +381,7 @@ a{
     font-weight: normal;
     font-style: normal;
     font-size: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 0.01em;
 }
 p, select, input{
      font-family: 'Gotham Book';
@@ -608,8 +608,8 @@ overflow: hidden;
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
-	padding: 12px 12px 0px 12px;
-	background-color: rgba(0,0,0,0.2);
+	padding: 18px 12px 0px 12px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
 }
 
 .propertie-item-dtls{
@@ -652,7 +652,7 @@ overflow: hidden;
 	color: #cf2e22;
 	font-family: "Gotham";
 	font-weight: 500;
-	font-size: 15px;
+	font-size: 14px;
 }
 
 .img-hover-dtls div{
@@ -717,7 +717,7 @@ overflow: hidden;
 	text-align: center;
 }
 .propertie-footer a i{
-	font-size: 18px;
+	font-size: 14px;
 	padding-right: 5px;
 }
 /********************/
@@ -920,7 +920,7 @@ font-size: 17px;
 .chat_item{
 	padding: 15px;
 	text-align: left;
-
+	cursor: pointer;
 }
 .chat_item .item_img{
 	width: 55px;
@@ -1005,7 +1005,7 @@ border-radius: 50%;
 .sent_box input:focus{
     outline: none;
 }
-.sent_box a{
+.sent_box span{
 	color: #e43226;
 	font-size: 22px;
 }
@@ -1014,7 +1014,7 @@ border-radius: 50%;
 	position: fixed;
 	bottom: 20px;
     right: 20px;
-    z-index: 99;
+    z-index: 1050;
 }
 
 .chat_footer .chat_msgs{
@@ -1026,15 +1026,6 @@ border-radius: 50%;
     max-height: 350px;
     overflow-y: scroll;
   }
-
-
-
-
-
-
-
-
-
 
 
 .fullslider.inner img{
@@ -1064,6 +1055,48 @@ border-radius: 50%;
     text-decoration: none;
 }
 /********************/
+
+.communitie_pop .modal-body > .d-flex > div:first-child{
+	width: 35%;
+}
+.communitie_pop .modal-body > .d-flex > div:last-child{
+	width: 65%;
+}
+.communitie_pop .d-flex .contacts_list {
+
+    max-height: 500px;
+    overflow-y: scroll;
+    height: 100%;
+
+}
+.chat_item .item_img{
+	min-width: 45px;
+}
+.communitie_pop .chat_item .item_img{
+	width: 45px;
+	height: 45px;
+}
+.communitie_pop .chat_msgs {
+    height: calc(500px - 70px);
+	max-height: calc(500px - 70px);
+}
+.modal .modal-dialog {
+	overflow: hidden;
+}
+.communitie_pop .modal-header{
+	color: #fff;
+	background-color: #e43226;
+}
+.communitie_pop .modal-header .close{
+	color: #fff;
+	opacity: 1;
+}
+.communitie_pop .chat_item:hover, .communitie_pop .chat_item.activeItem{
+	background-color: rgba(228, 50, 38, 0.1);
+}
+.communitie_pop .chat_item:hover .chat_dtls p, .communitie_pop .chat_item.activeItem .chat_dtls p{
+	color: #e43226;
+}
 
 
 
