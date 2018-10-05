@@ -18552,34 +18552,84 @@ var Header = function (_React$Component) {
     value: function render() {
 
       return _react2.default.createElement(
-        'div',
-        { className: 'main_header' },
+        'header',
+        null,
         _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/home' },
-          _react2.default.createElement('img', { src: '/images/logo_login.png', className: 'head_logo', alt: '' }),
-          ' '
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'dropdown' },
-          _react2.default.createElement(
-            'span',
-            null,
-            _react2.default.createElement('img', { src: '/images/img2.jpg', alt: '' })
-          ),
+          'nav',
+          { className: 'navbar navbar-expand-md bg-white main_header fixed-top navbar-light' },
           _react2.default.createElement(
             'a',
-            { className: 'dropdown-toggle btn', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
-            'Ashok K'
+            { className: 'navbar-brand', href: '/' },
+            _react2.default.createElement('img', { src: '/images/logo_login.png', className: 'head_logo', alt: '' })
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'navbar-toggler', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarCollapse', 'aria-controls': 'navbarCollapse', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },
+            _react2.default.createElement('span', { className: 'navbar-toggler-icon' })
           ),
           _react2.default.createElement(
             'div',
-            { className: 'dropdown-menu' },
+            { className: 'collapse navbar-collapse', id: 'navbarCollapse' },
             _react2.default.createElement(
-              'a',
-              { className: 'dropdown-item', href: '/logout' },
-              'Logout'
+              'ul',
+              { className: 'navbar-nav mr-auto' },
+              _react2.default.createElement(
+                'li',
+                { className: this.props.pathName == '/home' || this.props.pathName == '/' ? 'nav-item active' : 'nav-item' },
+                _react2.default.createElement(
+                  'a',
+                  { className: 'nav-link', href: '/home' },
+                  'Properties '
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: this.props.pathName == '/consultant' ? 'nav-item active' : 'nav-item' },
+                _react2.default.createElement(
+                  'a',
+                  { className: 'nav-link', href: '/consultant' },
+                  'My Consultant'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'nav-item' },
+                _react2.default.createElement(
+                  'a',
+                  { className: 'nav-link', href: '#' },
+                  'Information'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'dropdown user-menu' },
+              _react2.default.createElement(
+                'span',
+                null,
+                _react2.default.createElement('img', { src: '/images/img2.jpg', alt: '' })
+              ),
+              _react2.default.createElement(
+                'a',
+                { className: 'dropdown-toggle btn', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
+                'John Doe'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'dropdown-menu' },
+                _react2.default.createElement(
+                  'a',
+                  { href: '/profile', className: this.props.pathName == "/profile" ? "dropdown-item actives" : "dropdown-item" },
+                  _react2.default.createElement('i', { className: 'mdi mdi-account-outline' }),
+                  ' Profile'
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { className: 'dropdown-item', href: '/logout' },
+                  _react2.default.createElement('i', { className: 'mdi mdi-power' }),
+                  ' Logout'
+                )
+              )
             )
           )
         )
@@ -19044,7 +19094,7 @@ var Footer = function (_React$Component) {
       this.scrollDivBottom();
       setTimeout(function () {
         _this.chatUpdate();
-      }, 3000);
+      }, 1000);
     }
   }, {
     key: 'openChatList',
@@ -19057,14 +19107,15 @@ var Footer = function (_React$Component) {
   }, {
     key: 'openChatBox',
     value: async function openChatBox(Id) {
-      console.log(Id);
-      var ChatPropertyDetails = _.find(this.state.ChartLitst, { ItineraryPropertyID: Id });
 
-      await this.setState({ chatItineraryPropertyID: ChatPropertyDetails.ItineraryPropertyID, ChatProperty: ChatPropertyDetails, openChatBox: true, openPropetyChatList: false });
-      (0, _jquery2.default)(".activeItem").removeClass('activeItem');
-      (0, _jquery2.default)("#highlight" + this.state.chatItineraryPropertyID).addClass('activeItem');
-      var chatDetails = await _chatMessageService2.default.getChatDetails({ ItineraryPropertyID: this.state.chatItineraryPropertyID });
-      await this.setState({ propertyChat: chatDetails.recordset });
+      var ChatPropertyDetails = _.find(this.state.ChartLitst, { ItineraryPropertyID: Id });
+      if (ChatPropertyDetails != undefined) {
+        await this.setState({ chatItineraryPropertyID: ChatPropertyDetails.ItineraryPropertyID, ChatProperty: ChatPropertyDetails, openChatBox: true, openPropetyChatList: false });
+        (0, _jquery2.default)(".activeItem").removeClass('activeItem');
+        (0, _jquery2.default)("#highlight" + this.state.chatItineraryPropertyID).addClass('activeItem');
+        var chatDetails = await _chatMessageService2.default.getChatDetails({ ItineraryPropertyID: this.state.chatItineraryPropertyID });
+        await this.setState({ propertyChat: chatDetails.recordset });
+      }
 
       //console.log(this.state, this.state.propertyChat);
     }
@@ -68274,6 +68325,14 @@ var _Home = __webpack_require__(532);
 
 var _Home2 = _interopRequireDefault(_Home);
 
+var _Profile = __webpack_require__(537);
+
+var _Profile2 = _interopRequireDefault(_Profile);
+
+var _Consultant = __webpack_require__(538);
+
+var _Consultant2 = _interopRequireDefault(_Consultant);
+
 var _UnauthorizePage = __webpack_require__(533);
 
 var _UnauthorizePage2 = _interopRequireDefault(_UnauthorizePage);
@@ -68323,6 +68382,14 @@ function decide() {
 									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/home',
 												render: function render(data) {
 															return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
+												} }),
+									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/profile',
+												render: function render(data) {
+															return decide() ? _react2.default.createElement(_Profile2.default, data) : _react2.default.createElement(_Login2.default, data);
+												} }),
+									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/consultant',
+												render: function render(data) {
+															return decide() ? _react2.default.createElement(_Consultant2.default, data) : _react2.default.createElement(_Login2.default, data);
 												} }),
 									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/propertydetails/:ItineraryPropertyID',
 												render: function render(data) {
@@ -86414,7 +86481,7 @@ var Home = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement(_Header2.default, null),
+				_react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
 				_react2.default.createElement(
 					'div',
 					{ className: 'main_content' },
@@ -86925,15 +86992,10 @@ var UnauthorizePage = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'bg__unauthorized' },
+        { className: 'container c_dtls row justify-content-md-center' },
         _react2.default.createElement(
           'div',
-          null,
-          _react2.default.createElement('img', { src: 'images/unauthorised.png', alt: '' })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'unauthorized__text__wrap' },
+          { className: 'col-md-8 text-center' },
           _react2.default.createElement(
             'h1',
             null,
@@ -86943,21 +87005,6 @@ var UnauthorizePage = function (_React$Component) {
             'h2',
             null,
             'Unauthorized'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'ERROR_MESSAGE_FOR_UNAUTHORIZED_USER'
-          ),
-          _react2.default.createElement(
-            'a',
-            { href: '/' },
-            _react2.default.createElement(
-              'button',
-              { className: 'btn btn-default btn-rounded waves-light waves-effect btn-lg' },
-              _react2.default.createElement('i', { className: 'mdi mdi-arrow-left' }),
-              'Logout'
-            )
           )
         )
       );
@@ -87033,9 +87080,11 @@ var PropertyDetails = function (_React$Component) {
     _this2.state = {
       propertyDetails: [],
       loaderStatus: false,
-      Walkscore: 0
+      Walkscore: 0,
+      crimestatics: false
     };
     _this2.streetView = _this2.streetView.bind(_this2);
+    _this2.crimestaticsShow = _this2.crimestaticsShow.bind(_this2);
     return _this2;
   }
 
@@ -87049,6 +87098,11 @@ var PropertyDetails = function (_React$Component) {
 
       //console.log(this.state);
       await this.mapLoad();
+    }
+  }, {
+    key: 'crimestaticsShow',
+    value: async function crimestaticsShow() {
+      this.setState({ crimestatics: !this.state.crimestatics });
     }
   }, {
     key: 'componentDidMount',
@@ -87422,7 +87476,220 @@ var PropertyDetails = function (_React$Component) {
                     )
                   )
                 )
-              )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'neighborhood_btn row justify-content-sm-center' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col col-sm-5' },
+                  _react2.default.createElement(
+                    'a',
+                    { href: 'javascript:void(0)', onClick: this.crimestaticsShow.bind(this), className: 'btn btn-default btn-rounded' },
+                    'More on Neighborhood ',
+                    _react2.default.createElement('i', { className: this.state.crimestatics == true ? "fa fa-chevron-up" : "fa fa-chevron-down" })
+                  )
+                )
+              ),
+              this.state.crimestatics == true ? _react2.default.createElement(
+                'div',
+                { className: 'neighborhood_table row mb-5' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'headerpart col-md-12' },
+                  '640 Vital Statistics, 35 Condition Alerts Found.'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'realestate' },
+                    _react2.default.createElement('i', { className: 'mdi mdi-office-building' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'real Estate'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'statistics' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '44'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'statistics'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'alerts' },
+                    _react2.default.createElement('i', { className: 'fa fa-exclamation-circle' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      '3 Alerts'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'realestate' },
+                    _react2.default.createElement('i', { className: 'mdi mdi-account-group' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'Demographics'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'statistics' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '136'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'statistics'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'alerts' },
+                    _react2.default.createElement('i', { className: 'fa fa-exclamation-circle' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      '1 Alerts'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'realestate' },
+                    _react2.default.createElement('i', { className: 'mdi mdi-pistol' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'crimes'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'statistics' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '67'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'statistics'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'alerts' },
+                    _react2.default.createElement('i', { className: 'fa fa-exclamation-circle' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      '3 Alerts'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'realestate' },
+                    _react2.default.createElement('i', { className: 'mdi mdi-school' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'schools'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'statistics' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '65'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'statistics'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'alerts' },
+                    _react2.default.createElement('i', { className: 'fa fa-exclamation-circle' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      '13 Alerts'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'realestate' },
+                    _react2.default.createElement('i', { className: 'mdi mdi-trending-up' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'trends & forecasts'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'statistics' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '328'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'statistics'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'alerts' },
+                    _react2.default.createElement('i', { className: 'fa fa-exclamation-circle' }),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      '15 Alerts'
+                    )
+                  )
+                )
+              ) : ""
             )
           )
         ) : _react2.default.createElement(
@@ -87753,6 +88020,990 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = 536;
+
+/***/ }),
+/* 537 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(24);
+
+var _constants = __webpack_require__(27);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _userHomeService = __webpack_require__(63);
+
+var _userHomeService2 = _interopRequireDefault(_userHomeService);
+
+var _Header = __webpack_require__(90);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Footer = __webpack_require__(95);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _reactConfirmAlert = __webpack_require__(111);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Profile = function (_React$Component) {
+	_inherits(Profile, _React$Component);
+
+	function Profile(props) {
+		_classCallCheck(this, Profile);
+
+		var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
+
+		_this.state = {};
+
+		return _this;
+	}
+
+	_createClass(Profile, [{
+		key: 'render',
+		value: function render() {
+
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
+				_react2.default.createElement(
+					'div',
+					{ className: 'main_content' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'container' },
+						_react2.default.createElement(
+							'h1',
+							{ className: 'main_heading' },
+							'Profile'
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'profile' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'vertical-tabs-container' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'vertical-tabs' },
+									' ',
+									_react2.default.createElement(
+										'a',
+										{ href: 'javascript:;', className: 'js-vertical-tab vertical-tab is-active', rel: 'tab1' },
+										'Basic Information'
+									),
+									' ',
+									_react2.default.createElement(
+										'a',
+										{ href: 'javascript:;', className: 'js-vertical-tab vertical-tab', rel: 'tab2' },
+										'Amenities Interested'
+									),
+									' ',
+									_react2.default.createElement(
+										'a',
+										{ href: 'javascript:;', className: 'js-vertical-tab vertical-tab', rel: 'tab3' },
+										'Most important to me?'
+									),
+									' '
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'vertical-tab-content-container' },
+									' ',
+									_react2.default.createElement(
+										'a',
+										{ href: '', className: 'js-vertical-tab-accordion-heading vertical-tab-accordion-heading is-active', rel: 'tab1' },
+										'Basic Information'
+									),
+									_react2.default.createElement(
+										'div',
+										{ id: 'tab1', className: 'js-vertical-tab-content vertical-tab-content' },
+										_react2.default.createElement(
+											'h2',
+											null,
+											'Basic Information'
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'basic-info' },
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'First Name'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'First Name' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'Last Name'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Last Name' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'Email'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Email' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'Phone'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Phone' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'Address'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Address' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'City'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'City' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'State'
+												),
+												_react2.default.createElement(
+													'select',
+													{ className: 'form-control', id: '' },
+													_react2.default.createElement(
+														'option',
+														{ value: '' },
+														'Select State'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'AL' },
+														'Alabama'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'AK' },
+														'Alaska'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'AZ' },
+														'Arizona'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'AR' },
+														'Arkansas'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'CA' },
+														'California'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'CO' },
+														'Colorado'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'CT' },
+														'Connecticut'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'DE' },
+														'Delaware'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'DC' },
+														'District Of Columbia'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'FL' },
+														'Florida'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'GA' },
+														'Georgia'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'HI' },
+														'Hawaii'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'ID' },
+														'Idaho'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'IL' },
+														'Illinois'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'IN' },
+														'Indiana'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'IA' },
+														'Iowa'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'KS' },
+														'Kansas'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'KY' },
+														'Kentucky'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'LA' },
+														'Louisiana'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'ME' },
+														'Maine'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MD' },
+														'Maryland'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MA' },
+														'Massachusetts'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MI' },
+														'Michigan'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MN' },
+														'Minnesota'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MS' },
+														'Mississippi'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MO' },
+														'Missouri'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'MT' },
+														'Montana'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NE' },
+														'Nebraska'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NV' },
+														'Nevada'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NH' },
+														'New Hampshire'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NJ' },
+														'New Jersey'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NM' },
+														'New Mexico'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NY' },
+														'New York'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'NC' },
+														'North Carolina'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'ND' },
+														'North Dakota'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'OH' },
+														'Ohio'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'OK' },
+														'Oklahoma'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'OR' },
+														'Oregon'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'PA' },
+														'Pennsylvania'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'RI' },
+														'Rhode Island'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'SC' },
+														'South Carolina'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'SD' },
+														'South Dakota'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'TN' },
+														'Tennessee'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'TX' },
+														'Texas'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'UT' },
+														'Utah'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'VT' },
+														'Vermont'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'VA' },
+														'Virginia'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'WA' },
+														'Washington'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'WV' },
+														'West Virginia'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'WI' },
+														'Wisconsin'
+													),
+													_react2.default.createElement(
+														'option',
+														{ value: 'WY' },
+														'Wyoming'
+													)
+												)
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'form-group form-style' },
+												_react2.default.createElement(
+													'label',
+													{ htmlFor: '' },
+													'Zipcode'
+												),
+												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Zipcode' })
+											)
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'buttons' },
+											_react2.default.createElement(
+												'button',
+												{ type: 'submit', className: 'btn sm-grey-btn font-weight-bold' },
+												'Cancel'
+											),
+											_react2.default.createElement(
+												'button',
+												{ type: 'submit', className: 'btn sm-red-btn font-weight-bold' },
+												'Save'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'a',
+										{ href: '', className: 'js-vertical-tab-accordion-heading vertical-tab-accordion-heading', rel: 'tab2' },
+										'Amenities Interested'
+									),
+									_react2.default.createElement(
+										'div',
+										{ id: 'tab2', className: 'js-vertical-tab-content vertical-tab-content' },
+										_react2.default.createElement(
+											'h2',
+											null,
+											'Amenities Interested'
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'amenities-interested' },
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Air Conditioning'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ className: 'amenities-active', href: '#' },
+												'Carpet'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Granite Countertops'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Hardwood Floors'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Patio'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Stainless Steel Appliances'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Washer And Dryer'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ className: 'amenities-active', href: '#' },
+												'Fitness Center'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'High Speed Internet Access'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'TZ Parcel Locker System'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Lush Park-Like Grounds'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Swimming Pool'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ className: 'amenities-active', href: '#' },
+												'Pets Allowed'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Spa'
+											),
+											' ',
+											_react2.default.createElement(
+												'a',
+												{ href: '#' },
+												'Clubhouse'
+											),
+											' '
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'buttons' },
+											_react2.default.createElement(
+												'button',
+												{ type: 'submit', className: 'btn sm-grey-btn font-weight-bold' },
+												'Cancel'
+											),
+											_react2.default.createElement(
+												'button',
+												{ type: 'submit', className: 'btn sm-red-btn font-weight-bold' },
+												'Save'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'a',
+										{ href: '', className: 'js-vertical-tab-accordion-heading vertical-tab-accordion-heading', rel: 'tab3' },
+										'Most important to me?'
+									),
+									_react2.default.createElement(
+										'div',
+										{ id: 'tab3', className: 'js-vertical-tab-content vertical-tab-content' },
+										_react2.default.createElement(
+											'h2',
+											null,
+											'Most important to me?'
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'most-important-wrap' },
+											_react2.default.createElement(
+												'div',
+												{ className: 'most-important-item' },
+												_react2.default.createElement(
+													'h3',
+													null,
+													_react2.default.createElement('i', { className: 'mdi mdi-arrow-all' }),
+													' 1. Near to my work address'
+												),
+												_react2.default.createElement(
+													'div',
+													{ className: 'form-group form-style' },
+													_react2.default.createElement('textarea', { className: 'form-control', id: '', rows: '3', placeholder: 'Enter work address' })
+												)
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'most-important-item' },
+												_react2.default.createElement(
+													'h3',
+													null,
+													_react2.default.createElement('i', { className: 'mdi mdi-arrow-all' }),
+													' 2. Must have (Amenities) '
+												),
+												_react2.default.createElement(
+													'div',
+													{ className: 'amenities-interested' },
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Air Conditioning'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ className: 'amenities-active', href: '#' },
+														'Carpet'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Granite Countertops'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Hardwood Floors'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Patio'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Stainless Steel Appliances'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Washer And Dryer'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ className: 'amenities-active', href: '#' },
+														'Fitness Center'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Spa'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'High Speed Internet Access'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'TZ Parcel Locker System'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Lush Park-Like Grounds'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Swimming Pool'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ className: 'amenities-active', href: '#' },
+														'Pets Allowed'
+													),
+													' ',
+													_react2.default.createElement(
+														'a',
+														{ href: '#' },
+														'Clubhouse'
+													),
+													' '
+												)
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'most-important-item' },
+												_react2.default.createElement(
+													'h3',
+													null,
+													_react2.default.createElement('i', { className: 'mdi mdi-arrow-all' }),
+													' 3. Near to Public Transportation'
+												),
+												_react2.default.createElement(
+													'div',
+													{ className: 'form-group form-style' },
+													_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Zipcode' }),
+													_react2.default.createElement(
+														'span',
+														{ className: 'search-warp' },
+														_react2.default.createElement('i', { className: 'mdi mdi-magnify' })
+													),
+													' '
+												)
+											)
+										),
+										_react2.default.createElement(
+											'div',
+											{ className: 'buttons' },
+											_react2.default.createElement(
+												'button',
+												{ type: 'submit', className: 'btn sm-grey-btn font-weight-bold' },
+												'Cancel'
+											),
+											_react2.default.createElement(
+												'button',
+												{ type: 'submit', className: 'btn sm-red-btn font-weight-bold' },
+												'Submit'
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				),
+				_react2.default.createElement(_Footer2.default, { chatId: 0 })
+			);
+		}
+	}]);
+
+	return Profile;
+}(_react2.default.Component);
+
+exports.default = Profile;
+
+/***/ }),
+/* 538 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(24);
+
+var _constants = __webpack_require__(27);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _userHomeService = __webpack_require__(63);
+
+var _userHomeService2 = _interopRequireDefault(_userHomeService);
+
+var _Header = __webpack_require__(90);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Footer = __webpack_require__(95);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _reactConfirmAlert = __webpack_require__(111);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Consultant = function (_React$Component) {
+  _inherits(Consultant, _React$Component);
+
+  function Consultant(props) {
+    _classCallCheck(this, Consultant);
+
+    var _this = _possibleConstructorReturn(this, (Consultant.__proto__ || Object.getPrototypeOf(Consultant)).call(this, props));
+
+    _this.state = {};
+
+    return _this;
+  }
+
+  _createClass(Consultant, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
+        _react2.default.createElement(
+          'div',
+          { className: 'main_content', role: 'main' },
+          _react2.default.createElement(
+            'div',
+            { className: 'jumbotron inner_ban position-relative' },
+            _react2.default.createElement('div', { className: 'div_overly' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'container text-center position-relative' },
+              _react2.default.createElement(
+                'h1',
+                { className: 'text-light' },
+                'Hi, John Doe'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'd-inline-block p_pic rounded-circle' },
+              _react2.default.createElement('img', { src: '/images/p_pic.jpg', alt: '' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'c_dtls row justify-content-md-center' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-8 text-center' },
+                _react2.default.createElement(
+                  'h3',
+                  { className: 'text-center mb-4' },
+                  'Ashok Kandipati '
+                ),
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'My name is ',
+                  _react2.default.createElement(
+                    'strong',
+                    null,
+                    'Ashok Kandipati'
+                  ),
+                  ' and I will be your DS Consultant for the duration of your stay with us at SuiteAmerica. I\u2019m looking forward to our meeting. Please let me know if I can assist you in any way. Here is a little info about me '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'box-shadow mt-5 mb-5' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'text-left row consultant_table' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'col-md-6' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Home Town'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Mountain View CA'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'col-md-6' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Years with SuiteAmerica'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        '15 years'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'text-left border-0 pt-3' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Fun Fact'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Lorem ipsum dolor sit amet, consectetur adipisicing.'
+                      )
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'bye-msg' },
+                  'See you on ',
+                  _react2.default.createElement(
+                    'strong',
+                    null,
+                    'Monday, November 8th 2018'
+                  ),
+                  ' for your personalized tour!'
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(_Footer2.default, { chatId: 0 })
+      );
+    }
+  }]);
+
+  return Consultant;
+}(_react2.default.Component);
+
+exports.default = Consultant;
 
 /***/ })
 /******/ ]);

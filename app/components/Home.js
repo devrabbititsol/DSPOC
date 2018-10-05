@@ -138,7 +138,7 @@ class Home extends React.Component {
     return (
       <div>
 
-        <Header/>
+        <Header pathName={this.props.location.pathname}/>
         <div className="main_content">
 	<div className="container">
 		<h1 className="main_heading">Properties <span className="badge badge-pill">{this.state.length}</span></h1>

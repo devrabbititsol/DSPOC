@@ -51,7 +51,7 @@ class Footer extends React.Component {
     }
     let _this = this;
     this.scrollDivBottom();
-    setTimeout(function(){ _this.chatUpdate(); }, 3000);
+    setTimeout(function(){ _this.chatUpdate(); }, 1000);
   }
   async openChatList(){
     await this.setState({
@@ -60,14 +60,16 @@ class Footer extends React.Component {
     await this.setState({openPropetyChatList:!this.state.openPropetyChatList,openChatBox:false});
   }
   async openChatBox(Id){
-    console.log(Id);
-    let ChatPropertyDetails = _.find(this.state.ChartLitst,{ItineraryPropertyID:Id});
     
-    await this.setState({chatItineraryPropertyID:ChatPropertyDetails.ItineraryPropertyID,ChatProperty:ChatPropertyDetails,openChatBox:true,openPropetyChatList:false});
-    $(".activeItem").removeClass('activeItem');
-    $("#highlight"+this.state.chatItineraryPropertyID).addClass('activeItem');
-    let chatDetails = await chatMessage.getChatDetails({ItineraryPropertyID:this.state.chatItineraryPropertyID});
-    await this.setState({propertyChat:chatDetails.recordset});
+    let ChatPropertyDetails = _.find(this.state.ChartLitst,{ItineraryPropertyID:Id});
+    if(ChatPropertyDetails != undefined)
+    {
+      await this.setState({chatItineraryPropertyID:ChatPropertyDetails.ItineraryPropertyID,ChatProperty:ChatPropertyDetails,openChatBox:true,openPropetyChatList:false});
+      $(".activeItem").removeClass('activeItem');
+      $("#highlight"+this.state.chatItineraryPropertyID).addClass('activeItem');
+      let chatDetails = await chatMessage.getChatDetails({ItineraryPropertyID:this.state.chatItineraryPropertyID});
+      await this.setState({propertyChat:chatDetails.recordset});
+    }
     
     //console.log(this.state, this.state.propertyChat);
   }

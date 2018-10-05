@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Logout from './components/common/Logout'
 import Login from './components/common/Login'
 import Home from './components/Home'
+import Profile from './components/Profile'
+import Consultant from './components/Consultant'
 import UnauthorizePage from './components/common/UnauthorizePage'
 import Constants from '../constants';
 import PropertyDetails from './components/PropertyDetails';
@@ -43,6 +45,14 @@ export default <Router history={browserHistory}>
 				<Route exact path="/home"
 	                render={(data) => {
 	                return decide() ? <Home {...data}/> : <Login {...data}/>;
+	      }} />
+				<Route exact path="/profile"
+	                render={(data) => {
+	                return decide() ? <Profile {...data}/> : <Login {...data}/>;
+	      }} />
+				<Route exact path="/consultant"
+	                render={(data) => {
+	                return decide() ? <Consultant {...data}/> : <Login {...data}/>;
 	      }} />
 				<Route exact path="/propertydetails/:ItineraryPropertyID"
 	                render={(data) => {

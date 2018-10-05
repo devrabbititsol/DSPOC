@@ -15,15 +15,11 @@ class UnauthorizePage extends React.Component {
 
   render() {
 
-    return (<div className="bg__unauthorized">
-      <div>
-        <img src="images/unauthorised.png" alt="" />
-      </div>
-      <div className="unauthorized__text__wrap">
+    return (<div className="container c_dtls row justify-content-md-center">
+      
+      <div className="col-md-8 text-center">
         <h1>401</h1>
         <h2>Unauthorized</h2>
-        <p>ERROR_MESSAGE_FOR_UNAUTHORIZED_USER</p>
-        <a href="/"><button className="btn btn-default btn-rounded waves-light waves-effect btn-lg"><i className="mdi mdi-arrow-left"></i>Logout</button></a>
       </div>
 
     </div>

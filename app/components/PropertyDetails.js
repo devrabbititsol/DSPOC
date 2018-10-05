@@ -13,9 +13,11 @@ class PropertyDetails extends React.Component {
     this.state = {
       propertyDetails: [],
       loaderStatus:false,
-      Walkscore:0
+      Walkscore:0,
+      crimestatics:false
     }
     this.streetView = this.streetView.bind(this);
+    this.crimestaticsShow = this.crimestaticsShow.bind(this);
   }
   async componentWillMount() {
     //console.log(this.props.match.params.ItineraryPropertyID);
@@ -27,7 +29,9 @@ class PropertyDetails extends React.Component {
     await this.mapLoad();
 
   }
-
+  async crimestaticsShow(){
+    this.setState({crimestatics:!this.state.crimestatics});
+  }
   async componentDidMount(){
       
   //await this.mapLoad()
@@ -217,6 +221,86 @@ class PropertyDetails extends React.Component {
             </div>
           </div>
         </div>
+
+        <div className="neighborhood_btn row justify-content-sm-center">
+		<div className="col col-sm-5">
+			<a href="javascript:void(0)" onClick={this.crimestaticsShow.bind(this)} className="btn btn-default btn-rounded">More on Neighborhood <i className={this.state.crimestatics == true ? "fa fa-chevron-up":"fa fa-chevron-down"}></i></a>
+		</div>
+	</div>
+{this.state.crimestatics == true ? 
+        <div className="neighborhood_table row mb-5">
+		<div className="headerpart col-md-12">640 Vital Statistics, 35 Condition Alerts Found.</div>
+		<div className="col">
+			<div className="realestate">
+				<i className="mdi mdi-office-building"></i>
+				<p>real Estate</p>
+			</div>
+			<div className="statistics">
+				<span>44</span>
+				<p>statistics</p>
+			</div>
+			<div className="alerts">
+				<i className="fa fa-exclamation-circle"></i>
+				<p>3 Alerts</p>
+			</div>
+		</div>
+		<div className="col">
+			<div className="realestate">
+				<i className="mdi mdi-account-group"></i>
+				<p>Demographics</p>
+			</div>
+			<div className="statistics">
+				<span>136</span>
+				<p>statistics</p>
+			</div>
+			<div className="alerts">
+				<i className="fa fa-exclamation-circle"></i>
+				<p>1 Alerts</p>
+			</div>
+		</div>
+		<div className="col">
+			<div className="realestate">
+				<i className="mdi mdi-pistol"></i>
+				<p>crimes</p>
+			</div>
+			<div className="statistics">
+				<span>67</span>
+				<p>statistics</p>
+			</div>
+			<div className="alerts">
+				<i className="fa fa-exclamation-circle"></i>
+				<p>3 Alerts</p>
+			</div>
+		</div>
+		<div className="col">
+			<div className="realestate">
+				<i className="mdi mdi-school"></i>
+				<p>schools</p>
+			</div>
+			<div className="statistics">
+				<span>65</span>
+				<p>statistics</p>
+			</div>
+			<div className="alerts">
+				<i className="fa fa-exclamation-circle"></i>
+				<p>13 Alerts</p>
+			</div>
+		</div>
+		<div className="col">
+			<div className="realestate">
+				<i className="mdi mdi-trending-up"></i>
+				<p>trends & forecasts</p>
+			</div>
+			<div className="statistics">
+				<span>328</span>
+				<p>statistics</p>
+			</div>
+			<div className="alerts">
+				<i className="fa fa-exclamation-circle"></i>
+				<p>15 Alerts</p>
+			</div>
+		</div>
+	</div> : "" }
       </div>
       </div>
      </div> : <div className="loader"><img src="/images/ajax-loader.gif" alt=""/></div>}
