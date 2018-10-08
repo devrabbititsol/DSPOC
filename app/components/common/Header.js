@@ -24,15 +24,18 @@ class Header extends React.Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav mx-auto text-center">
             <li className={(this.props.pathName == '/home' ||  this.props.pathName == '/') ? 'nav-item active' : 'nav-item'}>
-              <a className="nav-link" href="/home">Properties </a>
+              <a className="nav-link" href="/home">Home Finding </a>
+            </li>
+            <li className={this.props.pathName == '/ccconsultant' ? 'nav-item active' : 'nav-item'}>
+              <a className="nav-link" href="#">Settle-In-Services</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Destination Services</a>
             </li>
             <li className={this.props.pathName == '/consultant' ? 'nav-item active' : 'nav-item'}>
               <a className="nav-link" href="/consultant">My Consultant</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Information</a>
             </li>
           </ul>
           

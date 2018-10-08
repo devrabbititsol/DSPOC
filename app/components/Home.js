@@ -143,7 +143,9 @@ class Home extends React.Component {
 	<div className="container">
 		<h1 className="main_heading">Properties <span className="badge badge-pill">{this.state.length}</span></h1>
 		
-
+		<div className="d-flex justify-content-between">
+		<div className="mb-5 mt-5 map-block">
+		<a href=""data-toggle="modal" data-target="#map-moal"><i className="mdi mdi-map-search-outline"></i></a></div>
 		<ul className="nav nav-pills mb-5 mt-5 properties" id="pills-tab" role="tablist">
 		  <li className="nav-item">
 			<a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" onClick={this.calLength.bind(this, 1)}><i className="mdi mdi-view-list"></i> Options</a>
@@ -155,6 +157,9 @@ class Home extends React.Component {
 			<a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={this.calLength.bind(this, 3)}><i className="mdi mdi-thumb-down"></i> Not Interested</a>
 		  </li>
 		</ul>
+		</div>
+
+
 		<div className="tab-content" id="pills-tabContent">
     {this.state.loaderStatus == true ? <div className="loader">
     <img src="images/ajax-loader.gif" alt=""/>

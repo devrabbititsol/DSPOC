@@ -566,8 +566,11 @@ p, select, input{
 	color: #5a5454;
 	background-color: #dfdfdf;
 	border-radius: 50px;
-	margin-right: 25px;
 }
+.properties .nav-item:not(:last-child){
+	margin-right: 25px !important;
+}
+
 .properties.nav-pills .nav-item > .nav-link.active{
 	box-shadow: 0px 10px 20px rgba(228,50,38,0.3);
 	color: #fff;
@@ -1405,7 +1408,7 @@ p.bye-msg{
 .basic-info div {
 	flex-basis: calc(50% - 30px);
 }
-.basic-info div {
+.basic-info .form-group {
 	margin-right: 30px;
 	margin-bottom: 40px;
 }
@@ -1506,7 +1509,51 @@ p.bye-msg{
 }
 
 
+.p-map-wrap {
+	position: relative;
+}
+
+.p-map-wrap .form-control{
+	display: block;
+    height: 40px;
+    border: 1px solid #fbfbfb;
+    width: 50%;
+    font-size: 16px;
+    margin-bottom: 30px;
+    padding: 10px;
+    position: absolute;
+    top: 51px;
+    z-index: 99;
+    left: 10px;
+    background: rgba(255,255,255, 0.8);
+    box-shadow: 0px 0px 14px rgba(0,0,0, 0.3);
+}
+.form-style .search-warp-profile {
+	position: absolute;
+	right: 5px;
+	top: 35px;
+}
+.form-style .search-warp-profile i {
+	font-size: 20px;
+	color: #9A9A9A;
+	cursor: pointer;
+	padding: 5px 0px 5px 10px;
+}
 
 
+.map-block a{
+	box-shadow: 0px 10px 20px rgba(228,50,38,0.3);
+    color: #fff;
+    background-color: #e43226;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;	
+}
 
-
+.map-block a i{
+	font-size: 18px;
+}

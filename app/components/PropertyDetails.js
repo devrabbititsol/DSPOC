@@ -14,16 +14,24 @@ class PropertyDetails extends React.Component {
       propertyDetails: [],
       loaderStatus:false,
       Walkscore:0,
-      crimestatics:false
+      crimestatics:false,
+      address:""
     }
     this.streetView = this.streetView.bind(this);
     this.crimestaticsShow = this.crimestaticsShow.bind(this);
+    this.setLocation = this.setLocation.bind(this);
   }
   async componentWillMount() {
     //console.log(this.props.match.params.ItineraryPropertyID);
     await this.setState({loaderStatus:true})
     const propertyDetails = await userHome.propertyDetails({ItineraryPropertyID: this.props.match.params.ItineraryPropertyID});
-    await this.setState({loaderStatus:false, propertyDetails:propertyDetails.recordset.length > 0 ? propertyDetails.recordset[0] : []});
+    let address="";
+    if(propertyDetails.recordset.length > 0){
+      let mapAddress = propertyDetails.recordset[0];
+       address = mapAddress.Address+', '+mapAddress.City+', '+mapAddress.StateCode+', '+mapAddress.ZipCode;
+    }
+    
+    await this.setState({address:address,loaderStatus:false, propertyDetails:propertyDetails.recordset.length > 0 ? propertyDetails.recordset[0] : []});
     
     //console.log(this.state);
     await this.mapLoad();
@@ -40,9 +48,8 @@ class PropertyDetails extends React.Component {
    mapLoad(){
      setTimeout(function() {
        var geocoder = new google.maps.Geocoder();
-       
-        var address = this.state.propertyDetails.Address+', '+this.state.propertyDetails.City+', '+this.state.propertyDetails.StateCode+', '+this.state.propertyDetails.ZipCode
-       
+       console.log(this.state.address);
+        var address = this.state.address;
        const _this= this
        geocoder.geocode( { 'address': address}, async function(results, status) {
        if (status == google.maps.GeocoderStatus.OK) {
@@ -61,23 +68,19 @@ class PropertyDetails extends React.Component {
  
    loadMap(index){
      
-       var directionsService = new google.maps.DirectionsService();
-       var directionsDisplay = new google.maps.DirectionsRenderer();
-        this.setState({'directionsService': directionsService});
-        this.setState({'directionsDisplay': directionsDisplay});
     var locations = {
      lat: Number(this.state.latitude),
      lng: Number(this.state.longitude)
    };
  
       var map = new google.maps.Map(document.getElementById('map'), {
-       zoom: 15,
+       zoom: 16,
        center: locations,
        mapTypeId: google.maps.MapTypeId.ROADMAP
      });
     
-     this.state.directionsDisplay.setMap(map);
-     var address = this.state.propertyDetails.Address+', '+this.state.propertyDetails.City+', '+this.state.propertyDetails.StateCode;
+     //this.state.directionsDisplay.setMap(map);
+     var address = this.state.address;
      
      var contentString = '<div id="content">'+address+'</div>';
      var infowindow = new google.maps.InfoWindow({content: contentString});
@@ -105,7 +108,19 @@ class PropertyDetails extends React.Component {
          zoom: 1
        });}, 500);
   }
-
+  async setLocation(Id) {  
+    var address = '';
+    const _this = this;
+    var places = new google.maps.places.Autocomplete(document.getElementById(Id));
+     google.maps.event.addListener(places, 'place_changed', async function () {
+      var place = places.getPlace();
+      address = place.formatted_address;
+      //console.log("====", address) 
+      _this.setState({'address': address}); 
+      await _this.mapLoad();
+  });
+    
+   }
 
 
   render() {
@@ -174,7 +189,10 @@ class PropertyDetails extends React.Component {
               <img src={'https://s3-us-west-1.amazonaws.com/destination-services-itinerary/'+this.state.propertyDetails.Photo+'.jpg'} alt=""/>
               </div>
               <div role="tabpanel" className="tab-pane" id="two">
-              <div id={'map'} style={{'width': '100%','height': '460px'}}></div>  
+              <div className="p-map-wrap">
+              <input className="form-control"  onChange={this.setLocation.bind(this, "map-input")} id="map-input" type="text" placeholder="Enter a location"/>
+              <div id={'map'} style={{'width': '100%','height': '460px'}}></div>
+              </div>  
               </div>
               <div role="tabpanel" className="tab-pane" id="three">
               <div id={'pano'} style={{'width': '100%','height': '460px'}}></div> 
