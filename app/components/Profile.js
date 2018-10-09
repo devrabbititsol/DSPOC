@@ -7,12 +7,108 @@ import Footer from './common/Footer';
 import { confirmAlert } from 'react-confirm-alert';
 import $ from "jquery";
 
+var placeholder = document.createElement("li");
+placeholder.className = "placeholder";
 
+class List extends React.Component {
+  constructor(props) {
+    super(props);
+		this.state = {colors:props.colors};
+		
+  }
+  dragStart(e) {
+    this.dragged = e.currentTarget;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.dragged);
+  }
+  dragEnd(e) {
+    this.dragged.style.display = 'block';
+    //this.dragged.parentNode.removeChild(placeholder);
+    
+    // update state
+    var data = this.state.colors;
+    var from = Number(this.dragged.dataset.id);
+    var to = Number(this.over.dataset.id);
+    if(from < to) to--;
+    data.splice(to, 0, data.splice(from, 1)[0]);
+    this.setState({colors: data});
+  }
+  dragOver(e) {
+    e.preventDefault();
+    this.dragged.style.display = "none";
+    if(e.target.className === 'placeholder') return;
+    this.over = e.target;
+    e.target.parentNode.insertBefore(placeholder, e.target);
+  }
+	render() {
+    var listItems = this.state.colors.map((item, i) => {
+		if(item == '.'){
+
+	
+      return (
+        <li 
+          data-id={i}
+          key={i}
+          draggable='true'
+          onDragEnd={this.dragEnd.bind(this)}
+          onDragStart={this.dragStart.bind(this)}>{item}<div className="most-important-item">
+		  <h3><i className="mdi mdi-arrow-all"></i> {i+1}. Near to my work address</h3>
+		  <div className="form-group form-style">
+			  <textarea className="form-control" id="" rows="3" placeholder="Enter work address"></textarea>
+		  </div>
+	  </div></li>
+      )
+		 }
+		 if(item == '..'){
+			
+				
+						return (
+							<li 
+								data-id={i}
+								key={i}
+								draggable='true'
+								onDragEnd={this.dragEnd.bind(this)}
+								onDragStart={this.dragStart.bind(this)}>{item}<div className="most-important-item">
+								<h3><i className="mdi mdi-arrow-all"></i> {i+1}. Must have (Amenities) </h3>
+								<div className="amenities-interested"> <a href="#">Air Conditioning</a> <a className="amenities-active" href="#">Carpet</a> <a href="#">Granite Countertops</a> <a href="#">Hardwood Floors</a> <a href="#">Patio</a> <a href="#">Stainless Steel Appliances</a> <a href="#">Washer And Dryer</a> <a className="amenities-active" href="#">Fitness Center</a> <a href="#">Spa</a> <a href="#">High Speed Internet Access</a> <a href="#">TZ Parcel Locker System</a> <a href="#">Lush Park-Like Grounds</a> <a href="#">Swimming Pool</a> <a className="amenities-active" href="#">Pets Allowed</a> <a href="#">Clubhouse</a> </div>
+							</div></li>
+						)
+					 }
+					 if(item == '...'){
+						
+							
+									return (
+										<li 
+											data-id={i}
+											key={i}
+											draggable='true'
+											onDragEnd={this.dragEnd.bind(this)}
+											onDragStart={this.dragStart.bind(this)}>{item}<div className="most-important-item">
+											<h3><i className="mdi mdi-arrow-all"></i> {i+1}. Near to Public Transportation</h3>
+											<div className="form-group form-style">
+												<input type="text"  onChange={this.props.setLocation.bind(this, "publictarans-input")} className="form-control" id="publictarans-input" placeholder="Zipcode"/>
+												<span className="search-warp"><i className="mdi mdi-magnify"></i></span> </div>
+										</div></li>
+									)
+								 }		 
+		}
+
+		
+		
+		);
+		return (
+			<ul onDragOver={this.dragOver.bind(this)}>
+        {listItems}
+      </ul>
+		)
+	}
+}
 
 class Profile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+		colors: ['.', '..', '...']
     }
    
   this.setLocation = this.setLocation.bind(this);
@@ -97,7 +193,8 @@ class Profile extends React.Component {
 								<a href="" className="js-vertical-tab-accordion-heading vertical-tab-accordion-heading" rel="tab3">Most important to me?</a>
 								<div id="tab3" className="js-vertical-tab-content vertical-tab-content">
 									<h2>Most important to me?</h2>
-									
+									<List colors={this.state.colors} setLocation={this.setLocation} />
+									{/*
 									<div className="most-important-wrap">
 										<div className="most-important-item">
 											<h3><i className="mdi mdi-arrow-all"></i> 1. Near to my work address</h3>
@@ -115,7 +212,7 @@ class Profile extends React.Component {
 												<input type="text"  onChange={this.setLocation.bind(this, "publictarans-input")} className="form-control" id="publictarans-input" placeholder="Zipcode"/>
 												<span className="search-warp"><i className="mdi mdi-magnify"></i></span> </div>
 										</div>
-									</div>
+									</div>*/}
 									<div className="buttons">
 										<button type="submit" className="btn sm-grey-btn font-weight-bold">Cancel</button>
 										<button type="submit" className="btn sm-red-btn font-weight-bold">Submit</button>

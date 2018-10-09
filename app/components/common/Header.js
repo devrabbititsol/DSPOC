@@ -25,8 +25,8 @@ class Header extends React.Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav mx-auto text-center">
-            <li className={(this.props.pathName == '/home' ||  this.props.pathName == '/') ? 'nav-item active' : 'nav-item'}>
-              <a className="nav-link" href="/home">Home Finding </a>
+            <li className={(this.props.pathName == '/homefinding') ? 'nav-item active' : 'nav-item'}>
+              <a className="nav-link" href="/homefinding">Home Finding </a>
             </li>
             <li className={this.props.pathName == '/ccconsultant' ? 'nav-item active' : 'nav-item'}>
               <a className="nav-link" href="#">Settle-In-Services</a>

@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Logout from './components/common/Logout'
 import Login from './components/common/Login'
 import Home from './components/Home'
+import HomeFinding from './components/HomeFinding'
+
 import Profile from './components/Profile'
 import Consultant from './components/Consultant'
 import UnauthorizePage from './components/common/UnauthorizePage'
@@ -20,9 +22,10 @@ import PropertyDetails from './components/PropertyDetails';
 /* Load the components based on Local storage elements empty or not */
 function decide() {
 	//console.log(Object.keys(localStorage).length);
-  if(Object.keys(localStorage).length === 0) {
+  if(localStorage.getItem('LoginDetails') == null) {
   	return false;
   } else {
+		console.log(localStorage.getItem('LoginDetails'));
 		return true;
   }
 }
@@ -42,9 +45,14 @@ export default <Router history={browserHistory}>
 	                render={(data) => {
 	                return decide() ? <Home {...data}/> : <Login {...data}/>;
 	      }} />
-				<Route exact path="/home"
+					<Route exact path="/home"
 	                render={(data) => {
 	                return decide() ? <Home {...data}/> : <Login {...data}/>;
+	      }} />
+				
+				<Route exact path="/homefinding"
+	                render={(data) => {
+	                return decide() ? <HomeFinding {...data}/> : <Login {...data}/>;
 	      }} />
 				<Route exact path="/profile"
 	                render={(data) => {
