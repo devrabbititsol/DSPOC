@@ -87769,10 +87769,14 @@ var Profile = function (_React$Component2) {
         error: true,
         id: "lastName"
       };
-      if (this.state.email == "") errorMsg["email"] = {
-        error: true,
-        id: "email"
-      };
+
+      if (this.state.email == "" || true) {
+        var regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        errorMsg["email"] = {
+          error: !regularexpression.test(this.state.email),
+          id: "email"
+        };
+      }
       if (this.state.phone == "") errorMsg["phone"] = {
         error: true,
         id: "phone"

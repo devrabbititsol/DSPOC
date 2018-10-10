@@ -237,32 +237,35 @@ class Profile extends React.Component {
       temporaryAddress: { error: false }
     };
     if (this.state.firstName == "")
-    errorMsg["firstName"] = {
+      errorMsg["firstName"] = {
         error: true,
         id: "firstName"
       };
     if (this.state.lastName == "")
-    errorMsg["lastName"] = {
+      errorMsg["lastName"] = {
         error: true,
         id: "lastName"
       };
-    if (this.state.email == "")
-    errorMsg["email"] = {
-        error: true,
+
+    if (this.state.email == "" || true) {
+      let regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      errorMsg["email"] = {
+        error: !regularexpression.test(this.state.email),
         id: "email"
       };
+    }
     if (this.state.phone == "")
-    errorMsg["phone"] = {
+      errorMsg["phone"] = {
         error: true,
         id: "phone"
       };
     if (this.state.relocatedAddress == "")
-    errorMsg["relocatedAddress"] = {
+      errorMsg["relocatedAddress"] = {
         error: true,
         id: "relocatedAddress"
       };
     if (this.state.temporaryAddress == "")
-    errorMsg["temporaryAddress"] = {
+      errorMsg["temporaryAddress"] = {
         error: true,
         id: "temporaryAddress"
       };
@@ -368,132 +371,132 @@ class Profile extends React.Component {
                     <h2>Basic Information</h2>
 
                     <div className="basic-info">
-                    <div className="form-group form-style">
-                      <label htmlFor="">First Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id=""
-                        placeholder="First Name"
-                        style={{
-                          borderBottom:
-                            this.state.error.firstName.error == undefined ||
-                            this.state.error.firstName.error
+                      <div className="form-group form-style">
+                        <label htmlFor="">First Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id=""
+                          placeholder="First Name"
+                          style={{
+                            borderBottom:
+                              this.state.error.firstName.error == undefined ||
+                              this.state.error.firstName.error
+                                ? "2px solid #e43226"
+                                : "2px solid #D1D1D1"
+                          }}
+                          // {this.state.error.firstName ? console.log("error") : console.log("noerror")}
+                          onChange={e => this.inputFieldChanged(e, "firstName")}
+                        />
+                      </div>
+
+                      <div className="form-group form-style">
+                        <label htmlFor="">Last Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id=""
+                          placeholder="Last Name"
+                          style={{
+                            borderBottom: this.state.error.lastName.error
                               ? "2px solid #e43226"
                               : "2px solid #D1D1D1"
-                        }}
-                        // {this.state.error.firstName ? console.log("error") : console.log("noerror")}
-                        onChange={e => this.inputFieldChanged(e, "firstName")}
-                      />
+                          }}
+                          onChange={e => this.inputFieldChanged(e, "lastName")}
+                        />
+                      </div>
+                      <div className="form-group form-style">
+                        <label htmlFor="">Email</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id=""
+                          placeholder="Email"
+                          style={{
+                            borderBottom: this.state.error.email.error
+                              ? "2px solid #e43226"
+                              : "2px solid #D1D1D1"
+                          }}
+                          onChange={e => this.inputFieldChanged(e, "email")}
+                        />
+                      </div>
+                      <div className="form-group form-style">
+                        <label htmlFor="">Phone</label>
+                        <input
+                          type="tel"
+                          className="form-control"
+                          id="phone"
+                          placeholder="Phone"
+                          style={{
+                            borderBottom: this.state.error.phone.error
+                              ? "2px solid #e43226"
+                              : "2px solid #D1D1D1"
+                          }}
+                          onChange={e => this.inputFieldChanged(e, "phone")}
+                        />
+                      </div>
+                      <div className="form-group form-style">
+                        <label htmlFor="">Relocated Address</label>
+                        <input
+                          id="relocated-input"
+                          type="text"
+                          className="form-control"
+                          placeholder="Relocated Address"
+                          style={{
+                            borderBottom: this.state.error.relocatedAddress
+                              .error
+                              ? "2px solid #e43226"
+                              : "2px solid #D1D1D1"
+                          }}
+                          onChange={this.setLocation.bind(
+                            this,
+                            "relocated-input"
+                          )}
+                        />
+                        <span className="search-warp-profile">
+                          <i className="mdi mdi-magnify" />
+                        </span>
+                      </div>
+                      <div className="form-group form-style">
+                        <label htmlFor="">Temporary Address</label>
+                        <input
+                          type="text"
+                          id="temporary-input"
+                          className="form-control"
+                          placeholder="Temporary Address"
+                          style={{
+                            borderBottom: this.state.error.temporaryAddress
+                              .error
+                              ? "2px solid #e43226"
+                              : "2px solid #D1D1D1"
+                          }}
+                          onChange={this.setLocation.bind(
+                            this,
+                            "temporary-input"
+                          )} //(e => this.inputFieldChanged(e, "temporaryAddress"))
+                        />
+                        <span className="search-warp-profile">
+                          <i className="mdi mdi-magnify" />
+                        </span>
+                      </div>
                     </div>
-                    
-                    <div className="form-group form-style">
-                      <label htmlFor="">Last Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id=""
-                        placeholder="Last Name"
-                        style={{
-                          borderBottom: this.state.error.lastName.error
-                            ? "2px solid #e43226"
-                            : "2px solid #D1D1D1"
+                    <div className="buttons">
+                      <button
+                        type="submit"
+                        className="btn sm-grey-btn font-weight-bold"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="btn sm-red-btn font-weight-bold"
+                        onClick={e => {
+                          this.informationSubmit(e);
                         }}
-                        onChange={e => this.inputFieldChanged(e, "lastName")}
-                      />
+                      >
+                        Save
+                      </button>
                     </div>
-                    <div className="form-group form-style">
-                      <label htmlFor="">Email</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id=""
-                        placeholder="Email"
-                        style={{
-                          borderBottom: this.state.error.email.error
-                            ? "2px solid #e43226"
-                            : "2px solid #D1D1D1"
-                        }}
-                        onChange={e => this.inputFieldChanged(e, "email")}
-                      />
-                    </div>
-                    <div className="form-group form-style">
-                      <label htmlFor="">Phone</label>
-                      <input
-                        type="tel"
-                        className="form-control"
-                        id="phone"
-                        placeholder="Phone"
-                        style={{
-                          borderBottom: this.state.error.phone.error
-                            ? "2px solid #e43226"
-                            : "2px solid #D1D1D1"
-                        }}
-                        onChange={e => this.inputFieldChanged(e, "phone")}
-                      />
-                    </div>
-                    <div className="form-group form-style">
-                      <label htmlFor="">Relocated Address</label>
-                      <input
-                        id="relocated-input"
-                        type="text"
-                        className="form-control"
-                        placeholder="Relocated Address"
-                        style={{
-                          borderBottom: this.state.error.relocatedAddress
-                            .error
-                            ? "2px solid #e43226"
-                            : "2px solid #D1D1D1"
-                        }}
-                        onChange={this.setLocation.bind(
-                          this,
-                          "relocated-input"
-                        )}
-                      />
-                      <span className="search-warp-profile">
-                        <i className="mdi mdi-magnify" />
-                      </span>
-                    </div>
-                    <div className="form-group form-style">
-                      <label htmlFor="">Temporary Address</label>
-                      <input
-                        type="text"
-                        id="temporary-input"
-                        className="form-control"
-                        placeholder="Temporary Address"
-                        style={{
-                          borderBottom: this.state.error.temporaryAddress
-                            .error
-                            ? "2px solid #e43226"
-                            : "2px solid #D1D1D1"
-                        }}
-                        onChange={this.setLocation.bind(
-                          this,
-                          "temporary-input"
-                        )} //(e => this.inputFieldChanged(e, "temporaryAddress"))
-                      />
-                      <span className="search-warp-profile">
-                        <i className="mdi mdi-magnify" />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="buttons">
-                    <button
-                      type="submit"
-                      className="btn sm-grey-btn font-weight-bold"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="btn sm-red-btn font-weight-bold"
-                      onClick={e => {
-                        this.informationSubmit(e);
-                      }}
-                    >
-                      Save
-                    </button>
-                  </div>
                   </div>
                   <a
                     href=""
