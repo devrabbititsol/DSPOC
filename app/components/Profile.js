@@ -13,9 +13,17 @@ placeholder.className = "placeholder";
 class List extends React.Component {
   constructor(props) {
     super(props);
-		this.state = {colors:props.colors};
+		this.state = {
+			colors:props.colors
+
+		};
+
 		
-  }
+		
+	}
+	
+	
+
   dragStart(e) {
     this.dragged = e.currentTarget;
     e.dataTransfer.effectAllowed = 'move';
@@ -70,7 +78,30 @@ class List extends React.Component {
 								onDragEnd={this.dragEnd.bind(this)}
 								onDragStart={this.dragStart.bind(this)}>{item}<div className="most-important-item">
 								<h3><i className="mdi mdi-arrow-all"></i> {i+1}. Must have (Amenities) </h3>
-								<div className="amenities-interested"> <a href="#">Air Conditioning</a> <a className="amenities-active" href="#">Carpet</a> <a href="#">Granite Countertops</a> <a href="#">Hardwood Floors</a> <a href="#">Patio</a> <a href="#">Stainless Steel Appliances</a> <a href="#">Washer And Dryer</a> <a className="amenities-active" href="#">Fitness Center</a> <a href="#">Spa</a> <a href="#">High Speed Internet Access</a> <a href="#">TZ Parcel Locker System</a> <a href="#">Lush Park-Like Grounds</a> <a href="#">Swimming Pool</a> <a className="amenities-active" href="#">Pets Allowed</a> <a href="#">Clubhouse</a> </div>
+								<div className="amenities-interested"> {this.props.Amenities.map((ameniti, key) => {
+                            if (this.props.mostImpartentActive.includes(key))
+                              //checks is ameniti is active or not
+                              return (
+                                <a
+																  href="javascript:void(0)"
+                                  key={key}
+                                  className="amenities-active"
+                                  onClick={this.props.mostImpartentActiveFunc.bind(this,key)}
+                                >
+                                  {ameniti}
+                                </a>
+                              );
+                            else
+                              return (
+                                <a
+																  href="javascript:void(0)"
+                                  key={key}
+                                  onClick={this.props.mostImpartentActiveFunc.bind(this,key)}
+                                >
+                                  {ameniti}
+                                </a>
+                              );
+                          })} </div>
 							</div></li>
 						)
 					 }
@@ -108,16 +139,67 @@ class Profile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-		colors: ['.', '..', '...']
-    }
-   
+		colors: ['.', '..', '...'],
+    Amenities: [
+			"Air Conditioning",
+			"Carpet",
+			"Granite Countertops",
+			"Hardwood Floors",
+			"Patio",
+			"Stainless Steel Appliances",
+			"Washer And Dryer",
+			"Fitness Center",
+			"High Speed Internet Access",
+			"TZ Parcel Locker System",
+			"Lush Park-Like Grounds",
+			"Swimming Pool",
+			"Pets Allowed",
+			"Spa",
+			"Clubhouse"
+		],
+		mostImpartentActive: [1, 7, 13], //active list for Most important to me
+		amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+
+	};
+
+	this.mostImpartentActive = this.mostImpartentActive.bind(this);
+	this.amenitiesInterestedActive = this.amenitiesInterestedActive.bind(this);
   this.setLocation = this.setLocation.bind(this);
   }
   
   setLocation(Id) {  
 	var places = new google.maps.places.Autocomplete(document.getElementById(Id));
 		
+	}
+	
+	mostImpartentActive(key, e) {
+    let mostImpartentActive = this.state.mostImpartentActive;
+    if (this.state.mostImpartentActive.includes(key)) {
+      let index = mostImpartentActive.indexOf(key);
+      if (index > -1) {
+        mostImpartentActive.splice(index, 1);
+        this.setState(mostImpartentActive);
+      }
+    } else {
+      mostImpartentActive.push(key);
+      this.setState(mostImpartentActive);
+    }
   }
+  amenitiesInterestedActive(key, e) {
+    let amenitiesInterestedActive = this.state.amenitiesInterestedActive;
+    if (this.state.amenitiesInterestedActive.includes(key)) {
+      let index = amenitiesInterestedActive.indexOf(key);
+      if (index > -1) {
+        amenitiesInterestedActive.splice(index, 1);
+        console.log(amenitiesInterestedActive);
+        this.setState(amenitiesInterestedActive);
+      }
+    } else {
+      amenitiesInterestedActive.push(key);
+      this.setState(amenitiesInterestedActive);
+    }
+  }
+
   async componentDidMount(){
 	$(document)
 	.ready(function () {
@@ -183,7 +265,32 @@ class Profile extends React.Component {
 								<div id="tab2" className="js-vertical-tab-content vertical-tab-content">
 									<h2>Amenities Interested</h2>
 								
-									<div className="amenities-interested"> <a href="#">Air Conditioning</a> <a className="amenities-active" href="#">Carpet</a> <a href="#">Granite Countertops</a> <a href="#">Hardwood Floors</a> <a href="#">Patio</a> <a href="#">Stainless Steel Appliances</a> <a href="#">Washer And Dryer</a> <a className="amenities-active" href="#">Fitness Center</a> <a href="#">High Speed Internet Access</a> <a href="#">TZ Parcel Locker System</a> <a href="#">Lush Park-Like Grounds</a> <a href="#">Swimming Pool</a> <a className="amenities-active" href="#">Pets Allowed</a> <a href="#">Spa</a> <a href="#">Clubhouse</a> </div>
+								  <div className="amenities-interested">
+                      {this.state.Amenities.map((ameniti, key) => {
+                        if (this.state.amenitiesInterestedActive.includes(key))
+                          //checks is ameniti is active or not
+                          return (
+                            <a
+														  href="javascript:void(0)"
+                              key={key}
+                              className="amenities-active"
+                              onClick={this.amenitiesInterestedActive.bind(this, key)}
+                            >
+                              {ameniti}
+                            </a>
+                          );
+                        else
+                          return (
+                            <a
+														  href="javascript:void(0)"
+                              key={key}
+                              onClick={this.amenitiesInterestedActive.bind(this, key)}
+                            >
+                              {ameniti}
+                            </a>
+                          );
+                      })}
+                    </div>
 									<div className="buttons">
 										<button type="submit" className="btn sm-grey-btn font-weight-bold">Cancel</button>
 										<button type="submit" className="btn sm-red-btn font-weight-bold">Save</button>
@@ -193,7 +300,7 @@ class Profile extends React.Component {
 								<a href="" className="js-vertical-tab-accordion-heading vertical-tab-accordion-heading" rel="tab3">Most important to me?</a>
 								<div id="tab3" className="js-vertical-tab-content vertical-tab-content">
 									<h2>Most important to me?</h2>
-									<List colors={this.state.colors} setLocation={this.setLocation} />
+									<List colors={this.state.colors} mostImpartentActiveFunc={this.mostImpartentActive} setLocation={this.setLocation} {...this.state}/>
 									{/*
 									<div className="most-important-wrap">
 										<div className="most-important-item">

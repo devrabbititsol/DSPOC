@@ -18,8 +18,29 @@ class HomeFinding extends React.Component {
       length:'',
 			loaderStatus:false,
 			chatId:0,
-			filterAddress:0
-    }
+			filterAddress:0,
+			Amenities: [
+				"Air Conditioning",
+				"Carpet",
+				"Granite Countertops",
+				"Hardwood Floors",
+				"Patio",
+				"Stainless Steel Appliances",
+				"Washer And Dryer",
+				"Fitness Center",
+				"High Speed Internet Access",
+				"TZ Parcel Locker System",
+				"Lush Park-Like Grounds",
+				"Swimming Pool",
+				"Pets Allowed",
+				"Spa",
+				"Clubhouse"
+			],
+			amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+	
+		};
+	
+		this.amenitiesInterestedActive = this.amenitiesInterestedActive.bind(this);
     this.updateDataToVisit = this.updateDataToVisit.bind(this);
     this.updateDataToArchive = this.updateDataToArchive.bind(this);
     this.calLength = this.calLength.bind(this);
@@ -28,6 +49,20 @@ class HomeFinding extends React.Component {
 		this.updateChatId = this.updateChatId.bind(this);
 		this.filterAddressActive = this.filterAddressActive.bind(this);
 
+	}
+	amenitiesInterestedActive(key, e) {
+    let amenitiesInterestedActive = this.state.amenitiesInterestedActive;
+    if (this.state.amenitiesInterestedActive.includes(key)) {
+      let index = amenitiesInterestedActive.indexOf(key);
+      if (index > -1) {
+        amenitiesInterestedActive.splice(index, 1);
+        console.log(amenitiesInterestedActive);
+        this.setState(amenitiesInterestedActive);
+      }
+    } else {
+      amenitiesInterestedActive.push(key);
+      this.setState(amenitiesInterestedActive);
+    }
   }
   async componentWillMount() {
 		if(localStorage.getItem("propertyDetails") == null){
@@ -390,7 +425,32 @@ class HomeFinding extends React.Component {
 				Select Amenities
 			</div>
 			
-			<div className="amenities-interested"> <a href="#">Air Conditioning</a> <a className="amenities-active" href="#">Carpet</a> <a href="#">Granite Countertops</a> <a href="#">Hardwood Floors</a> <a href="#">Patio</a> <a href="#">Stainless Steel Appliances</a> <a href="#">Washer And Dryer</a> <a className="amenities-active" href="#">Fitness Center</a> <a href="#">High Speed Internet Access</a> <a href="#">TZ Parcel Locker System</a> <a href="#">Lush Park-Like Grounds</a> <a href="#">Swimming Pool</a> <a className="amenities-active" href="#">Pets Allowed</a> <a href="#">Spa</a> <a href="#">Clubhouse</a> </div>
+			<div className="amenities-interested">
+                      {this.state.Amenities.map((ameniti, key) => {
+                        if (this.state.amenitiesInterestedActive.includes(key))
+                          //checks is ameniti is active or not
+                          return (
+                            <a
+														  href="javascript:void(0)"
+                              key={key}
+                              className="amenities-active"
+                              onClick={this.amenitiesInterestedActive.bind(this, key)}
+                            >
+                              {ameniti}
+                            </a>
+                          );
+                        else
+                          return (
+                            <a
+														  href="javascript:void(0)"
+                              key={key}
+                              onClick={this.amenitiesInterestedActive.bind(this, key)}
+                            >
+                              {ameniti}
+                            </a>
+                          );
+                      })}
+                    </div>
 				
       </div>
 		

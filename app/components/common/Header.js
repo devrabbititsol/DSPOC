@@ -42,7 +42,7 @@ class Header extends React.Component {
 			<div className="dropdown user-menu">
 				<span><img src="/images/img2.jpg" alt=""/></span>
 			<a className="dropdown-toggle btn" data-toggle="dropdown" aria-expanded="false">
-			   John Doe
+			   Hi John Doe
 			</a>
 			<div className="dropdown-menu">
 			  <a  href="/profile" className={this.props.pathName == "/profile" ? "dropdown-item actives" : "dropdown-item"}><i className="mdi mdi-account-outline"></i> Profile</a>
