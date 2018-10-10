@@ -76791,13 +76791,13 @@ var Login = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'form-group' },
-                            _react2.default.createElement('i', { className: 'zmdi zmdi-account-o' }),
+                            _react2.default.createElement('i', { className: 'mdi mdi-account-outline' }),
                             _react2.default.createElement('input', { type: 'email', className: 'userName form-control', id: 'userName', name: 'userName', 'aria-describedby': 'emailHelp', placeholder: 'Enter email', onChange: this.inputHandler.bind(this, 'userName') })
                         ),
                         _react2.default.createElement(
                             'div',
                             { className: 'form-group' },
-                            _react2.default.createElement('i', { className: 'zmdi zmdi-lock-outline' }),
+                            _react2.default.createElement('i', { className: 'mdi mdi-lock-outline' }),
                             _react2.default.createElement('input', { type: 'password', className: 'passWord form-control', id: 'Password', name: 'passWord', placeholder: 'passWord', onChange: this.inputHandler.bind(this, 'passWord') })
                         ),
                         _react2.default.createElement(
@@ -86311,7 +86311,7 @@ root._=_;}}).call(undefined);
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -86349,95 +86349,93 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Home = function (_React$Component) {
-	_inherits(Home, _React$Component);
+  _inherits(Home, _React$Component);
 
-	function Home(props) {
-		_classCallCheck(this, Home);
+  function Home(props) {
+    _classCallCheck(this, Home);
 
-		var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
 
-		_this.state = {};
+    _this.state = {};
+    return _this;
+  }
 
-		return _this;
-	}
+  _createClass(Home, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
+        _react2.default.createElement(
+          "div",
+          { className: "landing-main" },
+          " "
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "container" },
+          _react2.default.createElement(
+            "div",
+            { className: "landing-modules-wrap" },
+            _react2.default.createElement(
+              "h1",
+              { className: "landing-modules-title" },
+              "Hi John!"
+            ),
+            _react2.default.createElement(
+              "ul",
+              { className: "landing-modules" },
+              _react2.default.createElement(
+                "li",
+                { className: "anim" },
+                _react2.default.createElement(
+                  "a",
+                  { href: "/homefinding" },
+                  _react2.default.createElement("img", { src: "/images/home.svg", alt: "" })
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "HOME FINDING"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                { className: "anim" },
+                _react2.default.createElement(
+                  "a",
+                  { href: "#" },
+                  _react2.default.createElement("img", { src: "/images/mover.svg", alt: "" })
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "SETTLE IN SERVICES"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                { className: "anim" },
+                _react2.default.createElement(
+                  "a",
+                  { href: "#" },
+                  _react2.default.createElement("img", { className: "ds-car", src: "/images/car.png", alt: "" })
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "DESTINATION SERVICES"
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-	_createClass(Home, [{
-		key: 'render',
-		value: function render() {
-
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'landing-main' },
-					' '
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'container' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'landing-modules-wrap' },
-						_react2.default.createElement(
-							'h1',
-							{ className: 'landing-modules-title' },
-							'What we do'
-						),
-						_react2.default.createElement(
-							'ul',
-							{ className: 'landing-modules' },
-							_react2.default.createElement(
-								'li',
-								{ className: 'anim' },
-								_react2.default.createElement(
-									'a',
-									{ href: '/homefinding' },
-									_react2.default.createElement('img', { src: '/images/home.svg', alt: '' })
-								),
-								_react2.default.createElement(
-									'span',
-									null,
-									'HOME FINDING'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								{ className: 'anim' },
-								_react2.default.createElement(
-									'a',
-									{ href: '#' },
-									_react2.default.createElement('img', { src: '/images/mover.svg', alt: '' })
-								),
-								_react2.default.createElement(
-									'span',
-									null,
-									'SETTLE IN SERVICES'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								{ className: 'anim' },
-								_react2.default.createElement(
-									'a',
-									{ href: '#' },
-									_react2.default.createElement('img', { className: 'ds-car', src: '/images/car.png', alt: '' })
-								),
-								_react2.default.createElement(
-									'span',
-									null,
-									'DESTINATION SERVICES'
-								)
-							)
-						)
-					)
-				)
-			);
-		}
-	}]);
-
-	return Home;
+  return Home;
 }(_react2.default.Component);
 
 exports.default = Home;
@@ -86450,7 +86448,7 @@ exports.default = Home;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -86488,819 +86486,963 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var HomeFinding = function (_React$Component) {
-	_inherits(HomeFinding, _React$Component);
+  _inherits(HomeFinding, _React$Component);
 
-	function HomeFinding(props) {
-		_classCallCheck(this, HomeFinding);
+  function HomeFinding(props) {
+    _classCallCheck(this, HomeFinding);
 
-		var _this = _possibleConstructorReturn(this, (HomeFinding.__proto__ || Object.getPrototypeOf(HomeFinding)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (HomeFinding.__proto__ || Object.getPrototypeOf(HomeFinding)).call(this, props));
 
-		_this.state = {
-			propertyDetails: [],
-			visitPropertyDetails: [],
-			archivePropertyDetails: [],
-			length: '',
-			loaderStatus: false,
-			chatId: 0,
-			filterAddress: 0,
-			Amenities: ["Air Conditioning", "Carpet", "Granite Countertops", "Hardwood Floors", "Patio", "Stainless Steel Appliances", "Washer And Dryer", "Fitness Center", "High Speed Internet Access", "TZ Parcel Locker System", "Lush Park-Like Grounds", "Swimming Pool", "Pets Allowed", "Spa", "Clubhouse"],
-			amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+    _this.state = {
+      propertyDetails: [],
+      visitPropertyDetails: [],
+      archivePropertyDetails: [],
+      length: "",
+      loaderStatus: false,
+      chatId: 0,
+      filterAddress: 0,
+      Amenities: ["Air Conditioning", "Carpet", "Granite Countertops", "Hardwood Floors", "Patio", "Stainless Steel Appliances", "Washer And Dryer", "Fitness Center", "High Speed Internet Access", "TZ Parcel Locker System", "Lush Park-Like Grounds", "Swimming Pool", "Pets Allowed", "Spa", "Clubhouse"],
+      amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+    };
 
-		};
+    _this.amenitiesInterestedActive = _this.amenitiesInterestedActive.bind(_this);
+    _this.updateDataToVisit = _this.updateDataToVisit.bind(_this);
+    _this.updateDataToArchive = _this.updateDataToArchive.bind(_this);
+    _this.calLength = _this.calLength.bind(_this);
+    _this.deleteConfirm = _this.deleteConfirm.bind(_this);
+    _this.updateDataToArchiveFromVisits = _this.updateDataToArchiveFromVisits.bind(_this);
+    _this.updateChatId = _this.updateChatId.bind(_this);
+    _this.filterAddressActive = _this.filterAddressActive.bind(_this);
+    return _this;
+  }
 
-		_this.amenitiesInterestedActive = _this.amenitiesInterestedActive.bind(_this);
-		_this.updateDataToVisit = _this.updateDataToVisit.bind(_this);
-		_this.updateDataToArchive = _this.updateDataToArchive.bind(_this);
-		_this.calLength = _this.calLength.bind(_this);
-		_this.deleteConfirm = _this.deleteConfirm.bind(_this);
-		_this.updateDataToArchiveFromVisits = _this.updateDataToArchiveFromVisits.bind(_this);
-		_this.updateChatId = _this.updateChatId.bind(_this);
-		_this.filterAddressActive = _this.filterAddressActive.bind(_this);
+  _createClass(HomeFinding, [{
+    key: "amenitiesInterestedActive",
+    value: function amenitiesInterestedActive(key, e) {
+      var amenitiesInterestedActive = this.state.amenitiesInterestedActive;
+      if (this.state.amenitiesInterestedActive.includes(key)) {
+        var index = amenitiesInterestedActive.indexOf(key);
+        if (index > -1) {
+          amenitiesInterestedActive.splice(index, 1);
+          console.log(amenitiesInterestedActive);
+          this.setState(amenitiesInterestedActive);
+        }
+      } else {
+        amenitiesInterestedActive.push(key);
+        this.setState(amenitiesInterestedActive);
+      }
+    }
+  }, {
+    key: "componentWillMount",
+    value: async function componentWillMount() {
+      if (localStorage.getItem("propertyDetails") == null) {
+        await this.setState({ loaderStatus: true });
+        var propertyDetails = await _userHomeService2.default.getDetails({
+          companyName: "nopricing",
+          FileNum: "163288",
+          itineraryId: "2"
+        });
+        await this.setState({
+          loaderStatus: false,
+          propertyDetails: propertyDetails.recordset,
+          length: propertyDetails.recordset.length
+        });
+        await localStorage.setItem("propertyDetails", JSON.stringify(propertyDetails.recordset));
+        await localStorage.setItem("OriginalPropertyDetails", JSON.stringify(propertyDetails.recordset));
+      } else {
+        await this.setState({
+          propertyDetails: localStorage.getItem("propertyDetails") !== null ? JSON.parse(localStorage.getItem("propertyDetails")) : [],
+          visitPropertyDetails: localStorage.getItem("visitPropertyDetails") !== null ? JSON.parse(localStorage.getItem("visitPropertyDetails")) : [],
+          archivePropertyDetails: localStorage.getItem("archivePropertyDetails") !== null ? JSON.parse(localStorage.getItem("archivePropertyDetails")) : [],
+          length: localStorage.getItem("propertyDetails") !== null ? JSON.parse(localStorage.getItem("propertyDetails")).length : 0
+        });
+        console.log(this.state);
+      }
+    }
+  }, {
+    key: "filterAddressActive",
+    value: async function filterAddressActive(Id, event) {
+      event.persist();
+      await this.setState({ filterAddress: Id });
+    }
+  }, {
+    key: "updateChatId",
+    value: async function updateChatId(Id, event) {
+      event.persist();
+      await this.setState({ chatId: Id });
+    }
+  }, {
+    key: "updateDataToVisit",
+    value: async function updateDataToVisit(Id, event) {
+      event.persist();
+      var updatedProperties = this.state.propertyDetails;
+      var updatedvisitPropertyDetails = this.state.visitPropertyDetails;
+      var ItineraryIndex = _.findIndex(this.state.propertyDetails, {
+        ItineraryPropertyID: Id
+      });
+      updatedvisitPropertyDetails.push(this.state.propertyDetails[ItineraryIndex]);
+      delete updatedProperties[ItineraryIndex];
+      await this.setState({
+        propertyDetails: updatedProperties,
+        visitPropertyDetails: updatedvisitPropertyDetails,
+        length: Object.keys(updatedProperties).length
+      });
+      await localStorage.setItem("propertyDetails", JSON.stringify(this.filter_array(updatedProperties)));
+      await localStorage.setItem("visitPropertyDetails", JSON.stringify(this.filter_array(updatedvisitPropertyDetails)));
+      console.log(this.state);
+    }
+  }, {
+    key: "filter_array",
+    value: function filter_array(test_array) {
+      var index = -1,
+          arr_length = test_array ? test_array.length : 0,
+          resIndex = -1,
+          result = [];
 
-		return _this;
-	}
+      while (++index < arr_length) {
+        var value = test_array[index];
 
-	_createClass(HomeFinding, [{
-		key: 'amenitiesInterestedActive',
-		value: function amenitiesInterestedActive(key, e) {
-			var amenitiesInterestedActive = this.state.amenitiesInterestedActive;
-			if (this.state.amenitiesInterestedActive.includes(key)) {
-				var index = amenitiesInterestedActive.indexOf(key);
-				if (index > -1) {
-					amenitiesInterestedActive.splice(index, 1);
-					console.log(amenitiesInterestedActive);
-					this.setState(amenitiesInterestedActive);
-				}
-			} else {
-				amenitiesInterestedActive.push(key);
-				this.setState(amenitiesInterestedActive);
-			}
-		}
-	}, {
-		key: 'componentWillMount',
-		value: async function componentWillMount() {
-			if (localStorage.getItem("propertyDetails") == null) {
-				await this.setState({ loaderStatus: true });
-				var propertyDetails = await _userHomeService2.default.getDetails({ companyName: "nopricing", FileNum: "163288", itineraryId: "2" });
-				await this.setState({ loaderStatus: false, propertyDetails: propertyDetails.recordset, length: propertyDetails.recordset.length });
-				await localStorage.setItem("propertyDetails", JSON.stringify(propertyDetails.recordset));
-				await localStorage.setItem("OriginalPropertyDetails", JSON.stringify(propertyDetails.recordset));
-			} else {
-				await this.setState({
-					propertyDetails: localStorage.getItem("propertyDetails") !== null ? JSON.parse(localStorage.getItem("propertyDetails")) : [],
-					visitPropertyDetails: localStorage.getItem("visitPropertyDetails") !== null ? JSON.parse(localStorage.getItem("visitPropertyDetails")) : [],
-					archivePropertyDetails: localStorage.getItem("archivePropertyDetails") !== null ? JSON.parse(localStorage.getItem("archivePropertyDetails")) : [],
-					length: localStorage.getItem("propertyDetails") !== null ? JSON.parse(localStorage.getItem("propertyDetails")).length : 0
-				});
-				console.log(this.state);
-			}
-		}
-	}, {
-		key: 'filterAddressActive',
-		value: async function filterAddressActive(Id, event) {
-			event.persist();
-			await this.setState({ filterAddress: Id });
-		}
-	}, {
-		key: 'updateChatId',
-		value: async function updateChatId(Id, event) {
-			event.persist();
-			await this.setState({ chatId: Id });
-		}
-	}, {
-		key: 'updateDataToVisit',
-		value: async function updateDataToVisit(Id, event) {
-			event.persist();
-			var updatedProperties = this.state.propertyDetails;
-			var updatedvisitPropertyDetails = this.state.visitPropertyDetails;
-			var ItineraryIndex = _.findIndex(this.state.propertyDetails, { 'ItineraryPropertyID': Id });
-			updatedvisitPropertyDetails.push(this.state.propertyDetails[ItineraryIndex]);
-			delete updatedProperties[ItineraryIndex];
-			await this.setState({ propertyDetails: updatedProperties, visitPropertyDetails: updatedvisitPropertyDetails, length: Object.keys(updatedProperties).length });
-			await localStorage.setItem("propertyDetails", JSON.stringify(this.filter_array(updatedProperties)));
-			await localStorage.setItem("visitPropertyDetails", JSON.stringify(this.filter_array(updatedvisitPropertyDetails)));
-			console.log(this.state);
-		}
-	}, {
-		key: 'filter_array',
-		value: function filter_array(test_array) {
-			var index = -1,
-			    arr_length = test_array ? test_array.length : 0,
-			    resIndex = -1,
-			    result = [];
+        if (value) {
+          result[++resIndex] = value;
+        }
+      }
 
-			while (++index < arr_length) {
-				var value = test_array[index];
+      return result;
+    }
+  }, {
+    key: "updateDataToArchive",
+    value: async function updateDataToArchive(Id) {
+      var updatedProperties = this.state.propertyDetails;
+      var updatedarchivePropertyDetails = this.state.archivePropertyDetails;
+      var ItineraryIndex = _.findIndex(this.state.propertyDetails, {
+        ItineraryPropertyID: Id
+      });
+      updatedarchivePropertyDetails.push(this.state.propertyDetails[ItineraryIndex]);
+      delete updatedProperties[ItineraryIndex];
+      await this.setState({
+        propertyDetails: updatedProperties,
+        archivePropertyDetails: updatedarchivePropertyDetails,
+        length: Object.keys(updatedProperties).length
+      });
+      //console.log(JSON.stringify(this.filter_array(updatedProperties)));
+      await localStorage.setItem("propertyDetails", JSON.stringify(this.filter_array(updatedProperties)));
+      await localStorage.setItem("archivePropertyDetails", JSON.stringify(this.filter_array(updatedarchivePropertyDetails)));
+    }
+  }, {
+    key: "updateDataToArchiveFromVisits",
+    value: async function updateDataToArchiveFromVisits(Id) {
+      var updatedProperties = this.state.visitPropertyDetails;
+      var updatedarchivePropertyDetails = this.state.archivePropertyDetails;
+      var ItineraryIndex = _.findIndex(this.state.visitPropertyDetails, {
+        ItineraryPropertyID: Id
+      });
+      updatedarchivePropertyDetails.push(this.state.visitPropertyDetails[ItineraryIndex]);
+      delete updatedProperties[ItineraryIndex];
+      await this.setState({
+        visitPropertyDetails: updatedProperties,
+        archivePropertyDetails: updatedarchivePropertyDetails,
+        length: Object.keys(updatedProperties).length
+      });
+      await localStorage.setItem("visitPropertyDetails", JSON.stringify(this.filter_array(updatedProperties)));
+      await localStorage.setItem("archivePropertyDetails", JSON.stringify(this.filter_array(updatedarchivePropertyDetails)));
+    }
+  }, {
+    key: "deleteConfirm",
+    value: async function deleteConfirm(Id, type, event) {
+      (0, _reactConfirmAlert.confirmAlert)({
+        title: "",
+        message: "Are you sure you want to move this property to Not Interested?",
+        buttons: [{
+          label: "Yes",
+          onClick: type == "consider" ? this.updateDataToArchive.bind(this, Id) : this.updateDataToArchiveFromVisits.bind(this, Id)
+        }, {
+          label: "No",
+          onClick: function onClick() {
+            return "";
+          }
+        }]
+      });
+    }
+  }, {
+    key: "calLength",
+    value: async function calLength(typeId, event) {
+      event.persist();
+      await this.setState({ chatId: 0 });
+      //let propertyLenght = this.state.length;
+      if (typeId == 1) {
+        await this.setState({
+          length: Object.keys(this.state.propertyDetails).length
+        });
+      }
+      if (typeId == 2) {
+        await this.setState({
+          length: Object.keys(this.state.visitPropertyDetails).length
+        });
+      }
+      if (typeId == 3) {
+        await this.setState({
+          length: Object.keys(this.state.archivePropertyDetails).length
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
 
-				if (value) {
-					result[++resIndex] = value;
-				}
-			}
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
+        _react2.default.createElement(
+          "div",
+          { className: "main_content" },
+          _react2.default.createElement(
+            "div",
+            { className: "container" },
+            _react2.default.createElement(
+              "h1",
+              { className: "main_heading" },
+              "Properties",
+              " ",
+              _react2.default.createElement(
+                "span",
+                { className: "badge badge-pill" },
+                this.state.length
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "d-flex justify-content-between" },
+              _react2.default.createElement(
+                "div",
+                { className: "mb-5 mt-5 map-block" },
+                _react2.default.createElement(
+                  "a",
+                  { href: "", "data-toggle": "modal", "data-target": ".address-modal" },
+                  _react2.default.createElement("i", { className: "mdi mdi-map-search-outline" })
+                )
+              ),
+              _react2.default.createElement(
+                "ul",
+                {
+                  className: "nav nav-pills mb-5 mt-5 properties",
+                  id: "pills-tab",
+                  role: "tablist"
+                },
+                _react2.default.createElement(
+                  "li",
+                  { className: "nav-item" },
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      className: "nav-link active",
+                      id: "pills-home-tab",
+                      "data-toggle": "pill",
+                      href: "#pills-home",
+                      role: "tab",
+                      "aria-controls": "pills-home",
+                      "aria-selected": "true",
+                      onClick: this.calLength.bind(this, 1)
+                    },
+                    _react2.default.createElement("i", { className: "mdi mdi-view-list" }),
+                    " Options"
+                  )
+                ),
+                _react2.default.createElement(
+                  "li",
+                  { className: "nav-item" },
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      className: "nav-link",
+                      id: "pills-profile-tab",
+                      "data-toggle": "pill",
+                      href: "#pills-profile",
+                      role: "tab",
+                      "aria-controls": "pills-profile",
+                      "aria-selected": "false",
+                      onClick: this.calLength.bind(this, 2)
+                    },
+                    _react2.default.createElement("i", { className: "mdi mdi-thumb-up" }),
+                    " Interested"
+                  )
+                ),
+                _react2.default.createElement(
+                  "li",
+                  { className: "nav-item" },
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      className: "nav-link",
+                      id: "pills-contact-tab",
+                      "data-toggle": "pill",
+                      href: "#pills-contact",
+                      role: "tab",
+                      "aria-controls": "pills-contact",
+                      "aria-selected": "false",
+                      onClick: this.calLength.bind(this, 3)
+                    },
+                    _react2.default.createElement("i", { className: "mdi mdi-thumb-down" }),
+                    " Not Interested"
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "tab-content", id: "pills-tabContent" },
+              this.state.loaderStatus == true ? _react2.default.createElement(
+                "div",
+                { className: "loader" },
+                _react2.default.createElement("img", { src: "images/ajax-loader.gif", alt: "" })
+              ) : "",
+              _react2.default.createElement(
+                "div",
+                {
+                  className: "tab-pane fade show active",
+                  id: "pills-home",
+                  role: "tabpanel",
+                  "aria-labelledby": "pills-home-tab"
+                },
+                _react2.default.createElement(
+                  "div",
+                  { className: "row" },
+                  Object.keys(this.state.propertyDetails).length == 0 && this.state.loaderStatus == false ? _react2.default.createElement(
+                    "div",
+                    { className: "noDataFound" },
+                    _react2.default.createElement("img", { src: "images/noresults.png", width: "312px", alt: "" }),
+                    _react2.default.createElement(
+                      "div",
+                      null,
+                      _react2.default.createElement(
+                        "h3",
+                        null,
+                        _constants2.default.DS_CONSTANTS.NO_DATA_FOUND
+                      )
+                    )
+                  ) : "",
+                  this.state.propertyDetails.map(function (row, index) {
+                    return _react2.default.createElement(
+                      "div",
+                      { key: index, className: "col-md-4" },
+                      _react2.default.createElement(
+                        "div",
+                        { className: "propertie-item" },
+                        _react2.default.createElement(
+                          "div",
+                          { className: "img-div" },
+                          _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            {
+                              to: "/propertydetails/" + row.ItineraryPropertyID
+                            },
+                            _react2.default.createElement("img", {
+                              src: "https://s3-us-west-1.amazonaws.com/destination-services-itinerary/" + row.Photo + ".jpg",
+                              alt: ""
+                            })
+                          ),
+                          _react2.default.createElement(
+                            "div",
+                            { className: "img-hover-dtls d-flex" },
+                            _react2.default.createElement(
+                              "div",
+                              { className: "flex-grow-1" },
+                              _react2.default.createElement(
+                                "span",
+                                null,
+                                "Price"
+                              ),
+                              _react2.default.createElement(
+                                "strong",
+                                null,
+                                "$",
+                                row.TotalFeesLo,
+                                " ",
+                                _react2.default.createElement(
+                                  "span",
+                                  { className: "badge badge-pill badge-danger" },
+                                  row.Size
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              "div",
+                              { className: "flex-grow-1" },
+                              _react2.default.createElement(
+                                "span",
+                                null,
+                                "Available"
+                              ),
+                              _react2.default.createElement(
+                                "strong",
+                                null,
+                                "Mar 30"
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          "div",
+                          { className: "propertie-item-dtls d-flex" },
+                          _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement("img", { src: "images/view_img.jpg", alt: "" })
+                          ),
+                          _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement(
+                              "h5",
+                              null,
+                              row.Community
+                            ),
+                            _react2.default.createElement(
+                              "p",
+                              null,
+                              row.Address,
+                              ", ",
+                              row.City,
+                              " ",
+                              row.StateCode,
+                              " ",
+                              row.ZipCode
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          "div",
+                          { className: "propertie-footer d-flex" },
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              onClick: _this2.updateChatId.bind(_this2, row.ItineraryPropertyID)
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-message-text" }),
+                            "Chat"
+                          ),
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              onClick: _this2.updateDataToVisit.bind(_this2, row.ItineraryPropertyID)
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-thumb-up" }),
+                            "Interested"
+                          ),
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              onClick: _this2.deleteConfirm.bind(_this2, row.ItineraryPropertyID, "consider")
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-thumb-down" }),
+                            "Not Interested"
+                          )
+                        )
+                      )
+                    );
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                {
+                  className: "tab-pane fade",
+                  id: "pills-profile",
+                  role: "tabpanel",
+                  "aria-labelledby": "pills-profile-tab"
+                },
+                _react2.default.createElement(
+                  "div",
+                  { className: "row" },
+                  Object.keys(this.state.visitPropertyDetails).length == 0 && this.state.loaderStatus == false ? _react2.default.createElement(
+                    "div",
+                    { className: "noDataFound" },
+                    _react2.default.createElement("img", { src: "images/noresults.png", width: "312px", alt: "" }),
+                    _react2.default.createElement(
+                      "div",
+                      null,
+                      _react2.default.createElement(
+                        "h3",
+                        null,
+                        _constants2.default.DS_CONSTANTS.NO_DATA_FOUND
+                      )
+                    )
+                  ) : "",
+                  this.state.visitPropertyDetails.map(function (row, index) {
+                    return _react2.default.createElement(
+                      "div",
+                      { key: index, className: "col-md-4" },
+                      _react2.default.createElement(
+                        "div",
+                        { className: "propertie-item" },
+                        _react2.default.createElement(
+                          "div",
+                          { className: "img-div" },
+                          _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            {
+                              to: "/propertydetails/" + row.ItineraryPropertyID
+                            },
+                            _react2.default.createElement("img", {
+                              src: "https://s3-us-west-1.amazonaws.com/destination-services-itinerary/" + row.Photo + ".jpg",
+                              alt: ""
+                            })
+                          ),
+                          _react2.default.createElement(
+                            "div",
+                            { className: "img-hover-dtls d-flex" },
+                            _react2.default.createElement(
+                              "div",
+                              { className: "flex-grow-1" },
+                              _react2.default.createElement(
+                                "span",
+                                null,
+                                "Price"
+                              ),
+                              _react2.default.createElement(
+                                "strong",
+                                null,
+                                "$",
+                                row.TotalFeesLo,
+                                " ",
+                                _react2.default.createElement(
+                                  "span",
+                                  { className: "badge badge-pill badge-danger" },
+                                  "1BR"
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              "div",
+                              { className: "flex-grow-1" },
+                              _react2.default.createElement(
+                                "span",
+                                null,
+                                "Available"
+                              ),
+                              _react2.default.createElement(
+                                "strong",
+                                null,
+                                "Mar 30"
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          "div",
+                          { className: "propertie-item-dtls d-flex" },
+                          _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement("img", { src: "images/view_img.jpg", alt: "" })
+                          ),
+                          _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement(
+                              "h5",
+                              null,
+                              row.Community
+                            ),
+                            _react2.default.createElement(
+                              "p",
+                              null,
+                              row.Address,
+                              ", ",
+                              row.City,
+                              " ",
+                              row.StateCode,
+                              " ",
+                              row.ZipCode
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          "div",
+                          { className: "propertie-footer d-flex" },
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              onClick: _this2.updateChatId.bind(_this2, row.ItineraryPropertyID)
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-message-text" }),
+                            "Chat"
+                          ),
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              className: "propertyDisabled"
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-thumb-up" }),
+                            "Interested"
+                          ),
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              onClick: _this2.deleteConfirm.bind(_this2, row.ItineraryPropertyID, "fav")
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-thumb-down" }),
+                            "Not Interested"
+                          )
+                        )
+                      )
+                    );
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                {
+                  className: "tab-pane fade",
+                  id: "pills-contact",
+                  role: "tabpanel",
+                  "aria-labelledby": "pills-contact-tab"
+                },
+                _react2.default.createElement(
+                  "div",
+                  { className: "row" },
+                  Object.keys(this.state.archivePropertyDetails).length == 0 && this.state.loaderStatus == false ? _react2.default.createElement(
+                    "div",
+                    { className: "noDataFound" },
+                    _react2.default.createElement("img", { src: "images/noresults.png", alt: "" }),
+                    _react2.default.createElement(
+                      "div",
+                      null,
+                      _react2.default.createElement(
+                        "h3",
+                        null,
+                        _constants2.default.DS_CONSTANTS.NO_DATA_FOUND
+                      )
+                    )
+                  ) : "",
+                  this.state.archivePropertyDetails.map(function (row, index) {
+                    return _react2.default.createElement(
+                      "div",
+                      { key: index, className: "col-md-4" },
+                      _react2.default.createElement(
+                        "div",
+                        { className: "propertie-item" },
+                        _react2.default.createElement(
+                          "div",
+                          { className: "img-div" },
+                          _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            {
+                              to: "/propertydetails/" + row.ItineraryPropertyID
+                            },
+                            _react2.default.createElement("img", {
+                              src: "https://s3-us-west-1.amazonaws.com/destination-services-itinerary/" + row.Photo + ".jpg",
+                              alt: ""
+                            })
+                          ),
+                          _react2.default.createElement(
+                            "div",
+                            { className: "img-hover-dtls d-flex" },
+                            _react2.default.createElement(
+                              "div",
+                              { className: "flex-grow-1" },
+                              _react2.default.createElement(
+                                "span",
+                                null,
+                                "Price"
+                              ),
+                              _react2.default.createElement(
+                                "strong",
+                                null,
+                                "$",
+                                row.TotalFeesLo,
+                                " ",
+                                _react2.default.createElement(
+                                  "span",
+                                  { className: "badge badge-pill badge-danger" },
+                                  "1BR"
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              "div",
+                              { className: "flex-grow-1" },
+                              _react2.default.createElement(
+                                "span",
+                                null,
+                                "Available"
+                              ),
+                              _react2.default.createElement(
+                                "strong",
+                                null,
+                                "Mar 30"
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          "div",
+                          { className: "propertie-item-dtls d-flex" },
+                          _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement("img", { src: "images/view_img.jpg", alt: "" })
+                          ),
+                          _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement(
+                              "h5",
+                              null,
+                              row.Community
+                            ),
+                            _react2.default.createElement(
+                              "p",
+                              null,
+                              row.Address,
+                              ", ",
+                              row.City,
+                              " ",
+                              row.StateCode,
+                              " ",
+                              row.ZipCode
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          "div",
+                          { className: "propertie-footer d-flex" },
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              onClick: _this2.updateChatId.bind(_this2, row.ItineraryPropertyID)
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-message-text" }),
+                            "Chat"
+                          ),
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              className: "propertyDisabled"
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-thumb-up" }),
+                            "Interested"
+                          ),
+                          _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              className: "propertyDisabled"
+                            },
+                            _react2.default.createElement("i", { className: "mdi mdi-thumb-down" }),
+                            "Not Interested"
+                          )
+                        )
+                      )
+                    );
+                  })
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          {
+            className: "modal fade address-modal modal-main",
+            tabIndex: "-1",
+            role: "dialog",
+            "aria-labelledby": "myLargeModalLabel",
+            "aria-hidden": "true"
+          },
+          _react2.default.createElement(
+            "div",
+            { className: "modal-dialog modal-lg" },
+            _react2.default.createElement(
+              "div",
+              { className: "modal-content" },
+              _react2.default.createElement(
+                "div",
+                { className: "modal-header" },
+                _react2.default.createElement(
+                  "h5",
+                  { className: "modal-title", id: "" },
+                  "Select Address and Amenities"
+                ),
+                _react2.default.createElement(
+                  "button",
+                  {
+                    type: "button",
+                    className: "close",
+                    "data-dismiss": "modal",
+                    "aria-label": "Close"
+                  },
+                  _react2.default.createElement(
+                    "span",
+                    { "aria-hidden": "true" },
+                    _react2.default.createElement("i", { className: "mdi mdi-close" })
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "modal-body" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "address-title" },
+                  "Select address"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "address-main mb-5" },
+                  _react2.default.createElement(
+                    "div",
+                    {
+                      className: this.state.filterAddress == 1 ? "address-widget address-widget_active" : "address-widget",
+                      onClick: this.filterAddressActive.bind(this, 1)
+                    },
+                    _react2.default.createElement(
+                      "div",
+                      { className: "widget-title" },
+                      _react2.default.createElement("i", { className: "mdi mdi-briefcase" }),
+                      " WORK ADDRESS"
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "address-sub" },
+                      _react2.default.createElement(
+                        "ul",
+                        null,
+                        _react2.default.createElement(
+                          "li",
+                          null,
+                          _react2.default.createElement("i", { className: "mdi mdi-map-marker" }),
+                          " 7950 Dublin Blvd., Suite 314, Dublin, CA 94568"
+                        ),
+                        _react2.default.createElement(
+                          "li",
+                          null,
+                          _react2.default.createElement("i", { className: "mdi mdi-cellphone-android" }),
+                          " ",
+                          "+1-650-352-8686"
+                        ),
+                        _react2.default.createElement(
+                          "li",
+                          null,
+                          _react2.default.createElement("i", { className: "mdi mdi-email" }),
+                          " info@suiteamerica.com"
+                        )
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    {
+                      className: this.state.filterAddress == 2 ? "address-widget address-widget_active" : "address-widget",
+                      onClick: this.filterAddressActive.bind(this, 2)
+                    },
+                    _react2.default.createElement(
+                      "div",
+                      { className: "widget-title widget-title-active" },
+                      _react2.default.createElement("i", { className: "mdi mdi-home-map-marker" }),
+                      " TEMPORARY ADDRESS"
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "address-sub" },
+                      _react2.default.createElement(
+                        "ul",
+                        null,
+                        _react2.default.createElement(
+                          "li",
+                          null,
+                          _react2.default.createElement("i", { className: "mdi mdi-map-marker" }),
+                          " 555 San Antonio Rd, Mountain View, CA 95762"
+                        ),
+                        _react2.default.createElement(
+                          "li",
+                          null,
+                          _react2.default.createElement("i", { className: "mdi mdi-cellphone-android" }),
+                          " ",
+                          "+1-650-352-9999"
+                        ),
+                        _react2.default.createElement(
+                          "li",
+                          null,
+                          _react2.default.createElement("i", { className: "mdi mdi-email" }),
+                          " info@suiteamerica.com"
+                        )
+                      )
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "address-title" },
+                  "Select Amenities"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "amenities-interested" },
+                  this.state.Amenities.map(function (ameniti, key) {
+                    if (_this2.state.amenitiesInterestedActive.includes(key))
+                      //checks is ameniti is active or not
+                      return _react2.default.createElement(
+                        "a",
+                        {
+                          href: "javascript:void(0)",
+                          key: key,
+                          className: "amenities-active",
+                          onClick: _this2.amenitiesInterestedActive.bind(_this2, key)
+                        },
+                        ameniti
+                      );else return _react2.default.createElement(
+                      "a",
+                      {
+                        href: "javascript:void(0)",
+                        key: key,
+                        onClick: _this2.amenitiesInterestedActive.bind(_this2, key)
+                      },
+                      ameniti
+                    );
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "modal-footer" },
+                _react2.default.createElement(
+                  "button",
+                  {
+                    type: "button",
+                    className: "btn btn-secondary",
+                    "data-dismiss": "modal"
+                  },
+                  "Close"
+                ),
+                _react2.default.createElement(
+                  "button",
+                  {
+                    type: "button",
+                    className: "btn btn-sa",
+                    "data-dismiss": "modal"
+                  },
+                  "Search"
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(_Footer2.default, { chatId: this.state.chatId })
+      );
+    }
+  }]);
 
-			return result;
-		}
-	}, {
-		key: 'updateDataToArchive',
-		value: async function updateDataToArchive(Id) {
-
-			var updatedProperties = this.state.propertyDetails;
-			var updatedarchivePropertyDetails = this.state.archivePropertyDetails;
-			var ItineraryIndex = _.findIndex(this.state.propertyDetails, { 'ItineraryPropertyID': Id });
-			updatedarchivePropertyDetails.push(this.state.propertyDetails[ItineraryIndex]);
-			delete updatedProperties[ItineraryIndex];
-			await this.setState({ propertyDetails: updatedProperties, archivePropertyDetails: updatedarchivePropertyDetails, length: Object.keys(updatedProperties).length });
-			//console.log(JSON.stringify(this.filter_array(updatedProperties)));
-			await localStorage.setItem("propertyDetails", JSON.stringify(this.filter_array(updatedProperties)));
-			await localStorage.setItem("archivePropertyDetails", JSON.stringify(this.filter_array(updatedarchivePropertyDetails)));
-		}
-	}, {
-		key: 'updateDataToArchiveFromVisits',
-		value: async function updateDataToArchiveFromVisits(Id) {
-
-			var updatedProperties = this.state.visitPropertyDetails;
-			var updatedarchivePropertyDetails = this.state.archivePropertyDetails;
-			var ItineraryIndex = _.findIndex(this.state.visitPropertyDetails, { 'ItineraryPropertyID': Id });
-			updatedarchivePropertyDetails.push(this.state.visitPropertyDetails[ItineraryIndex]);
-			delete updatedProperties[ItineraryIndex];
-			await this.setState({ visitPropertyDetails: updatedProperties, archivePropertyDetails: updatedarchivePropertyDetails, length: Object.keys(updatedProperties).length });
-			await localStorage.setItem("visitPropertyDetails", JSON.stringify(this.filter_array(updatedProperties)));
-			await localStorage.setItem("archivePropertyDetails", JSON.stringify(this.filter_array(updatedarchivePropertyDetails)));
-		}
-	}, {
-		key: 'deleteConfirm',
-		value: async function deleteConfirm(Id, type, event) {
-			(0, _reactConfirmAlert.confirmAlert)({
-				title: '',
-				message: 'Are you sure you want to move this property to Not Interested?',
-				buttons: [{
-					label: 'Yes',
-					onClick: type == 'consider' ? this.updateDataToArchive.bind(this, Id) : this.updateDataToArchiveFromVisits.bind(this, Id)
-				}, {
-					label: 'No',
-					onClick: function onClick() {
-						return "";
-					}
-				}]
-			});
-		}
-	}, {
-		key: 'calLength',
-		value: async function calLength(typeId, event) {
-			event.persist();
-			await this.setState({ chatId: 0 });
-			//let propertyLenght = this.state.length;
-			if (typeId == 1) {
-				await this.setState({ length: Object.keys(this.state.propertyDetails).length });
-			}
-			if (typeId == 2) {
-				await this.setState({ length: Object.keys(this.state.visitPropertyDetails).length });
-			}
-			if (typeId == 3) {
-				await this.setState({ length: Object.keys(this.state.archivePropertyDetails).length });
-			}
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this2 = this;
-
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'main_content' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'container' },
-						_react2.default.createElement(
-							'h1',
-							{ className: 'main_heading' },
-							'Properties ',
-							_react2.default.createElement(
-								'span',
-								{ className: 'badge badge-pill' },
-								this.state.length
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'd-flex justify-content-between' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'mb-5 mt-5 map-block' },
-								_react2.default.createElement(
-									'a',
-									{ href: '', 'data-toggle': 'modal', 'data-target': '.address-modal' },
-									_react2.default.createElement('i', { className: 'mdi mdi-map-search-outline' })
-								)
-							),
-							_react2.default.createElement(
-								'ul',
-								{ className: 'nav nav-pills mb-5 mt-5 properties', id: 'pills-tab', role: 'tablist' },
-								_react2.default.createElement(
-									'li',
-									{ className: 'nav-item' },
-									_react2.default.createElement(
-										'a',
-										{ className: 'nav-link active', id: 'pills-home-tab', 'data-toggle': 'pill', href: '#pills-home', role: 'tab', 'aria-controls': 'pills-home', 'aria-selected': 'true', onClick: this.calLength.bind(this, 1) },
-										_react2.default.createElement('i', { className: 'mdi mdi-view-list' }),
-										' Options'
-									)
-								),
-								_react2.default.createElement(
-									'li',
-									{ className: 'nav-item' },
-									_react2.default.createElement(
-										'a',
-										{ className: 'nav-link', id: 'pills-profile-tab', 'data-toggle': 'pill', href: '#pills-profile', role: 'tab', 'aria-controls': 'pills-profile', 'aria-selected': 'false', onClick: this.calLength.bind(this, 2) },
-										_react2.default.createElement('i', { className: 'mdi mdi-thumb-up' }),
-										' Interested'
-									)
-								),
-								_react2.default.createElement(
-									'li',
-									{ className: 'nav-item' },
-									_react2.default.createElement(
-										'a',
-										{ className: 'nav-link', id: 'pills-contact-tab', 'data-toggle': 'pill', href: '#pills-contact', role: 'tab', 'aria-controls': 'pills-contact', 'aria-selected': 'false', onClick: this.calLength.bind(this, 3) },
-										_react2.default.createElement('i', { className: 'mdi mdi-thumb-down' }),
-										' Not Interested'
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'tab-content', id: 'pills-tabContent' },
-							this.state.loaderStatus == true ? _react2.default.createElement(
-								'div',
-								{ className: 'loader' },
-								_react2.default.createElement('img', { src: 'images/ajax-loader.gif', alt: '' })
-							) : "",
-							_react2.default.createElement(
-								'div',
-								{ className: 'tab-pane fade show active', id: 'pills-home', role: 'tabpanel', 'aria-labelledby': 'pills-home-tab' },
-								_react2.default.createElement(
-									'div',
-									{ className: 'row' },
-									Object.keys(this.state.propertyDetails).length == 0 && this.state.loaderStatus == false ? _react2.default.createElement(
-										'div',
-										{ className: 'noDataFound' },
-										_react2.default.createElement('img', { src: 'images/noresults.png', width: '312px', alt: '' }),
-										_react2.default.createElement(
-											'div',
-											null,
-											_react2.default.createElement(
-												'h3',
-												null,
-												_constants2.default.DS_CONSTANTS.NO_DATA_FOUND
-											)
-										)
-									) : "",
-									this.state.propertyDetails.map(function (row, index) {
-										return _react2.default.createElement(
-											'div',
-											{ key: index, className: 'col-md-4' },
-											_react2.default.createElement(
-												'div',
-												{ className: 'propertie-item' },
-												_react2.default.createElement(
-													'div',
-													{ className: 'img-div' },
-													_react2.default.createElement(
-														_reactRouterDom.Link,
-														{ to: "/propertydetails/" + row.ItineraryPropertyID },
-														_react2.default.createElement('img', { src: 'https://s3-us-west-1.amazonaws.com/destination-services-itinerary/' + row.Photo + '.jpg', alt: '' })
-													),
-													_react2.default.createElement(
-														'div',
-														{ className: 'img-hover-dtls d-flex' },
-														_react2.default.createElement(
-															'div',
-															{ className: 'flex-grow-1' },
-															_react2.default.createElement(
-																'span',
-																null,
-																'Price'
-															),
-															_react2.default.createElement(
-																'strong',
-																null,
-																'$',
-																row.TotalFeesLo,
-																' ',
-																_react2.default.createElement(
-																	'span',
-																	{ className: 'badge badge-pill badge-danger' },
-																	row.Size
-																)
-															)
-														),
-														_react2.default.createElement(
-															'div',
-															{ className: 'flex-grow-1' },
-															_react2.default.createElement(
-																'span',
-																null,
-																'Available'
-															),
-															_react2.default.createElement(
-																'strong',
-																null,
-																'Mar 30'
-															)
-														)
-													)
-												),
-												_react2.default.createElement(
-													'div',
-													{ className: 'propertie-item-dtls d-flex' },
-													_react2.default.createElement(
-														'div',
-														null,
-														_react2.default.createElement('img', { src: 'images/view_img.jpg', alt: '' })
-													),
-													_react2.default.createElement(
-														'div',
-														null,
-														_react2.default.createElement(
-															'h5',
-															null,
-															row.Community
-														),
-														_react2.default.createElement(
-															'p',
-															null,
-															row.Address,
-															', ',
-															row.City,
-															' ',
-															row.StateCode,
-															' ',
-															row.ZipCode
-														)
-													)
-												),
-												_react2.default.createElement(
-													'div',
-													{ className: 'propertie-footer d-flex' },
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', onClick: _this2.updateChatId.bind(_this2, row.ItineraryPropertyID) },
-														_react2.default.createElement('i', { className: 'mdi mdi-message-text' }),
-														'Chat'
-													),
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', onClick: _this2.updateDataToVisit.bind(_this2, row.ItineraryPropertyID) },
-														_react2.default.createElement('i', { className: 'mdi mdi-thumb-up' }),
-														'Interested'
-													),
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', onClick: _this2.deleteConfirm.bind(_this2, row.ItineraryPropertyID, 'consider') },
-														_react2.default.createElement('i', { className: 'mdi mdi-thumb-down' }),
-														'Not Interested'
-													)
-												)
-											)
-										);
-									})
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'tab-pane fade', id: 'pills-profile', role: 'tabpanel', 'aria-labelledby': 'pills-profile-tab' },
-								_react2.default.createElement(
-									'div',
-									{ className: 'row' },
-									Object.keys(this.state.visitPropertyDetails).length == 0 && this.state.loaderStatus == false ? _react2.default.createElement(
-										'div',
-										{ className: 'noDataFound' },
-										_react2.default.createElement('img', { src: 'images/noresults.png', width: '312px', alt: '' }),
-										_react2.default.createElement(
-											'div',
-											null,
-											_react2.default.createElement(
-												'h3',
-												null,
-												_constants2.default.DS_CONSTANTS.NO_DATA_FOUND
-											)
-										)
-									) : "",
-									this.state.visitPropertyDetails.map(function (row, index) {
-										return _react2.default.createElement(
-											'div',
-											{ key: index, className: 'col-md-4' },
-											_react2.default.createElement(
-												'div',
-												{ className: 'propertie-item' },
-												_react2.default.createElement(
-													'div',
-													{ className: 'img-div' },
-													_react2.default.createElement(
-														_reactRouterDom.Link,
-														{ to: "/propertydetails/" + row.ItineraryPropertyID },
-														_react2.default.createElement('img', { src: 'https://s3-us-west-1.amazonaws.com/destination-services-itinerary/' + row.Photo + '.jpg', alt: '' })
-													),
-													_react2.default.createElement(
-														'div',
-														{ className: 'img-hover-dtls d-flex' },
-														_react2.default.createElement(
-															'div',
-															{ className: 'flex-grow-1' },
-															_react2.default.createElement(
-																'span',
-																null,
-																'Price'
-															),
-															_react2.default.createElement(
-																'strong',
-																null,
-																'$',
-																row.TotalFeesLo,
-																' ',
-																_react2.default.createElement(
-																	'span',
-																	{ className: 'badge badge-pill badge-danger' },
-																	'1BR'
-																)
-															)
-														),
-														_react2.default.createElement(
-															'div',
-															{ className: 'flex-grow-1' },
-															_react2.default.createElement(
-																'span',
-																null,
-																'Available'
-															),
-															_react2.default.createElement(
-																'strong',
-																null,
-																'Mar 30'
-															)
-														)
-													)
-												),
-												_react2.default.createElement(
-													'div',
-													{ className: 'propertie-item-dtls d-flex' },
-													_react2.default.createElement(
-														'div',
-														null,
-														_react2.default.createElement('img', { src: 'images/view_img.jpg', alt: '' })
-													),
-													_react2.default.createElement(
-														'div',
-														null,
-														_react2.default.createElement(
-															'h5',
-															null,
-															row.Community
-														),
-														_react2.default.createElement(
-															'p',
-															null,
-															row.Address,
-															', ',
-															row.City,
-															' ',
-															row.StateCode,
-															' ',
-															row.ZipCode
-														)
-													)
-												),
-												_react2.default.createElement(
-													'div',
-													{ className: 'propertie-footer d-flex' },
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', onClick: _this2.updateChatId.bind(_this2, row.ItineraryPropertyID) },
-														_react2.default.createElement('i', { className: 'mdi mdi-message-text' }),
-														'Chat'
-													),
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', className: 'propertyDisabled' },
-														_react2.default.createElement('i', { className: 'mdi mdi-thumb-up' }),
-														'Interested'
-													),
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', onClick: _this2.deleteConfirm.bind(_this2, row.ItineraryPropertyID, 'fav') },
-														_react2.default.createElement('i', { className: 'mdi mdi-thumb-down' }),
-														'Not Interested'
-													)
-												)
-											)
-										);
-									})
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'tab-pane fade', id: 'pills-contact', role: 'tabpanel', 'aria-labelledby': 'pills-contact-tab' },
-								_react2.default.createElement(
-									'div',
-									{ className: 'row' },
-									Object.keys(this.state.archivePropertyDetails).length == 0 && this.state.loaderStatus == false ? _react2.default.createElement(
-										'div',
-										{ className: 'noDataFound' },
-										_react2.default.createElement('img', { src: 'images/noresults.png', alt: '' }),
-										_react2.default.createElement(
-											'div',
-											null,
-											_react2.default.createElement(
-												'h3',
-												null,
-												_constants2.default.DS_CONSTANTS.NO_DATA_FOUND
-											)
-										)
-									) : "",
-									this.state.archivePropertyDetails.map(function (row, index) {
-										return _react2.default.createElement(
-											'div',
-											{ key: index, className: 'col-md-4' },
-											_react2.default.createElement(
-												'div',
-												{ className: 'propertie-item' },
-												_react2.default.createElement(
-													'div',
-													{ className: 'img-div' },
-													_react2.default.createElement(
-														_reactRouterDom.Link,
-														{ to: "/propertydetails/" + row.ItineraryPropertyID },
-														_react2.default.createElement('img', { src: 'https://s3-us-west-1.amazonaws.com/destination-services-itinerary/' + row.Photo + '.jpg', alt: '' })
-													),
-													_react2.default.createElement(
-														'div',
-														{ className: 'img-hover-dtls d-flex' },
-														_react2.default.createElement(
-															'div',
-															{ className: 'flex-grow-1' },
-															_react2.default.createElement(
-																'span',
-																null,
-																'Price'
-															),
-															_react2.default.createElement(
-																'strong',
-																null,
-																'$',
-																row.TotalFeesLo,
-																' ',
-																_react2.default.createElement(
-																	'span',
-																	{ className: 'badge badge-pill badge-danger' },
-																	'1BR'
-																)
-															)
-														),
-														_react2.default.createElement(
-															'div',
-															{ className: 'flex-grow-1' },
-															_react2.default.createElement(
-																'span',
-																null,
-																'Available'
-															),
-															_react2.default.createElement(
-																'strong',
-																null,
-																'Mar 30'
-															)
-														)
-													)
-												),
-												_react2.default.createElement(
-													'div',
-													{ className: 'propertie-item-dtls d-flex' },
-													_react2.default.createElement(
-														'div',
-														null,
-														_react2.default.createElement('img', { src: 'images/view_img.jpg', alt: '' })
-													),
-													_react2.default.createElement(
-														'div',
-														null,
-														_react2.default.createElement(
-															'h5',
-															null,
-															row.Community
-														),
-														_react2.default.createElement(
-															'p',
-															null,
-															row.Address,
-															', ',
-															row.City,
-															' ',
-															row.StateCode,
-															' ',
-															row.ZipCode
-														)
-													)
-												),
-												_react2.default.createElement(
-													'div',
-													{ className: 'propertie-footer d-flex' },
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', onClick: _this2.updateChatId.bind(_this2, row.ItineraryPropertyID) },
-														_react2.default.createElement('i', { className: 'mdi mdi-message-text' }),
-														'Chat'
-													),
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', className: 'propertyDisabled' },
-														_react2.default.createElement('i', { className: 'mdi mdi-thumb-up' }),
-														'Interested'
-													),
-													_react2.default.createElement(
-														'a',
-														{ href: 'javascript:void(0)', className: 'propertyDisabled' },
-														_react2.default.createElement('i', { className: 'mdi mdi-thumb-down' }),
-														'Not Interested'
-													)
-												)
-											)
-										);
-									})
-								)
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'modal fade address-modal modal-main', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'myLargeModalLabel', 'aria-hidden': 'true' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'modal-dialog modal-lg' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'modal-content' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-header' },
-								_react2.default.createElement(
-									'h5',
-									{ className: 'modal-title', id: '' },
-									'Select Address and Amenities'
-								),
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
-									_react2.default.createElement(
-										'span',
-										{ 'aria-hidden': 'true' },
-										_react2.default.createElement('i', { className: 'mdi mdi-close' })
-									)
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-body' },
-								_react2.default.createElement(
-									'div',
-									{ className: 'address-title' },
-									'Select address'
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'address-main mb-5' },
-									_react2.default.createElement(
-										'div',
-										{ className: this.state.filterAddress == 1 ? "address-widget address-widget_active" : "address-widget", onClick: this.filterAddressActive.bind(this, 1) },
-										_react2.default.createElement(
-											'div',
-											{ className: 'widget-title' },
-											_react2.default.createElement('i', { className: 'mdi mdi-briefcase' }),
-											' WORK ADDRESS'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'address-sub' },
-											_react2.default.createElement(
-												'ul',
-												null,
-												_react2.default.createElement(
-													'li',
-													null,
-													_react2.default.createElement('i', { className: 'mdi mdi-map-marker' }),
-													' 7950 Dublin Blvd., Suite 314, Dublin, CA 94568'
-												),
-												_react2.default.createElement(
-													'li',
-													null,
-													_react2.default.createElement('i', { className: 'mdi mdi-cellphone-android' }),
-													' +1-650-352-8686'
-												),
-												_react2.default.createElement(
-													'li',
-													null,
-													_react2.default.createElement('i', { className: 'mdi mdi-email' }),
-													' info@suiteamerica.com'
-												)
-											)
-										)
-									),
-									_react2.default.createElement(
-										'div',
-										{ className: this.state.filterAddress == 2 ? "address-widget address-widget_active" : "address-widget", onClick: this.filterAddressActive.bind(this, 2) },
-										_react2.default.createElement(
-											'div',
-											{ className: 'widget-title widget-title-active' },
-											_react2.default.createElement('i', { className: 'mdi mdi-home-map-marker' }),
-											' TEMPORARY ADDRESS'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'address-sub' },
-											_react2.default.createElement(
-												'ul',
-												null,
-												_react2.default.createElement(
-													'li',
-													null,
-													_react2.default.createElement('i', { className: 'mdi mdi-map-marker' }),
-													' 555 San Antonio Rd, Mountain View, CA 95762'
-												),
-												_react2.default.createElement(
-													'li',
-													null,
-													_react2.default.createElement('i', { className: 'mdi mdi-cellphone-android' }),
-													' +1-650-352-9999'
-												),
-												_react2.default.createElement(
-													'li',
-													null,
-													_react2.default.createElement('i', { className: 'mdi mdi-email' }),
-													' info@suiteamerica.com'
-												)
-											)
-										)
-									)
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'address-title' },
-									'Select Amenities'
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'amenities-interested' },
-									this.state.Amenities.map(function (ameniti, key) {
-										if (_this2.state.amenitiesInterestedActive.includes(key))
-											//checks is ameniti is active or not
-											return _react2.default.createElement(
-												'a',
-												{
-													href: 'javascript:void(0)',
-													key: key,
-													className: 'amenities-active',
-													onClick: _this2.amenitiesInterestedActive.bind(_this2, key)
-												},
-												ameniti
-											);else return _react2.default.createElement(
-											'a',
-											{
-												href: 'javascript:void(0)',
-												key: key,
-												onClick: _this2.amenitiesInterestedActive.bind(_this2, key)
-											},
-											ameniti
-										);
-									})
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-footer' },
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-secondary', 'data-dismiss': 'modal' },
-									'Close'
-								),
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-sa', 'data-dismiss': 'modal' },
-									'Search'
-								)
-							)
-						)
-					)
-				),
-				_react2.default.createElement(_Footer2.default, { chatId: this.state.chatId })
-			);
-		}
-	}]);
-
-	return HomeFinding;
+  return HomeFinding;
 }(_react2.default.Component);
 
 exports.default = HomeFinding;
@@ -87313,7 +87455,7 @@ exports.default = HomeFinding;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -87360,504 +87502,713 @@ var placeholder = document.createElement("li");
 placeholder.className = "placeholder";
 
 var List = function (_React$Component) {
-	_inherits(List, _React$Component);
+  _inherits(List, _React$Component);
 
-	function List(props) {
-		_classCallCheck(this, List);
+  function List(props) {
+    _classCallCheck(this, List);
 
-		var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
 
-		_this.state = {
-			colors: props.colors
+    _this2.state = {
+      colors: props.colors
+    };
+    return _this2;
+  }
 
-		};
+  _createClass(List, [{
+    key: "dragStart",
+    value: function dragStart(e) {
+      this.dragged = e.currentTarget;
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/html", this.dragged);
+    }
+  }, {
+    key: "dragEnd",
+    value: function dragEnd(e) {
+      this.dragged.style.display = "block";
+      //this.dragged.parentNode.removeChild(placeholder);
 
-		return _this;
-	}
+      // update state
+      var data = this.state.colors;
+      var from = Number(this.dragged.dataset.id);
+      var to = Number(this.over.dataset.id);
+      if (from < to) to--;
+      data.splice(to, 0, data.splice(from, 1)[0]);
+      this.setState({ colors: data });
+    }
+  }, {
+    key: "dragOver",
+    value: function dragOver(e) {
+      e.preventDefault();
+      this.dragged.style.display = "none";
+      if (e.target.className === "placeholder") return;
+      this.over = e.target;
+      e.target.parentNode.insertBefore(placeholder, e.target);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
 
-	_createClass(List, [{
-		key: 'dragStart',
-		value: function dragStart(e) {
-			this.dragged = e.currentTarget;
-			e.dataTransfer.effectAllowed = 'move';
-			e.dataTransfer.setData('text/html', this.dragged);
-		}
-	}, {
-		key: 'dragEnd',
-		value: function dragEnd(e) {
-			this.dragged.style.display = 'block';
-			//this.dragged.parentNode.removeChild(placeholder);
+      var listItems = this.state.colors.map(function (item, i) {
+        if (item == ".") {
+          return _react2.default.createElement(
+            "li",
+            {
+              "data-id": i,
+              key: i,
+              draggable: "true",
+              onDragEnd: _this3.dragEnd.bind(_this3),
+              onDragStart: _this3.dragStart.bind(_this3)
+            },
+            item,
+            _react2.default.createElement(
+              "div",
+              { className: "most-important-item" },
+              _react2.default.createElement(
+                "h3",
+                null,
+                _react2.default.createElement("i", { className: "mdi mdi-arrow-all" }),
+                " ",
+                i + 1,
+                ". Near to my work address"
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "form-group form-style" },
+                _react2.default.createElement("textarea", {
+                  className: "form-control",
+                  id: "",
+                  rows: "3",
+                  placeholder: "Enter work address"
+                })
+              )
+            )
+          );
+        }
+        if (item == "..") {
+          return _react2.default.createElement(
+            "li",
+            {
+              "data-id": i,
+              key: i,
+              draggable: "true",
+              onDragEnd: _this3.dragEnd.bind(_this3),
+              onDragStart: _this3.dragStart.bind(_this3)
+            },
+            item,
+            _react2.default.createElement(
+              "div",
+              { className: "most-important-item" },
+              _react2.default.createElement(
+                "h3",
+                null,
+                _react2.default.createElement("i", { className: "mdi mdi-arrow-all" }),
+                " ",
+                i + 1,
+                ". Must have (Amenities)",
+                " "
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "amenities-interested" },
+                " ",
+                _this3.props.Amenities.map(function (ameniti, key) {
+                  if (_this3.props.mostImpartentActive.includes(key))
+                    //checks is ameniti is active or not
+                    return _react2.default.createElement(
+                      "a",
+                      {
+                        href: "javascript:void(0)",
+                        key: key,
+                        className: "amenities-active",
+                        onClick: _this3.props.mostImpartentActiveFunc.bind(_this3, key)
+                      },
+                      ameniti
+                    );else return _react2.default.createElement(
+                    "a",
+                    {
+                      href: "javascript:void(0)",
+                      key: key,
+                      onClick: _this3.props.mostImpartentActiveFunc.bind(_this3, key)
+                    },
+                    ameniti
+                  );
+                }),
+                " "
+              )
+            )
+          );
+        }
+        if (item == "...") {
+          return _react2.default.createElement(
+            "li",
+            {
+              "data-id": i,
+              key: i,
+              draggable: "true",
+              onDragEnd: _this3.dragEnd.bind(_this3),
+              onDragStart: _this3.dragStart.bind(_this3)
+            },
+            item,
+            _react2.default.createElement(
+              "div",
+              { className: "most-important-item" },
+              _react2.default.createElement(
+                "h3",
+                null,
+                _react2.default.createElement("i", { className: "mdi mdi-arrow-all" }),
+                " ",
+                i + 1,
+                ". Near to Public Transportation"
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "form-group form-style" },
+                _react2.default.createElement("input", {
+                  type: "text",
+                  onChange: _this3.props.setLocation.bind(_this3, "publictarans-input"),
+                  className: "form-control",
+                  id: "publictarans-input",
+                  placeholder: "Zipcode"
+                }),
+                _react2.default.createElement(
+                  "span",
+                  { className: "search-warp" },
+                  _react2.default.createElement("i", { className: "mdi mdi-magnify" })
+                ),
+                " "
+              )
+            )
+          );
+        }
+      });
+      return _react2.default.createElement(
+        "ul",
+        { onDragOver: this.dragOver.bind(this) },
+        listItems
+      );
+    }
+  }]);
 
-			// update state
-			var data = this.state.colors;
-			var from = Number(this.dragged.dataset.id);
-			var to = Number(this.over.dataset.id);
-			if (from < to) to--;
-			data.splice(to, 0, data.splice(from, 1)[0]);
-			this.setState({ colors: data });
-		}
-	}, {
-		key: 'dragOver',
-		value: function dragOver(e) {
-			e.preventDefault();
-			this.dragged.style.display = "none";
-			if (e.target.className === 'placeholder') return;
-			this.over = e.target;
-			e.target.parentNode.insertBefore(placeholder, e.target);
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this2 = this;
-
-			var listItems = this.state.colors.map(function (item, i) {
-				if (item == '.') {
-
-					return _react2.default.createElement(
-						'li',
-						{
-							'data-id': i,
-							key: i,
-							draggable: 'true',
-							onDragEnd: _this2.dragEnd.bind(_this2),
-							onDragStart: _this2.dragStart.bind(_this2) },
-						item,
-						_react2.default.createElement(
-							'div',
-							{ className: 'most-important-item' },
-							_react2.default.createElement(
-								'h3',
-								null,
-								_react2.default.createElement('i', { className: 'mdi mdi-arrow-all' }),
-								' ',
-								i + 1,
-								'. Near to my work address'
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'form-group form-style' },
-								_react2.default.createElement('textarea', { className: 'form-control', id: '', rows: '3', placeholder: 'Enter work address' })
-							)
-						)
-					);
-				}
-				if (item == '..') {
-
-					return _react2.default.createElement(
-						'li',
-						{
-							'data-id': i,
-							key: i,
-							draggable: 'true',
-							onDragEnd: _this2.dragEnd.bind(_this2),
-							onDragStart: _this2.dragStart.bind(_this2) },
-						item,
-						_react2.default.createElement(
-							'div',
-							{ className: 'most-important-item' },
-							_react2.default.createElement(
-								'h3',
-								null,
-								_react2.default.createElement('i', { className: 'mdi mdi-arrow-all' }),
-								' ',
-								i + 1,
-								'. Must have (Amenities) '
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'amenities-interested' },
-								' ',
-								_this2.props.Amenities.map(function (ameniti, key) {
-									if (_this2.props.mostImpartentActive.includes(key))
-										//checks is ameniti is active or not
-										return _react2.default.createElement(
-											'a',
-											{
-												href: 'javascript:void(0)',
-												key: key,
-												className: 'amenities-active',
-												onClick: _this2.props.mostImpartentActiveFunc.bind(_this2, key)
-											},
-											ameniti
-										);else return _react2.default.createElement(
-										'a',
-										{
-											href: 'javascript:void(0)',
-											key: key,
-											onClick: _this2.props.mostImpartentActiveFunc.bind(_this2, key)
-										},
-										ameniti
-									);
-								}),
-								' '
-							)
-						)
-					);
-				}
-				if (item == '...') {
-
-					return _react2.default.createElement(
-						'li',
-						{
-							'data-id': i,
-							key: i,
-							draggable: 'true',
-							onDragEnd: _this2.dragEnd.bind(_this2),
-							onDragStart: _this2.dragStart.bind(_this2) },
-						item,
-						_react2.default.createElement(
-							'div',
-							{ className: 'most-important-item' },
-							_react2.default.createElement(
-								'h3',
-								null,
-								_react2.default.createElement('i', { className: 'mdi mdi-arrow-all' }),
-								' ',
-								i + 1,
-								'. Near to Public Transportation'
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'form-group form-style' },
-								_react2.default.createElement('input', { type: 'text', onChange: _this2.props.setLocation.bind(_this2, "publictarans-input"), className: 'form-control', id: 'publictarans-input', placeholder: 'Zipcode' }),
-								_react2.default.createElement(
-									'span',
-									{ className: 'search-warp' },
-									_react2.default.createElement('i', { className: 'mdi mdi-magnify' })
-								),
-								' '
-							)
-						)
-					);
-				}
-			});
-			return _react2.default.createElement(
-				'ul',
-				{ onDragOver: this.dragOver.bind(this) },
-				listItems
-			);
-		}
-	}]);
-
-	return List;
+  return List;
 }(_react2.default.Component);
 
 var Profile = function (_React$Component2) {
-	_inherits(Profile, _React$Component2);
+  _inherits(Profile, _React$Component2);
 
-	function Profile(props) {
-		_classCallCheck(this, Profile);
+  function Profile(props) {
+    _classCallCheck(this, Profile);
 
-		var _this3 = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
+    var _this4 = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 
-		_this3.state = {
-			colors: ['.', '..', '...'],
-			Amenities: ["Air Conditioning", "Carpet", "Granite Countertops", "Hardwood Floors", "Patio", "Stainless Steel Appliances", "Washer And Dryer", "Fitness Center", "High Speed Internet Access", "TZ Parcel Locker System", "Lush Park-Like Grounds", "Swimming Pool", "Pets Allowed", "Spa", "Clubhouse"],
-			mostImpartentActive: [1, 7, 13], //active list for Most important to me
-			amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+    _this4.state = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      relocatedAddress: "",
+      temporaryAddress: "",
+      error: {
+        firstName: { error: false },
+        lastName: { error: false },
+        email: { error: false },
+        phone: { error: false },
+        relocatedAddress: { error: false },
+        temporaryAddress: { error: false }
+      },
+      colors: [".", "..", "..."],
+      Amenities: ["Air Conditioning", "Carpet", "Granite Countertops", "Hardwood Floors", "Patio", "Stainless Steel Appliances", "Washer And Dryer", "Fitness Center", "High Speed Internet Access", "TZ Parcel Locker System", "Lush Park-Like Grounds", "Swimming Pool", "Pets Allowed", "Spa", "Clubhouse"],
+      mostImpartentActive: [1, 7, 13], //active list for Most important to me
+      amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+    };
 
-		};
+    _this4.mostImpartentActive = _this4.mostImpartentActive.bind(_this4);
+    _this4.amenitiesInterestedActive = _this4.amenitiesInterestedActive.bind(_this4);
+    _this4.setLocation = _this4.setLocation.bind(_this4);
+    _this4.inputFieldChanged = _this4.inputFieldChanged.bind(_this4);
+    _this4.informationSubmit = _this4.informationSubmit.bind(_this4);
+    return _this4;
+  }
 
-		_this3.mostImpartentActive = _this3.mostImpartentActive.bind(_this3);
-		_this3.amenitiesInterestedActive = _this3.amenitiesInterestedActive.bind(_this3);
-		_this3.setLocation = _this3.setLocation.bind(_this3);
-		return _this3;
-	}
+  _createClass(Profile, [{
+    key: "inputFieldChanged",
+    value: function inputFieldChanged(e, field) {
+      if (field == "phone") {
+        var x = e.target.value.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+      }
+      var obj = {};
+      obj[field] = e.target.value;
+      this.setState(obj);
+      console.log(field);
+    }
+  }, {
+    key: "informationSubmit",
+    value: function informationSubmit(e) {
+      var error = this.validate();
+      console.log(error, "");
+      this.setState({ error: error });
+    }
+  }, {
+    key: "validate",
+    value: function validate() {
+      var errorMsg = {
+        firstName: { error: false },
+        lastName: { error: false },
+        email: { error: false },
+        phone: { error: false },
+        relocatedAddress: { error: false },
+        temporaryAddress: { error: false }
+      };
+      if (this.state.firstName == "") errorMsg["firstName"] = {
+        error: true,
+        id: "firstName"
+      };
+      if (this.state.lastName == "") errorMsg["lastName"] = {
+        error: true,
+        id: "lastName"
+      };
+      if (this.state.email == "") errorMsg["email"] = {
+        error: true,
+        id: "email"
+      };
+      if (this.state.phone == "") errorMsg["phone"] = {
+        error: true,
+        id: "phone"
+      };
+      if (this.state.relocatedAddress == "") errorMsg["relocatedAddress"] = {
+        error: true,
+        id: "relocatedAddress"
+      };
+      if (this.state.temporaryAddress == "") errorMsg["temporaryAddress"] = {
+        error: true,
+        id: "temporaryAddress"
+      };
 
-	_createClass(Profile, [{
-		key: 'setLocation',
-		value: function setLocation(Id) {
-			var places = new google.maps.places.Autocomplete(document.getElementById(Id));
-		}
-	}, {
-		key: 'mostImpartentActive',
-		value: function mostImpartentActive(key, e) {
-			var mostImpartentActive = this.state.mostImpartentActive;
-			if (this.state.mostImpartentActive.includes(key)) {
-				var index = mostImpartentActive.indexOf(key);
-				if (index > -1) {
-					mostImpartentActive.splice(index, 1);
-					this.setState(mostImpartentActive);
-				}
-			} else {
-				mostImpartentActive.push(key);
-				this.setState(mostImpartentActive);
-			}
-		}
-	}, {
-		key: 'amenitiesInterestedActive',
-		value: function amenitiesInterestedActive(key, e) {
-			var amenitiesInterestedActive = this.state.amenitiesInterestedActive;
-			if (this.state.amenitiesInterestedActive.includes(key)) {
-				var index = amenitiesInterestedActive.indexOf(key);
-				if (index > -1) {
-					amenitiesInterestedActive.splice(index, 1);
-					console.log(amenitiesInterestedActive);
-					this.setState(amenitiesInterestedActive);
-				}
-			} else {
-				amenitiesInterestedActive.push(key);
-				this.setState(amenitiesInterestedActive);
-			}
-		}
-	}, {
-		key: 'componentDidMount',
-		value: async function componentDidMount() {
-			(0, _jquery2.default)(document).ready(function () {
-				jQuery(function ($) {
-					$("#phone").intlTelInput();
-				});
-			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this4 = this;
+      return errorMsg;
+    }
+  }, {
+    key: "setLocation",
+    value: function setLocation(Id, e) {
+      var _this = this;
+      var places = new google.maps.places.Autocomplete(document.getElementById(Id));
+      google.maps.event.addListener(places, "place_changed", async function () {
+        var place = places.getPlace();
+        var relocatedAddress = place.formatted_address;
+        Id == "relocated-input" ? _this.setState({ relocatedAddress: relocatedAddress }) : _this.setState({ temporaryAddress: relocatedAddress });
+      });
+    }
+  }, {
+    key: "mostImpartentActive",
+    value: function mostImpartentActive(key, e) {
+      var mostImpartentActive = this.state.mostImpartentActive;
+      if (this.state.mostImpartentActive.includes(key)) {
+        var index = mostImpartentActive.indexOf(key);
+        if (index > -1) {
+          mostImpartentActive.splice(index, 1);
+          this.setState(mostImpartentActive);
+        }
+      } else {
+        mostImpartentActive.push(key);
+        this.setState(mostImpartentActive);
+      }
+    }
+  }, {
+    key: "amenitiesInterestedActive",
+    value: function amenitiesInterestedActive(key, e) {
+      var amenitiesInterestedActive = this.state.amenitiesInterestedActive;
+      if (this.state.amenitiesInterestedActive.includes(key)) {
+        var index = amenitiesInterestedActive.indexOf(key);
+        if (index > -1) {
+          amenitiesInterestedActive.splice(index, 1);
+          console.log(amenitiesInterestedActive);
+          this.setState(amenitiesInterestedActive);
+        }
+      } else {
+        amenitiesInterestedActive.push(key);
+        this.setState(amenitiesInterestedActive);
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: async function componentDidMount() {
+      (0, _jquery2.default)(document).ready(function () {
+        jQuery(function ($) {
+          $("#phone").intlTelInput();
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this5 = this;
 
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'main_content' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'container' },
-						_react2.default.createElement(
-							'h1',
-							{ className: 'main_heading' },
-							'Profile'
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'profile' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'vertical-tabs-container' },
-								_react2.default.createElement(
-									'div',
-									{ className: 'vertical-tabs' },
-									' ',
-									_react2.default.createElement(
-										'a',
-										{ href: 'javascript:;', className: 'js-vertical-tab vertical-tab is-active', rel: 'tab1' },
-										'Basic Information'
-									),
-									' ',
-									_react2.default.createElement(
-										'a',
-										{ href: 'javascript:;', className: 'js-vertical-tab vertical-tab', rel: 'tab2' },
-										'Amenities Interested'
-									),
-									' ',
-									_react2.default.createElement(
-										'a',
-										{ href: 'javascript:;', className: 'js-vertical-tab vertical-tab', rel: 'tab3' },
-										'Most important to me?'
-									),
-									' '
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'vertical-tab-content-container' },
-									' ',
-									_react2.default.createElement(
-										'a',
-										{ href: '', className: 'js-vertical-tab-accordion-heading vertical-tab-accordion-heading is-active', rel: 'tab1' },
-										'Basic Information'
-									),
-									_react2.default.createElement(
-										'div',
-										{ id: 'tab1', className: 'js-vertical-tab-content vertical-tab-content' },
-										_react2.default.createElement(
-											'h2',
-											null,
-											'Basic Information'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'basic-info' },
-											_react2.default.createElement(
-												'div',
-												{ className: 'form-group form-style' },
-												_react2.default.createElement(
-													'label',
-													{ htmlFor: '' },
-													'First Name'
-												),
-												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'First Name' })
-											),
-											_react2.default.createElement(
-												'div',
-												{ className: 'form-group form-style' },
-												_react2.default.createElement(
-													'label',
-													{ htmlFor: '' },
-													'Last Name'
-												),
-												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Last Name' })
-											),
-											_react2.default.createElement(
-												'div',
-												{ className: 'form-group form-style' },
-												_react2.default.createElement(
-													'label',
-													{ htmlFor: '' },
-													'Email'
-												),
-												_react2.default.createElement('input', { type: 'text', className: 'form-control', id: '', placeholder: 'Email' })
-											),
-											_react2.default.createElement(
-												'div',
-												{ className: 'form-group form-style' },
-												_react2.default.createElement(
-													'label',
-													{ htmlFor: '' },
-													'Phone'
-												),
-												_react2.default.createElement('input', { type: 'tel', className: 'form-control', id: 'phone', placeholder: 'Phone' })
-											),
-											_react2.default.createElement(
-												'div',
-												{ className: 'form-group form-style' },
-												_react2.default.createElement(
-													'label',
-													{ htmlFor: '' },
-													'Relocated Address'
-												),
-												_react2.default.createElement('input', { id: 'relocated-input', type: 'text', className: 'form-control', placeholder: 'Relocated Address', onChange: this.setLocation.bind(this, "relocated-input") }),
-												_react2.default.createElement(
-													'span',
-													{ className: 'search-warp-profile' },
-													_react2.default.createElement('i', { className: 'mdi mdi-magnify' })
-												)
-											),
-											_react2.default.createElement(
-												'div',
-												{ className: 'form-group form-style' },
-												_react2.default.createElement(
-													'label',
-													{ htmlFor: '' },
-													'Temporary Address'
-												),
-												_react2.default.createElement('input', { type: 'text', id: 'temporary-input', className: 'form-control', placeholder: 'Temporary Address', onChange: this.setLocation.bind(this, "temporary-input") }),
-												_react2.default.createElement(
-													'span',
-													{ className: 'search-warp-profile' },
-													_react2.default.createElement('i', { className: 'mdi mdi-magnify' })
-												)
-											)
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'buttons' },
-											_react2.default.createElement(
-												'button',
-												{ type: 'submit', className: 'btn sm-grey-btn font-weight-bold' },
-												'Cancel'
-											),
-											_react2.default.createElement(
-												'button',
-												{ type: 'submit', className: 'btn sm-red-btn font-weight-bold' },
-												'Save'
-											)
-										)
-									),
-									_react2.default.createElement(
-										'a',
-										{ href: '', className: 'js-vertical-tab-accordion-heading vertical-tab-accordion-heading', rel: 'tab2' },
-										'Amenities Interested'
-									),
-									_react2.default.createElement(
-										'div',
-										{ id: 'tab2', className: 'js-vertical-tab-content vertical-tab-content' },
-										_react2.default.createElement(
-											'h2',
-											null,
-											'Amenities Interested'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'amenities-interested' },
-											this.state.Amenities.map(function (ameniti, key) {
-												if (_this4.state.amenitiesInterestedActive.includes(key))
-													//checks is ameniti is active or not
-													return _react2.default.createElement(
-														'a',
-														{
-															href: 'javascript:void(0)',
-															key: key,
-															className: 'amenities-active',
-															onClick: _this4.amenitiesInterestedActive.bind(_this4, key)
-														},
-														ameniti
-													);else return _react2.default.createElement(
-													'a',
-													{
-														href: 'javascript:void(0)',
-														key: key,
-														onClick: _this4.amenitiesInterestedActive.bind(_this4, key)
-													},
-													ameniti
-												);
-											})
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'buttons' },
-											_react2.default.createElement(
-												'button',
-												{ type: 'submit', className: 'btn sm-grey-btn font-weight-bold' },
-												'Cancel'
-											),
-											_react2.default.createElement(
-												'button',
-												{ type: 'submit', className: 'btn sm-red-btn font-weight-bold' },
-												'Save'
-											)
-										)
-									),
-									_react2.default.createElement(
-										'a',
-										{ href: '', className: 'js-vertical-tab-accordion-heading vertical-tab-accordion-heading', rel: 'tab3' },
-										'Most important to me?'
-									),
-									_react2.default.createElement(
-										'div',
-										{ id: 'tab3', className: 'js-vertical-tab-content vertical-tab-content' },
-										_react2.default.createElement(
-											'h2',
-											null,
-											'Most important to me?'
-										),
-										_react2.default.createElement(List, _extends({ colors: this.state.colors, mostImpartentActiveFunc: this.mostImpartentActive, setLocation: this.setLocation }, this.state)),
-										_react2.default.createElement(
-											'div',
-											{ className: 'buttons' },
-											_react2.default.createElement(
-												'button',
-												{ type: 'submit', className: 'btn sm-grey-btn font-weight-bold' },
-												'Cancel'
-											),
-											_react2.default.createElement(
-												'button',
-												{ type: 'submit', className: 'btn sm-red-btn font-weight-bold' },
-												'Submit'
-											)
-										)
-									)
-								)
-							)
-						)
-					)
-				),
-				_react2.default.createElement(_Footer2.default, { chatId: 0 })
-			);
-		}
-	}]);
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(_Header2.default, { pathName: this.props.location.pathname }),
+        _react2.default.createElement(
+          "div",
+          { className: "main_content" },
+          _react2.default.createElement(
+            "div",
+            { className: "container" },
+            _react2.default.createElement(
+              "h1",
+              { className: "main_heading" },
+              "Profile"
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "profile" },
+              _react2.default.createElement(
+                "div",
+                { className: "vertical-tabs-container" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "vertical-tabs" },
+                  " ",
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      href: "javascript:;",
+                      className: "js-vertical-tab vertical-tab is-active",
+                      rel: "tab1"
+                    },
+                    "Basic Information"
+                  ),
+                  " ",
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      href: "javascript:;",
+                      className: "js-vertical-tab vertical-tab",
+                      rel: "tab2"
+                    },
+                    "Amenities Interested"
+                  ),
+                  " ",
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      href: "javascript:;",
+                      className: "js-vertical-tab vertical-tab",
+                      rel: "tab3"
+                    },
+                    "Most important to me?"
+                  ),
+                  " "
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "vertical-tab-content-container" },
+                  " ",
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      href: "",
+                      className: "js-vertical-tab-accordion-heading vertical-tab-accordion-heading is-active",
+                      rel: "tab1"
+                    },
+                    "Basic Information"
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    {
+                      id: "tab1",
+                      className: "js-vertical-tab-content vertical-tab-content"
+                    },
+                    _react2.default.createElement(
+                      "h2",
+                      null,
+                      "Basic Information"
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "basic-info" },
+                      _react2.default.createElement(
+                        "div",
+                        { className: "form-group form-style" },
+                        _react2.default.createElement(
+                          "label",
+                          { htmlFor: "" },
+                          "First Name"
+                        ),
+                        _react2.default.createElement("input", {
+                          type: "text",
+                          className: "form-control",
+                          id: "",
+                          placeholder: "First Name",
+                          style: {
+                            borderBottom: this.state.error.firstName.error == undefined || this.state.error.firstName.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                          }
+                          // {this.state.error.firstName ? console.log("error") : console.log("noerror")}
+                          , onChange: function onChange(e) {
+                            return _this5.inputFieldChanged(e, "firstName");
+                          }
+                        })
+                      ),
+                      _react2.default.createElement(
+                        "div",
+                        { className: "form-group form-style" },
+                        _react2.default.createElement(
+                          "label",
+                          { htmlFor: "" },
+                          "Last Name"
+                        ),
+                        _react2.default.createElement("input", {
+                          type: "text",
+                          className: "form-control",
+                          id: "",
+                          placeholder: "Last Name",
+                          style: {
+                            borderBottom: this.state.error.lastName.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                          },
+                          onChange: function onChange(e) {
+                            return _this5.inputFieldChanged(e, "lastName");
+                          }
+                        })
+                      ),
+                      _react2.default.createElement(
+                        "div",
+                        { className: "form-group form-style" },
+                        _react2.default.createElement(
+                          "label",
+                          { htmlFor: "" },
+                          "Email"
+                        ),
+                        _react2.default.createElement("input", {
+                          type: "text",
+                          className: "form-control",
+                          id: "",
+                          placeholder: "Email",
+                          style: {
+                            borderBottom: this.state.error.email.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                          },
+                          onChange: function onChange(e) {
+                            return _this5.inputFieldChanged(e, "email");
+                          }
+                        })
+                      ),
+                      _react2.default.createElement(
+                        "div",
+                        { className: "form-group form-style" },
+                        _react2.default.createElement(
+                          "label",
+                          { htmlFor: "" },
+                          "Phone"
+                        ),
+                        _react2.default.createElement("input", {
+                          type: "tel",
+                          className: "form-control",
+                          id: "phone",
+                          placeholder: "Phone",
+                          style: {
+                            borderBottom: this.state.error.phone.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                          },
+                          onChange: function onChange(e) {
+                            return _this5.inputFieldChanged(e, "phone");
+                          }
+                        })
+                      ),
+                      _react2.default.createElement(
+                        "div",
+                        { className: "form-group form-style" },
+                        _react2.default.createElement(
+                          "label",
+                          { htmlFor: "" },
+                          "Relocated Address"
+                        ),
+                        _react2.default.createElement("input", {
+                          id: "relocated-input",
+                          type: "text",
+                          className: "form-control",
+                          placeholder: "Relocated Address",
+                          style: {
+                            borderBottom: this.state.error.relocatedAddress.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                          },
+                          onChange: this.setLocation.bind(this, "relocated-input")
+                        }),
+                        _react2.default.createElement(
+                          "span",
+                          { className: "search-warp-profile" },
+                          _react2.default.createElement("i", { className: "mdi mdi-magnify" })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        "div",
+                        { className: "form-group form-style" },
+                        _react2.default.createElement(
+                          "label",
+                          { htmlFor: "" },
+                          "Temporary Address"
+                        ),
+                        _react2.default.createElement("input", {
+                          type: "text",
+                          id: "temporary-input",
+                          className: "form-control",
+                          placeholder: "Temporary Address",
+                          style: {
+                            borderBottom: this.state.error.temporaryAddress.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                          },
+                          onChange: this.setLocation.bind(this, "temporary-input") //(e => this.inputFieldChanged(e, "temporaryAddress"))
+                        }),
+                        _react2.default.createElement(
+                          "span",
+                          { className: "search-warp-profile" },
+                          _react2.default.createElement("i", { className: "mdi mdi-magnify" })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "buttons" },
+                      _react2.default.createElement(
+                        "button",
+                        {
+                          type: "submit",
+                          className: "btn sm-grey-btn font-weight-bold"
+                        },
+                        "Cancel"
+                      ),
+                      _react2.default.createElement(
+                        "button",
+                        {
+                          type: "submit",
+                          className: "btn sm-red-btn font-weight-bold",
+                          onClick: function onClick(e) {
+                            _this5.informationSubmit(e);
+                          }
+                        },
+                        "Save"
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      href: "",
+                      className: "js-vertical-tab-accordion-heading vertical-tab-accordion-heading",
+                      rel: "tab2"
+                    },
+                    "Amenities Interested"
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    {
+                      id: "tab2",
+                      className: "js-vertical-tab-content vertical-tab-content"
+                    },
+                    _react2.default.createElement(
+                      "h2",
+                      null,
+                      "Amenities Interested"
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "amenities-interested" },
+                      this.state.Amenities.map(function (ameniti, key) {
+                        if (_this5.state.amenitiesInterestedActive.includes(key))
+                          //checks is ameniti is active or not
+                          return _react2.default.createElement(
+                            "a",
+                            {
+                              href: "javascript:void(0)",
+                              key: key,
+                              className: "amenities-active",
+                              onClick: _this5.amenitiesInterestedActive.bind(_this5, key)
+                            },
+                            ameniti
+                          );else return _react2.default.createElement(
+                          "a",
+                          {
+                            href: "javascript:void(0)",
+                            key: key,
+                            onClick: _this5.amenitiesInterestedActive.bind(_this5, key)
+                          },
+                          ameniti
+                        );
+                      })
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "buttons" },
+                      _react2.default.createElement(
+                        "button",
+                        {
+                          type: "submit",
+                          className: "btn sm-grey-btn font-weight-bold"
+                        },
+                        "Cancel"
+                      ),
+                      _react2.default.createElement(
+                        "button",
+                        {
+                          type: "submit",
+                          className: "btn sm-red-btn font-weight-bold"
+                        },
+                        "Save"
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    "a",
+                    {
+                      href: "",
+                      className: "js-vertical-tab-accordion-heading vertical-tab-accordion-heading",
+                      rel: "tab3"
+                    },
+                    "Most important to me?"
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    {
+                      id: "tab3",
+                      className: "js-vertical-tab-content vertical-tab-content"
+                    },
+                    _react2.default.createElement(
+                      "h2",
+                      null,
+                      "Most important to me?"
+                    ),
+                    _react2.default.createElement(List, _extends({
+                      colors: this.state.colors,
+                      mostImpartentActiveFunc: this.mostImpartentActive,
+                      setLocation: this.setLocation
+                    }, this.state)),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "buttons" },
+                      _react2.default.createElement(
+                        "button",
+                        {
+                          type: "submit",
+                          className: "btn sm-grey-btn font-weight-bold"
+                        },
+                        "Cancel"
+                      ),
+                      _react2.default.createElement(
+                        "button",
+                        {
+                          type: "submit",
+                          className: "btn sm-red-btn font-weight-bold"
+                        },
+                        "Submit"
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(_Footer2.default, { chatId: 0 })
+      );
+    }
+  }]);
 
-	return Profile;
+  return Profile;
 }(_react2.default.Component);
 
 exports.default = Profile;

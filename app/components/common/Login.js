@@ -85,11 +85,11 @@ class Login extends React.Component {
                     <div className="ds-login">
                        {this.state.errorStatus == true ? <span className="text-danger emsg">{Constants.DS_CONSTANTS.LOGIN_ERROR_MSG}</span> : ""}
                         <div className="form-group">
-                            <i className="zmdi zmdi-account-o"></i>
+                            <i className="mdi mdi-account-outline"></i>
                             <input type="email" className="userName form-control" id="userName" name="userName" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.inputHandler.bind(this, 'userName')} />
                         </div>
                         <div className="form-group">
-                            <i className="zmdi zmdi-lock-outline"></i>
+                            <i className="mdi mdi-lock-outline"></i>
                             <input type="password" className="passWord form-control" id="Password" name="passWord" placeholder="passWord" onChange={this.inputHandler.bind(this, 'passWord')} />
                         </div>
                         <div className="d-flex form-options">
