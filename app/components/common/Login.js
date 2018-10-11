@@ -43,14 +43,29 @@ class Login extends React.Component {
             //console.log(LoginDetails.recordset.length, "==================sdfsdf");
             let LoginDetails = Object.assign({});
             if(this.state.userName.trim() == Constants.USER_LOGIN.userName && this.state.passWord.trim() == Constants.USER_LOGIN.passWord){
-                LoginDetails.userName = passwordHash.generate(Constants.USER_LOGIN.userName);
-                LoginDetails.passWord = passwordHash.generate(Constants.USER_LOGIN.passWord);
+                LoginDetails.userName = Constants.USER_LOGIN.userName;
+                LoginDetails.passWord = Constants.USER_LOGIN.passWord;
+                LoginDetails.type = Constants.USER_LOGIN.type;
+                LoginDetails.name = Constants.USER_LOGIN.FirstName;
                 
+            } else if(this.state.userName.trim() == Constants.CLIENT_LOGIN.userName && this.state.passWord.trim() == Constants.CLIENT_LOGIN.passWord){
+                LoginDetails.userName = Constants.CLIENT_LOGIN.userName;
+                LoginDetails.passWord = Constants.CLIENT_LOGIN.passWord;
+                LoginDetails.type = Constants.CLIENT_LOGIN.type;
+                LoginDetails.name = Constants.CLIENT_LOGIN.FirstName;
+
             }
             if(Object.keys(LoginDetails).length > 0) {
                 this.setState({errorStatus:0});
+                await localStorage.setItem("type", LoginDetails.type);
                 await localStorage.setItem("LoginDetails", JSON.stringify(LoginDetails));
-                await this.props.history.push("/home");
+                if(LoginDetails.type == 'guest'){
+                    window.location.href = '/home'
+                } else {
+                    window.location.href = '/send-invitation'
+                   
+                }
+                
             } else {
                 this.setState({errorStatus:true});
             }

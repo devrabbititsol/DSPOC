@@ -1431,6 +1431,7 @@ p.bye-msg{
 	border-top: transparent;
 	border-radius: 0px;
 	padding: .375rem .75rem .375rem 0rem;
+	background: transparent;
 }
 .form-style .form-control:focus {
 	-webkit-box-shadow: none;
@@ -1820,3 +1821,84 @@ ul.landing-modules{
 .address-sub ul li {
 	color: #9A9A9A;
 }
+
+
+.send-invitation-wrap{
+	margin: 50px 0px 50px 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0px 0px 45px rgba(0,0,0,0.1);
+	background: #FFFFFF;
+	padding: 30px;
+}
+
+.modules-wrap ul{
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.modules-wrap ul li:not(:last-child){
+	margin-right: 25px;
+}
+
+.modules-wrap ul li {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.modules-wrap ul li > span{
+	font-size: 12px;
+	padding-top: 5px;
+}
+
+.modules-wrap ul li a{
+	background: #FFF;
+	border:2px solid #555;
+	width: 80px;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+}
+
+.modules-wrap ul li a.module-active{
+	border:2px solid #E43226;
+	cursor: default;
+}
+
+.modules-wrap ul li a img{
+	width: 40px;
+}
+
+.modules-wrap ul li a img.ds-car{
+	width: 55px;
+}
+
+.send-invitation-button {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.btn.focus, .btn:focus{
+	box-shadow: none;
+}
+
+/** suraj style **/
+.errorborder {
+	border-bottom: 2px solid rgb(228, 50, 38) !important;
+  }
+  .non-errorborder {
+	border-bottom: 2px solid rgb(209, 209, 209) !important;
+  }
+  .errorTextColor {
+	color: rgb(228, 50, 38);
+  }
+  .sucessTextColor {
+	color: rgb(45, 88, 41);
+	font-size: 16px;
+  }
+  

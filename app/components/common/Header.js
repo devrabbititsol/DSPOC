@@ -24,6 +24,7 @@ class Header extends React.Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
+        {localStorage.getItem('type') == 'guest' ?
           <ul className="navbar-nav mx-auto text-center">
             <li className={(this.props.pathName == '/homefinding') ? 'nav-item active' : 'nav-item'}>
               <a className="nav-link" href="/homefinding">Home Finding </a>
@@ -37,15 +38,15 @@ class Header extends React.Component {
             <li className={this.props.pathName == '/consultant' ? 'nav-item active' : 'nav-item'}>
               <a className="nav-link" href="/consultant">My Consultant</a>
             </li>
-          </ul>
+          </ul> : <ul className="navbar-nav mx-auto text-center"></ul>}
           
 			<div className="dropdown user-menu">
 				<span><img src="/images/img2.jpg" alt=""/></span>
 			<a className="dropdown-toggle btn" data-toggle="dropdown" aria-expanded="false">
-			   Hi John Doe
+			   {JSON.parse(localStorage.getItem('LoginDetails')).name}
 			</a>
 			<div className="dropdown-menu">
-			  <a  href="/profile" className={this.props.pathName == "/profile" ? "dropdown-item actives" : "dropdown-item"}><i className="mdi mdi-account-outline"></i> Profile</a>
+			 {localStorage.getItem('type') == 'guest' ? <a  href="/profile" className={this.props.pathName == "/profile" ? "dropdown-item actives" : "dropdown-item"}><i className="mdi mdi-account-outline"></i> Profile</a> : ""}
       <a className="dropdown-item" href="/logout"><i className="mdi mdi-power"></i> Logout</a>
 			</div>
 		  </div>

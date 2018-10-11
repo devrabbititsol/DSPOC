@@ -13,7 +13,7 @@ import Logout from './components/common/Logout'
 import Login from './components/common/Login'
 import Home from './components/Home'
 import HomeFinding from './components/HomeFinding'
-
+import SendInvitation from './components/SendInvitation'
 import Profile from './components/Profile'
 import Consultant from './components/Consultant'
 import UnauthorizePage from './components/common/UnauthorizePage'
@@ -25,18 +25,16 @@ function decide() {
   if(localStorage.getItem('LoginDetails') == null) {
   	return false;
   } else {
-		console.log(localStorage.getItem('LoginDetails'));
+		
 		return true;
   }
 }
 
 export default <Router history={browserHistory}>
 	<div>
+	
 		<Switch>
-			 <Route exact path="/"
-	                render={(data) => {
-	                return decide() ? <Home {...data}/> : <Login {...data}/>;
-	      }} />
+			 
 				<Route exact path="/logout"
 	                render={(data) => {
 	                return decide() ? <Logout {...data}/> : <Logout {...data}/>;
@@ -45,11 +43,19 @@ export default <Router history={browserHistory}>
 	                render={(data) => {
 	                return decide() ? <Home {...data}/> : <Login {...data}/>;
 	      }} />
-					<Route exact path="/home"
+				
+				</Switch>
+				{localStorage.getItem('type') == 'guest' ?	
+		<Switch>
+			<Route exact path="/"
 	                render={(data) => {
 	                return decide() ? <Home {...data}/> : <Login {...data}/>;
 	      }} />
-				
+		  
+			  <Route exact path="/home"
+	                render={(data) => {
+	                return decide() ? <Home {...data}/> : <Login {...data}/>;
+	      }} />
 				<Route exact path="/homefinding"
 	                render={(data) => {
 	                return decide() ? <HomeFinding {...data}/> : <Login {...data}/>;
@@ -67,8 +73,20 @@ export default <Router history={browserHistory}>
 	                return decide() ? <PropertyDetails {...data}/> : <Login {...data}/>;
 	      }} />
 				
+						
 				
-				<Route exact path="*" component={UnauthorizePage} />
-		</Switch>
+		</Switch> : <Switch>
+		<Route exact path="/"
+	                render={(data) => {
+	                return decide() ? <SendInvitation {...data}/> : <Login {...data}/>;
+	      }} />
+		  <Route exact path="/send-invitation"
+	                render={(data) => {
+	                return decide() ? <SendInvitation {...data}/> : <Login {...data}/>;
+	      }} />
+		
+      
+		</Switch> }
+			
 	</div>
 </Router>

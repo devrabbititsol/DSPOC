@@ -10977,14 +10977,22 @@ Object.defineProperty(exports, "__esModule", {
 
 var userDetails = {
     userName: 'ashok@suiteamerica.com',
-    passWord: 'ashok@123!'
+    passWord: 'ashok@123!',
+    type: 'guest',
+    FirstName: 'John Doe'
+};
+var clientDetails = {
+    userName: 'client@suiteamerica.com',
+    passWord: 'ashok@123!',
+    type: 'client',
+    FirstName: 'Ashok k'
 };
 var constants = {
     NO_DATA_FOUND: 'Oops No Data Found !!',
     SERVICE_DOWN: 'Oops something went wrong !! Please try after some time.',
     LOGIN_ERROR_MSG: 'Please enter valid Email Id / Password'
 };
-exports.default = { USER_LOGIN: userDetails, DS_CONSTANTS: constants };
+exports.default = { CLIENT_LOGIN: clientDetails, USER_LOGIN: userDetails, DS_CONSTANTS: constants };
 
 /***/ }),
 /* 20 */
@@ -13388,7 +13396,7 @@ var Header = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'collapse navbar-collapse', id: 'navbarCollapse' },
-            _react2.default.createElement(
+            localStorage.getItem('type') == 'guest' ? _react2.default.createElement(
               'ul',
               { className: 'navbar-nav mx-auto text-center' },
               _react2.default.createElement(
@@ -13427,7 +13435,7 @@ var Header = function (_React$Component) {
                   'My Consultant'
                 )
               )
-            ),
+            ) : _react2.default.createElement('ul', { className: 'navbar-nav mx-auto text-center' }),
             _react2.default.createElement(
               'div',
               { className: 'dropdown user-menu' },
@@ -13439,17 +13447,17 @@ var Header = function (_React$Component) {
               _react2.default.createElement(
                 'a',
                 { className: 'dropdown-toggle btn', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
-                'Hi John Doe'
+                JSON.parse(localStorage.getItem('LoginDetails')).name
               ),
               _react2.default.createElement(
                 'div',
                 { className: 'dropdown-menu' },
-                _react2.default.createElement(
+                localStorage.getItem('type') == 'guest' ? _react2.default.createElement(
                   'a',
                   { href: '/profile', className: this.props.pathName == "/profile" ? "dropdown-item actives" : "dropdown-item" },
                   _react2.default.createElement('i', { className: 'mdi mdi-account-outline' }),
                   ' Profile'
-                ),
+                ) : "",
                 _react2.default.createElement(
                   'a',
                   { className: 'dropdown-item', href: '/logout' },
@@ -68303,7 +68311,7 @@ module.exports = self.fetch.bind(self);
 /* Importing the node modules, child components, services and controllers used */
 
 Object.defineProperty(exports, "__esModule", {
-			value: true
+	value: true
 });
 
 var _react = __webpack_require__(7);
@@ -68338,6 +68346,10 @@ var _HomeFinding = __webpack_require__(533);
 
 var _HomeFinding2 = _interopRequireDefault(_HomeFinding);
 
+var _SendInvitation = __webpack_require__(540);
+
+var _SendInvitation2 = _interopRequireDefault(_SendInvitation);
+
 var _Profile = __webpack_require__(534);
 
 var _Profile2 = _interopRequireDefault(_Profile);
@@ -68361,61 +68373,75 @@ var _PropertyDetails2 = _interopRequireDefault(_PropertyDetails);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* Load the components based on Local storage elements empty or not */
-function decide() {
-			//console.log(Object.keys(localStorage).length);
-			if (localStorage.getItem('LoginDetails') == null) {
-						return false;
-			} else {
-						console.log(localStorage.getItem('LoginDetails'));
-						return true;
-			}
-}
+
 
 // Import routing components
-exports.default = _react2.default.createElement(
-			_reactRouterDom.BrowserRouter,
-			{ history: _reactRouter.browserHistory },
-			_react2.default.createElement(
-						'div',
-						null,
-						_react2.default.createElement(
-									_reactRouterDom.Switch,
-									null,
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/logout',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_Logout2.default, data) : _react2.default.createElement(_Logout2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/home',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/homefinding',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_HomeFinding2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/profile',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_Profile2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/consultant',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_Consultant2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/propertydetails/:ItineraryPropertyID',
-												render: function render(data) {
-															return decide() ? _react2.default.createElement(_PropertyDetails2.default, data) : _react2.default.createElement(_Login2.default, data);
-												} }),
-									_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '*', component: _UnauthorizePage2.default })
-						)
-			)
+function decide() {
+	//console.log(Object.keys(localStorage).length);
+	if (localStorage.getItem('LoginDetails') == null) {
+		return false;
+	} else {
+
+		return true;
+	}
+}exports.default = _react2.default.createElement(
+	_reactRouterDom.BrowserRouter,
+	{ history: _reactRouter.browserHistory },
+	_react2.default.createElement(
+		'div',
+		null,
+		_react2.default.createElement(
+			_reactRouterDom.Switch,
+			null,
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/logout',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_Logout2.default, data) : _react2.default.createElement(_Logout2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} })
+		),
+		localStorage.getItem('type') == 'guest' ? _react2.default.createElement(
+			_reactRouterDom.Switch,
+			null,
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/home',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_Home2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/homefinding',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_HomeFinding2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/profile',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_Profile2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/consultant',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_Consultant2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/propertydetails/:ItineraryPropertyID',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_PropertyDetails2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} })
+		) : _react2.default.createElement(
+			_reactRouterDom.Switch,
+			null,
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_SendInvitation2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/send-invitation',
+				render: function render(data) {
+					return decide() ? _react2.default.createElement(_SendInvitation2.default, data) : _react2.default.createElement(_Login2.default, data);
+				} })
+		)
+	)
 );
 
 /***/ }),
@@ -76731,13 +76757,25 @@ var Login = function (_React$Component) {
                 //console.log(LoginDetails.recordset.length, "==================sdfsdf");
                 var LoginDetails = Object.assign({});
                 if (this.state.userName.trim() == _constants2.default.USER_LOGIN.userName && this.state.passWord.trim() == _constants2.default.USER_LOGIN.passWord) {
-                    LoginDetails.userName = _passwordHash2.default.generate(_constants2.default.USER_LOGIN.userName);
-                    LoginDetails.passWord = _passwordHash2.default.generate(_constants2.default.USER_LOGIN.passWord);
+                    LoginDetails.userName = _constants2.default.USER_LOGIN.userName;
+                    LoginDetails.passWord = _constants2.default.USER_LOGIN.passWord;
+                    LoginDetails.type = _constants2.default.USER_LOGIN.type;
+                    LoginDetails.name = _constants2.default.USER_LOGIN.FirstName;
+                } else if (this.state.userName.trim() == _constants2.default.CLIENT_LOGIN.userName && this.state.passWord.trim() == _constants2.default.CLIENT_LOGIN.passWord) {
+                    LoginDetails.userName = _constants2.default.CLIENT_LOGIN.userName;
+                    LoginDetails.passWord = _constants2.default.CLIENT_LOGIN.passWord;
+                    LoginDetails.type = _constants2.default.CLIENT_LOGIN.type;
+                    LoginDetails.name = _constants2.default.CLIENT_LOGIN.FirstName;
                 }
                 if (Object.keys(LoginDetails).length > 0) {
                     this.setState({ errorStatus: 0 });
+                    await localStorage.setItem("type", LoginDetails.type);
                     await localStorage.setItem("LoginDetails", JSON.stringify(LoginDetails));
-                    await this.props.history.push("/home");
+                    if (LoginDetails.type == 'guest') {
+                        window.location.href = '/home';
+                    } else {
+                        window.location.href = '/send-invitation';
+                    }
                 } else {
                     this.setState({ errorStatus: true });
                 }
@@ -87580,7 +87618,13 @@ var List = function (_React$Component) {
                   className: "form-control",
                   id: "",
                   rows: "3",
-                  placeholder: "Enter work address"
+                  placeholder: "Enter work address",
+                  onChange: function onChange(e) {
+                    return _this3.props.inputFieldChanged(e, "workAddress");
+                  },
+                  style: {
+                    borderBottom: _this3.props.error.workAddress.error == undefined || _this3.props.error.workAddress.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                  }
                 })
               )
             )
@@ -87608,6 +87652,11 @@ var List = function (_React$Component) {
                 i + 1,
                 ". Must have (Amenities)",
                 " "
+              ),
+              _react2.default.createElement(
+                "p",
+                { style: { color: "#E43226" } },
+                _this3.props.errorMessage ? "atleast one item should be selected" : ""
               ),
               _react2.default.createElement(
                 "div",
@@ -87670,7 +87719,10 @@ var List = function (_React$Component) {
                   onChange: _this3.props.setLocation.bind(_this3, "publictarans-input"),
                   className: "form-control",
                   id: "publictarans-input",
-                  placeholder: "Zipcode"
+                  placeholder: "Zipcode",
+                  style: {
+                    borderBottom: _this3.props.error.zipcode.error == undefined || _this3.props.error.zipcode.error ? "2px solid #e43226" : "2px solid #D1D1D1"
+                  }
                 }),
                 _react2.default.createElement(
                   "span",
@@ -87715,12 +87767,18 @@ var Profile = function (_React$Component2) {
         email: { error: false },
         phone: { error: false },
         relocatedAddress: { error: false },
-        temporaryAddress: { error: false }
+        temporaryAddress: { error: false },
+        workAddress: { error: false },
+        zipcode: { error: false }
       },
       colors: [".", "..", "..."],
       Amenities: ["Air Conditioning", "Carpet", "Granite Countertops", "Hardwood Floors", "Patio", "Stainless Steel Appliances", "Washer And Dryer", "Fitness Center", "High Speed Internet Access", "TZ Parcel Locker System", "Lush Park-Like Grounds", "Swimming Pool", "Pets Allowed", "Spa", "Clubhouse"],
       mostImpartentActive: [1, 7, 13], //active list for Most important to me
-      amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+      amenitiesInterestedActive: [1, 7, 13], //active list for Amenities Interested
+      workAddress: "",
+      zipcode: "",
+      errorMessage: false,
+      amenitiesInterestedActiveErrorMessage: false
     };
 
     _this4.mostImpartentActive = _this4.mostImpartentActive.bind(_this4);
@@ -87745,52 +87803,72 @@ var Profile = function (_React$Component2) {
     }
   }, {
     key: "informationSubmit",
-    value: function informationSubmit(e) {
-      var error = this.validate();
-      console.log(error, "");
+    value: function informationSubmit(e, field) {
+      var error = this.validate(field);
       this.setState({ error: error });
     }
   }, {
     key: "validate",
-    value: function validate() {
-      var errorMsg = {
+    value: function validate(field) {
+      var poll = {
         firstName: { error: false },
         lastName: { error: false },
         email: { error: false },
         phone: { error: false },
         relocatedAddress: { error: false },
-        temporaryAddress: { error: false }
+        temporaryAddress: { error: false },
+        workAddress: { error: false },
+        zipcode: { error: false }
       };
-      if (this.state.firstName == "") errorMsg["firstName"] = {
-        error: true,
-        id: "firstName"
-      };
-      if (this.state.lastName == "") errorMsg["lastName"] = {
-        error: true,
-        id: "lastName"
-      };
-
-      if (this.state.email == "" || true) {
-        var regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        errorMsg["email"] = {
-          error: !regularexpression.test(this.state.email),
-          id: "email"
+      if (field == "basicInformation") {
+        if (this.state.firstName == "") poll["firstName"] = {
+          error: true,
+          id: "firstName"
+        };
+        if (this.state.lastName == "") poll["lastName"] = {
+          error: true,
+          id: "lastName"
+        };
+        if (this.state.email == "" || true) {
+          var regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          poll["email"] = {
+            error: !regularexpression.test(this.state.email),
+            id: "email"
+          };
+        }
+        if (this.state.phone == "") poll["phone"] = {
+          error: true,
+          id: "phone"
+        };
+        if (this.state.relocatedAddress == "") poll["relocatedAddress"] = {
+          error: true,
+          id: "relocatedAddress"
+        };
+        if (this.state.temporaryAddress == "") poll["temporaryAddress"] = {
+          error: true,
+          id: "temporaryAddress"
         };
       }
-      if (this.state.phone == "") errorMsg["phone"] = {
-        error: true,
-        id: "phone"
-      };
-      if (this.state.relocatedAddress == "") errorMsg["relocatedAddress"] = {
-        error: true,
-        id: "relocatedAddress"
-      };
-      if (this.state.temporaryAddress == "") errorMsg["temporaryAddress"] = {
-        error: true,
-        id: "temporaryAddress"
-      };
+      if (field == "mostImportant") {
+        if (this.state.workAddress == "") poll["workAddress"] = {
+          error: true,
+          id: "workAddress"
+        };
+        if (this.state.zipcode == "") poll["zipcode"] = {
+          error: true,
+          id: "zipcode"
+        };
+      }
+      if (field == "amenitiesMostImpartentActive") {
+        var length = this.state.mostImpartentActive;
+        if (length >= 0) return false;else return true;
+      }
+      if (field == "amenitiesInterestedActive") {
+        var _length = this.state.amenitiesInterestedActive;
+        if (_length >= 0) return false;else return true;
+      }
 
-      return errorMsg;
+      return poll;
     }
   }, {
     key: "setLocation",
@@ -87800,38 +87878,64 @@ var Profile = function (_React$Component2) {
       google.maps.event.addListener(places, "place_changed", async function () {
         var place = places.getPlace();
         var relocatedAddress = place.formatted_address;
-        Id == "relocated-input" ? _this.setState({ relocatedAddress: relocatedAddress }) : _this.setState({ temporaryAddress: relocatedAddress });
+        Id == "publictarans-input" ? _this.setState({ zipcode: relocatedAddress }) : Id == "relocated-input" ? _this.setState({ relocatedAddress: relocatedAddress }) : _this.setState({ temporaryAddress: relocatedAddress });
       });
     }
   }, {
     key: "mostImpartentActive",
     value: function mostImpartentActive(key, e) {
+      var _this5 = this;
+
       var mostImpartentActive = this.state.mostImpartentActive;
+      var result = this.validate("amenitiesMostImpartentActive");
       if (this.state.mostImpartentActive.includes(key)) {
-        var index = mostImpartentActive.indexOf(key);
-        if (index > -1) {
-          mostImpartentActive.splice(index, 1);
-          this.setState(mostImpartentActive);
+        if (result) {
+          var index = mostImpartentActive.indexOf(key);
+          if (index > -1) {
+            mostImpartentActive.splice(index, 1);
+            this.setState(mostImpartentActive);
+          }
+        } else {
+          setTimeout(function () {
+            _this5.setState({
+              errorMessage: false
+            });
+          }, 3000);
+          this.setState({ errorMessage: true });
         }
       } else {
         mostImpartentActive.push(key);
-        this.setState(mostImpartentActive);
+        this.setState({ mostImpartentActive: mostImpartentActive, errorMessage: false });
       }
     }
   }, {
     key: "amenitiesInterestedActive",
     value: function amenitiesInterestedActive(key, e) {
+      var _this6 = this;
+
       var amenitiesInterestedActive = this.state.amenitiesInterestedActive;
+      var result = this.validate("amenitiesInterestedActive");
       if (this.state.amenitiesInterestedActive.includes(key)) {
-        var index = amenitiesInterestedActive.indexOf(key);
-        if (index > -1) {
-          amenitiesInterestedActive.splice(index, 1);
-          console.log(amenitiesInterestedActive);
-          this.setState(amenitiesInterestedActive);
+        if (result) {
+          var index = amenitiesInterestedActive.indexOf(key);
+          if (index > -1) {
+            amenitiesInterestedActive.splice(index, 1);
+            this.setState(amenitiesInterestedActive);
+          }
+        } else {
+          setTimeout(function () {
+            _this6.setState({
+              amenitiesInterestedActiveErrorMessage: false
+            });
+          }, 3000);
+          this.setState({ amenitiesInterestedActiveErrorMessage: true });
         }
       } else {
         amenitiesInterestedActive.push(key);
-        this.setState(amenitiesInterestedActive);
+        this.setState({
+          amenitiesInterestedActive: amenitiesInterestedActive,
+          amenitiesInterestedActiveErrorMessage: false
+        });
       }
     }
   }, {
@@ -87846,7 +87950,7 @@ var Profile = function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this7 = this;
 
       return _react2.default.createElement(
         "div",
@@ -87949,7 +88053,7 @@ var Profile = function (_React$Component2) {
                           }
                           // {this.state.error.firstName ? console.log("error") : console.log("noerror")}
                           , onChange: function onChange(e) {
-                            return _this5.inputFieldChanged(e, "firstName");
+                            return _this7.inputFieldChanged(e, "firstName");
                           }
                         })
                       ),
@@ -87970,7 +88074,7 @@ var Profile = function (_React$Component2) {
                             borderBottom: this.state.error.lastName.error ? "2px solid #e43226" : "2px solid #D1D1D1"
                           },
                           onChange: function onChange(e) {
-                            return _this5.inputFieldChanged(e, "lastName");
+                            return _this7.inputFieldChanged(e, "lastName");
                           }
                         })
                       ),
@@ -87991,7 +88095,7 @@ var Profile = function (_React$Component2) {
                             borderBottom: this.state.error.email.error ? "2px solid #e43226" : "2px solid #D1D1D1"
                           },
                           onChange: function onChange(e) {
-                            return _this5.inputFieldChanged(e, "email");
+                            return _this7.inputFieldChanged(e, "email");
                           }
                         })
                       ),
@@ -88012,7 +88116,7 @@ var Profile = function (_React$Component2) {
                             borderBottom: this.state.error.phone.error ? "2px solid #e43226" : "2px solid #D1D1D1"
                           },
                           onChange: function onChange(e) {
-                            return _this5.inputFieldChanged(e, "phone");
+                            return _this7.inputFieldChanged(e, "phone");
                           }
                         })
                       ),
@@ -88082,7 +88186,7 @@ var Profile = function (_React$Component2) {
                           type: "submit",
                           className: "btn sm-red-btn font-weight-bold",
                           onClick: function onClick(e) {
-                            _this5.informationSubmit(e);
+                            _this7.informationSubmit(e, "basicInformation");
                           }
                         },
                         "Save"
@@ -88110,10 +88214,15 @@ var Profile = function (_React$Component2) {
                       "Amenities Interested"
                     ),
                     _react2.default.createElement(
+                      "p",
+                      { style: { color: "#E43226" } },
+                      this.state.amenitiesInterestedActiveErrorMessage ? "atleast one item should be selected" : ""
+                    ),
+                    _react2.default.createElement(
                       "div",
                       { className: "amenities-interested" },
                       this.state.Amenities.map(function (ameniti, key) {
-                        if (_this5.state.amenitiesInterestedActive.includes(key))
+                        if (_this7.state.amenitiesInterestedActive.includes(key))
                           //checks is ameniti is active or not
                           return _react2.default.createElement(
                             "a",
@@ -88121,7 +88230,7 @@ var Profile = function (_React$Component2) {
                               href: "javascript:void(0)",
                               key: key,
                               className: "amenities-active",
-                              onClick: _this5.amenitiesInterestedActive.bind(_this5, key)
+                              onClick: _this7.amenitiesInterestedActive.bind(_this7, key)
                             },
                             ameniti
                           );else return _react2.default.createElement(
@@ -88129,7 +88238,7 @@ var Profile = function (_React$Component2) {
                           {
                             href: "javascript:void(0)",
                             key: key,
-                            onClick: _this5.amenitiesInterestedActive.bind(_this5, key)
+                            onClick: _this7.amenitiesInterestedActive.bind(_this7, key)
                           },
                           ameniti
                         );
@@ -88180,7 +88289,9 @@ var Profile = function (_React$Component2) {
                       colors: this.state.colors,
                       mostImpartentActiveFunc: this.mostImpartentActive,
                       setLocation: this.setLocation
-                    }, this.state)),
+                    }, this.state, {
+                      inputFieldChanged: this.inputFieldChanged
+                    })),
                     _react2.default.createElement(
                       "div",
                       { className: "buttons" },
@@ -88196,7 +88307,10 @@ var Profile = function (_React$Component2) {
                         "button",
                         {
                           type: "submit",
-                          className: "btn sm-red-btn font-weight-bold"
+                          className: "btn sm-red-btn font-weight-bold",
+                          onClick: function onClick(e) {
+                            _this7.informationSubmit(e, "mostImportant");
+                          }
                         },
                         "Submit"
                       )
@@ -89501,6 +89615,424 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = 539;
+
+/***/ }),
+/* 540 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(17);
+
+var _constants = __webpack_require__(19);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _userHomeService = __webpack_require__(31);
+
+var _userHomeService2 = _interopRequireDefault(_userHomeService);
+
+var _Header = __webpack_require__(37);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Footer = __webpack_require__(40);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _reactConfirmAlert = __webpack_require__(43);
+
+var _jquery = __webpack_require__(67);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SendInvitation = function (_React$Component) {
+  _inherits(SendInvitation, _React$Component);
+
+  function SendInvitation(props) {
+    _classCallCheck(this, SendInvitation);
+
+    var _this = _possibleConstructorReturn(this, (SendInvitation.__proto__ || Object.getPrototypeOf(SendInvitation)).call(this, props));
+
+    _this.state = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      notes: "",
+      error: {
+        firstName: { error: false },
+        lastName: { error: false },
+        email: { error: false },
+        phone: { error: false },
+        notes: { error: false },
+        modules: { error: false }
+      },
+      homeFinding: true,
+      settleService: false,
+      destinationService: false,
+      submitValidate: false
+    };
+    return _this;
+  }
+
+  _createClass(SendInvitation, [{
+    key: "componentDidMount",
+    value: async function componentDidMount() {
+      (0, _jquery2.default)(document).ready(function () {
+        jQuery(function ($) {
+          $("#phone").intlTelInput();
+        });
+      });
+    }
+    /*---------------------------------------------------------------------------------------------*/
+
+  }, {
+    key: "inputFieldChanged",
+    value: function inputFieldChanged(e, field) {
+      if (field == "phone") {
+        var x = e.target.value.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+      }
+      var obj = {};
+      obj[field] = e.target.value;
+      this.setState(obj);
+    }
+  }, {
+    key: "moduleSelected",
+    value: function moduleSelected(e, field) {
+      var obj = {};
+      obj[field] = !this.state[field];
+      this.setState(obj);
+    }
+  }, {
+    key: "informationSubmit",
+    value: async function informationSubmit(e, field) {
+      var error = this.validate(field);
+
+      if (!error.firstName.error && !error.lastName.error && !error.email.error && !error.phone.error && !error.modules.error) {
+
+        await this.setState({ error: error, submitValidate: true, firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          notes: "",
+          homeFinding: true,
+          settleService: false,
+          destinationService: false
+        });
+      } else {
+
+        this.setState({ error: error, submitValidate: false });
+      }
+    }
+  }, {
+    key: "validate",
+    value: function validate(field) {
+      var errormsg = {
+        firstName: { error: false },
+        lastName: { error: false },
+        email: { error: false },
+        phone: { error: false },
+        notes: { error: false },
+        modules: { error: false }
+      };
+      if (field == "basicInformation") {
+        if (this.state.firstName == "") errormsg["firstName"] = {
+          error: true,
+          id: "firstName"
+        };
+        if (this.state.lastName == "") errormsg["lastName"] = {
+          error: true,
+          id: "lastName"
+        };
+        if (this.state.email == "" || true) {
+          var regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          errormsg["email"] = {
+            error: !regularexpression.test(this.state.email),
+            id: "email"
+          };
+        }
+        if (this.state.phone == "") errormsg["phone"] = {
+          error: true,
+          id: "phone"
+        };
+        if (this.state.homeFinding == false && this.state.destinationService == false && this.state.settleService == false) {
+          errormsg["modules"] = {
+            error: true,
+            id: "modules"
+          };
+        }
+      }
+
+      return errormsg;
+    }
+    /*---------------------------------------------------------------------------------------------*/
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this,
+          _React$createElement,
+          _React$createElement2,
+          _React$createElement3;
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(_Header2.default, { pathName: "" }),
+        _react2.default.createElement(
+          "div",
+          { className: "main_content" },
+          _react2.default.createElement(
+            "div",
+            { className: "container" },
+            _react2.default.createElement(
+              "h1",
+              { className: "main_heading" },
+              "Send Invitation"
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "send-invitation-wrap" },
+              _react2.default.createElement(
+                "center",
+                null,
+                _react2.default.createElement(
+                  "h3",
+                  { className: "sucessTextColor" },
+                  this.state.submitValidate ? "Invitation has been sent successfully" : ""
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "basic-info" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group form-style" },
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "" },
+                    "First Name"
+                  ),
+                  _react2.default.createElement("input", (_React$createElement = {
+                    value: this.state.firstName,
+                    type: "text",
+                    className: "form-control",
+                    id: "",
+                    placeholder: "First Name"
+                  }, _defineProperty(_React$createElement, "className", this.state.error.firstName.error == undefined || this.state.error.firstName.error ? "errorborder form-control" : "form-control non-errorborder"), _defineProperty(_React$createElement, "onChange", function onChange(e) {
+                    return _this2.inputFieldChanged(e, "firstName");
+                  }), _React$createElement))
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group form-style" },
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "" },
+                    "Last Name"
+                  ),
+                  _react2.default.createElement("input", (_React$createElement2 = {
+                    type: "text",
+                    value: this.state.lastName,
+                    className: "form-control",
+                    id: "",
+                    placeholder: "Last Name"
+                  }, _defineProperty(_React$createElement2, "className", this.state.error.lastName.error == undefined || this.state.error.lastName.error ? "errorborder form-control" : "form-control non-errorborder"), _defineProperty(_React$createElement2, "onChange", function onChange(e) {
+                    return _this2.inputFieldChanged(e, "lastName");
+                  }), _React$createElement2))
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group form-style" },
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "" },
+                    "Email"
+                  ),
+                  _react2.default.createElement("input", (_React$createElement3 = {
+                    type: "text",
+                    value: this.state.email,
+                    className: "form-control",
+                    id: "",
+                    placeholder: "Email"
+                  }, _defineProperty(_React$createElement3, "className", this.state.error.email.error == undefined || this.state.error.email.error ? "errorborder form-control" : "form-control non-errorborder"), _defineProperty(_React$createElement3, "onChange", function onChange(e) {
+                    return _this2.inputFieldChanged(e, "email");
+                  }), _React$createElement3))
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group form-style" },
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "" },
+                    "Phone"
+                  ),
+                  _react2.default.createElement("input", {
+                    type: "tel",
+                    value: this.state.phone,
+                    className: this.state.error.phone.error == undefined || this.state.error.phone.error ? "errorborder form-control" : "form-control non-errorborder",
+                    id: "phone",
+                    placeholder: "Phone",
+                    onChange: function onChange(e) {
+                      return _this2.inputFieldChanged(e, "phone");
+                    }
+                  })
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group form-style" },
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "" },
+                    "Notes"
+                  ),
+                  _react2.default.createElement("textarea", {
+                    className: "form-control",
+                    id: "",
+                    placeholder: "Notes",
+                    value: this.state.notes,
+                    rows: "3",
+                    onChange: function onChange(e) {
+                      return _this2.inputFieldChanged(e, "notes");
+                    }
+                  })
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group form-style" },
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "" },
+                    "Select services"
+                  ),
+                  _react2.default.createElement(
+                    "p",
+                    { className: "errorTextColor" },
+                    this.state.error.modules.error ? "Select atleast one service" : ""
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "modules-wrap" },
+                    _react2.default.createElement(
+                      "ul",
+                      null,
+                      _react2.default.createElement(
+                        "li",
+                        null,
+                        _react2.default.createElement(
+                          "a",
+                          {
+                            className: this.state.homeFinding ? "module-active" : "",
+                            href: "javascript:void(0)",
+                            onClick: function onClick(e) {
+                              _this2.moduleSelected(e, "homeFinding");
+                            }
+                          },
+                          _react2.default.createElement("img", { src: "/images/home.svg", alt: "" })
+                        ),
+                        _react2.default.createElement(
+                          "span",
+                          null,
+                          "HOME FINDING"
+                        )
+                      ),
+                      _react2.default.createElement(
+                        "li",
+                        null,
+                        _react2.default.createElement(
+                          "a",
+                          {
+                            className: this.state.settleService ? "module-active" : "",
+                            href: "javascript:void(0)",
+                            onClick: function onClick(e) {
+                              _this2.moduleSelected(e, "settleService");
+                            }
+                          },
+                          _react2.default.createElement("img", { src: "/images/mover.svg", alt: "" })
+                        ),
+                        _react2.default.createElement(
+                          "span",
+                          null,
+                          "SETTLE IN SERVICES"
+                        )
+                      ),
+                      _react2.default.createElement(
+                        "li",
+                        null,
+                        _react2.default.createElement(
+                          "a",
+                          {
+                            className: this.state.destinationService ? "module-active" : "",
+                            href: "javascript:void(0)",
+                            onClick: function onClick(e) {
+                              _this2.moduleSelected(e, "destinationService");
+                            }
+                          },
+                          _react2.default.createElement("img", {
+                            className: "ds-car",
+                            src: "/images/car.png",
+                            alt: ""
+                          })
+                        ),
+                        _react2.default.createElement(
+                          "span",
+                          null,
+                          "DESTINATION SERVICES"
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "send-invitation-button" },
+                _react2.default.createElement(
+                  "button",
+                  {
+                    type: "submit",
+                    className: "btn sm-red-btn font-weight-bold",
+                    onClick: function onClick(e) {
+                      _this2.informationSubmit(e, "basicInformation");
+                    }
+                  },
+                  "Send Invitation"
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return SendInvitation;
+}(_react2.default.Component);
+
+exports.default = SendInvitation;
 
 /***/ })
 /******/ ]);

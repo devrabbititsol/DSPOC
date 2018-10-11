@@ -65,6 +65,14 @@ class List extends React.Component {
                   id=""
                   rows="3"
                   placeholder="Enter work address"
+                  onChange={e => this.props.inputFieldChanged(e, "workAddress")}
+                  style={{
+                    borderBottom:
+                      this.props.error.workAddress.error == undefined ||
+                      this.props.error.workAddress.error
+                        ? "2px solid #e43226"
+                        : "2px solid #D1D1D1"
+                  }}
                 />
               </div>
             </div>
@@ -86,6 +94,11 @@ class List extends React.Component {
                 <i className="mdi mdi-arrow-all" /> {i + 1}. Must have
                 (Amenities){" "}
               </h3>
+              <p style={{ color: "#E43226" }}>
+                {this.props.errorMessage
+                  ? "atleast one item should be selected"
+                  : ""}
+              </p>
               <div className="amenities-interested">
                 {" "}
                 {this.props.Amenities.map((ameniti, key) => {
@@ -148,6 +161,13 @@ class List extends React.Component {
                   className="form-control"
                   id="publictarans-input"
                   placeholder="Zipcode"
+                  style={{
+                    borderBottom:
+                      this.props.error.zipcode.error == undefined ||
+                      this.props.error.zipcode.error
+                        ? "2px solid #e43226"
+                        : "2px solid #D1D1D1"
+                  }}
                 />
                 <span className="search-warp">
                   <i className="mdi mdi-magnify" />
@@ -178,7 +198,9 @@ class Profile extends React.Component {
         email: { error: false },
         phone: { error: false },
         relocatedAddress: { error: false },
-        temporaryAddress: { error: false }
+        temporaryAddress: { error: false },
+        workAddress: { error: false },
+        zipcode: { error: false }
       },
       colors: [".", "..", "..."],
       Amenities: [
@@ -199,7 +221,11 @@ class Profile extends React.Component {
         "Clubhouse"
       ],
       mostImpartentActive: [1, 7, 13], //active list for Most important to me
-      amenitiesInterestedActive: [1, 7, 13] //active list for Amenities Interested
+      amenitiesInterestedActive: [1, 7, 13], //active list for Amenities Interested
+      workAddress: "",
+      zipcode: "",
+      errorMessage: false,
+      amenitiesInterestedActiveErrorMessage: false
     };
 
     this.mostImpartentActive = this.mostImpartentActive.bind(this);
@@ -222,55 +248,79 @@ class Profile extends React.Component {
     this.setState(obj);
     console.log(field);
   }
-  informationSubmit(e) {
-    let error = this.validate();
-    console.log(error, "");
+  informationSubmit(e, field) {
+    let error = this.validate(field);
     this.setState({ error: error });
   }
-  validate() {
-    let errorMsg = {
+  validate(field) {
+    let poll = {
       firstName: { error: false },
       lastName: { error: false },
       email: { error: false },
       phone: { error: false },
       relocatedAddress: { error: false },
-      temporaryAddress: { error: false }
+      temporaryAddress: { error: false },
+      workAddress: { error: false },
+      zipcode: { error: false }
     };
-    if (this.state.firstName == "")
-      errorMsg["firstName"] = {
-        error: true,
-        id: "firstName"
-      };
-    if (this.state.lastName == "")
-      errorMsg["lastName"] = {
-        error: true,
-        id: "lastName"
-      };
-
-    if (this.state.email == "" || true) {
-      let regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      errorMsg["email"] = {
-        error: !regularexpression.test(this.state.email),
-        id: "email"
-      };
+    if (field == "basicInformation") {
+      if (this.state.firstName == "")
+        poll["firstName"] = {
+          error: true,
+          id: "firstName"
+        };
+      if (this.state.lastName == "")
+        poll["lastName"] = {
+          error: true,
+          id: "lastName"
+        };
+      if (this.state.email == "" || true) {
+        let regularexpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        poll["email"] = {
+          error: !regularexpression.test(this.state.email),
+          id: "email"
+        };
+      }
+      if (this.state.phone == "")
+        poll["phone"] = {
+          error: true,
+          id: "phone"
+        };
+      if (this.state.relocatedAddress == "")
+        poll["relocatedAddress"] = {
+          error: true,
+          id: "relocatedAddress"
+        };
+      if (this.state.temporaryAddress == "")
+        poll["temporaryAddress"] = {
+          error: true,
+          id: "temporaryAddress"
+        };
     }
-    if (this.state.phone == "")
-      errorMsg["phone"] = {
-        error: true,
-        id: "phone"
-      };
-    if (this.state.relocatedAddress == "")
-      errorMsg["relocatedAddress"] = {
-        error: true,
-        id: "relocatedAddress"
-      };
-    if (this.state.temporaryAddress == "")
-      errorMsg["temporaryAddress"] = {
-        error: true,
-        id: "temporaryAddress"
-      };
+    if (field == "mostImportant") {
+      if (this.state.workAddress == "")
+        poll["workAddress"] = {
+          error: true,
+          id: "workAddress"
+        };
+      if (this.state.zipcode == "")
+        poll["zipcode"] = {
+          error: true,
+          id: "zipcode"
+        };
+    }
+    if (field == "amenitiesMostImpartentActive") {
+      let length = this.state.mostImpartentActive;
+      if (length >= 0) return false;
+      else return true;
+    }
+    if (field == "amenitiesInterestedActive") {
+      let length = this.state.amenitiesInterestedActive;
+      if (length >= 0) return false;
+      else return true;
+    }
 
-    return errorMsg;
+    return poll;
   }
   setLocation(Id, e) {
     const _this = this;
@@ -280,40 +330,63 @@ class Profile extends React.Component {
     google.maps.event.addListener(places, "place_changed", async function() {
       var place = places.getPlace();
       let relocatedAddress = place.formatted_address;
-      Id == "relocated-input"
-        ? _this.setState({ relocatedAddress: relocatedAddress })
-        : _this.setState({ temporaryAddress: relocatedAddress });
+      Id == "publictarans-input"
+        ? _this.setState({ zipcode: relocatedAddress })
+        : Id == "relocated-input"
+          ? _this.setState({ relocatedAddress: relocatedAddress })
+          : _this.setState({ temporaryAddress: relocatedAddress });
     });
   }
 
   mostImpartentActive(key, e) {
     let mostImpartentActive = this.state.mostImpartentActive;
+    let result = this.validate("amenitiesMostImpartentActive");
     if (this.state.mostImpartentActive.includes(key)) {
-      let index = mostImpartentActive.indexOf(key);
-      if (index > -1) {
-        mostImpartentActive.splice(index, 1);
-        this.setState(mostImpartentActive);
+      if (result) {
+        let index = mostImpartentActive.indexOf(key);
+        if (index > -1) {
+          mostImpartentActive.splice(index, 1);
+          this.setState(mostImpartentActive);
+        }
+      } else {
+        setTimeout(() => {
+          this.setState({
+            errorMessage: false
+          });
+        }, 3000);
+        this.setState({ errorMessage: true });
       }
     } else {
       mostImpartentActive.push(key);
-      this.setState(mostImpartentActive);
+      this.setState({ mostImpartentActive, errorMessage: false });
     }
   }
   amenitiesInterestedActive(key, e) {
     let amenitiesInterestedActive = this.state.amenitiesInterestedActive;
+    let result = this.validate("amenitiesInterestedActive");
     if (this.state.amenitiesInterestedActive.includes(key)) {
-      let index = amenitiesInterestedActive.indexOf(key);
-      if (index > -1) {
-        amenitiesInterestedActive.splice(index, 1);
-        console.log(amenitiesInterestedActive);
-        this.setState(amenitiesInterestedActive);
+      if (result) {
+        let index = amenitiesInterestedActive.indexOf(key);
+        if (index > -1) {
+          amenitiesInterestedActive.splice(index, 1);
+          this.setState(amenitiesInterestedActive);
+        }
+      } else {
+        setTimeout(() => {
+          this.setState({
+            amenitiesInterestedActiveErrorMessage: false
+          });
+        }, 3000);
+        this.setState({ amenitiesInterestedActiveErrorMessage: true });
       }
     } else {
       amenitiesInterestedActive.push(key);
-      this.setState(amenitiesInterestedActive);
+      this.setState({
+        amenitiesInterestedActive,
+        amenitiesInterestedActiveErrorMessage: false
+      });
     }
   }
-
   async componentDidMount() {
     $(document).ready(function() {
       jQuery(function($) {
@@ -491,7 +564,7 @@ class Profile extends React.Component {
                         type="submit"
                         className="btn sm-red-btn font-weight-bold"
                         onClick={e => {
-                          this.informationSubmit(e);
+                          this.informationSubmit(e, "basicInformation");
                         }}
                       >
                         Save
@@ -510,7 +583,11 @@ class Profile extends React.Component {
                     className="js-vertical-tab-content vertical-tab-content"
                   >
                     <h2>Amenities Interested</h2>
-
+                    <p style={{ color: "#E43226" }}>
+                      {this.state.amenitiesInterestedActiveErrorMessage
+                        ? "atleast one item should be selected"
+                        : ""}
+                    </p>
                     <div className="amenities-interested">
                       {this.state.Amenities.map((ameniti, key) => {
                         if (this.state.amenitiesInterestedActive.includes(key))
@@ -575,6 +652,7 @@ class Profile extends React.Component {
                       mostImpartentActiveFunc={this.mostImpartentActive}
                       setLocation={this.setLocation}
                       {...this.state}
+                      inputFieldChanged={this.inputFieldChanged}
                     />
                     {/*
 									<div className="most-important-wrap">
@@ -605,6 +683,9 @@ class Profile extends React.Component {
                       <button
                         type="submit"
                         className="btn sm-red-btn font-weight-bold"
+                        onClick={e => {
+                          this.informationSubmit(e, "mostImportant");
+                        }}
                       >
                         Submit
                       </button>
