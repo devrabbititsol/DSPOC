@@ -12,7 +12,7 @@ var Login = require('./routes/login');
 var userHomeService=require('./routes/userHome')
 var chatMessage=require('./routes/chatMessage')
 
-const port = 80;
+const port = 8089;
 let app = express(),
   server = http.createServer(app)
 

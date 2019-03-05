@@ -19,6 +19,7 @@ import Consultant from './components/Consultant'
 import UnauthorizePage from './components/common/UnauthorizePage'
 import Constants from '../constants';
 import PropertyDetails from './components/PropertyDetails';
+import Schedules from './components/Schedules'
 /* Load the components based on Local storage elements empty or not */
 function decide() {
 	//console.log(Object.keys(localStorage).length);
@@ -68,6 +69,10 @@ export default <Router history={browserHistory}>
 	                render={(data) => {
 	                return decide() ? <Consultant {...data}/> : <Login {...data}/>;
 	      }} />
+		  <Route exact path="/schedules"
+	                render={(data) => {
+	                return decide() ? <Schedules {...data}/> : <Login {...data}/>;
+	      }} />
 				<Route exact path="/propertydetails/:ItineraryPropertyID"
 	                render={(data) => {
 	                return decide() ? <PropertyDetails {...data}/> : <Login {...data}/>;
@@ -75,18 +80,26 @@ export default <Router history={browserHistory}>
 				
 						
 				
-		</Switch> : <Switch>
+		</Switch> : (localStorage.getItem('type') == 'client' ? <Switch>
 		<Route exact path="/"
 	                render={(data) => {
 	                return decide() ? <SendInvitation {...data}/> : <Login {...data}/>;
 	      }} />
+		  
 		  <Route exact path="/send-invitation"
 	                render={(data) => {
 	                return decide() ? <SendInvitation {...data}/> : <Login {...data}/>;
 	      }} />
 		
       
-		</Switch> }
+		</Switch> : <Switch>
+    
+	    <Route exact path="*"
+	                render={(data) => {
+	                return decide() ? <Login {...data}/> : <Login {...data}/>;
+	      }} />
+
+		</Switch>) }
 			
 	</div>
 </Router>

@@ -27,16 +27,19 @@ class Header extends React.Component {
         {localStorage.getItem('type') == 'guest' ?
           <ul className="navbar-nav mx-auto text-center">
             <li className={(this.props.pathName == '/homefinding') ? 'nav-item active' : 'nav-item'}>
-              <a className="nav-link" href="/homefinding">Home Finding </a>
+              <Link className="nav-link" to="/homefinding">Home Finding </Link>
             </li>
             <li className={this.props.pathName == '/ccconsultant' ? 'nav-item active' : 'nav-item'}>
               <a className="nav-link" href="#">Settle-In-Services</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Destination Services</a>
+              <Link className="nav-link" to="#">Destination Services</Link>
             </li>
             <li className={this.props.pathName == '/consultant' ? 'nav-item active' : 'nav-item'}>
-              <a className="nav-link" href="/consultant">My Consultant</a>
+              <Link className="nav-link" to="/consultant">My Consultant</Link>
+            </li>
+            <li className={this.props.pathName == '/schedules' ? 'nav-item active' : 'nav-item'}>
+              <Link className="nav-link" to="/schedules">My Schedules</Link>
             </li>
           </ul> : <ul className="navbar-nav mx-auto text-center"></ul>}
           

@@ -5,9 +5,11 @@ module.exports = {
 		filename: "bundle.js"
 	},
 	module: {
+
 		noParse: [ /node_modules\/json-schema\/lib\/validate\.js/, /node_modules\/mapbox-gl/, ],
 		loaders: [{
 			test: /\.jsx?$/,
+			
 			exclude: [
          		/.*mapbox-gl.*/
        		],

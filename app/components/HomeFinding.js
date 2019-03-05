@@ -1,4 +1,5 @@
 import React from "react";
+import $ from "jquery";
 import { Link } from "react-router-dom";
 import Constants from "../../constants";
 import userHome from "../../services/userHomeService";
@@ -6,10 +7,12 @@ import Header from "./common/Header";
 import Footer from "./common/Footer";
 import { confirmAlert } from "react-confirm-alert";
 
+
 class HomeFinding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+     
       propertyDetails: [],
       visitPropertyDetails: [],
       archivePropertyDetails: [],
@@ -47,6 +50,47 @@ class HomeFinding extends React.Component {
     );
     this.updateChatId = this.updateChatId.bind(this);
     this.filterAddressActive = this.filterAddressActive.bind(this);
+    this.handleEventRemove = this.handleEventRemove.bind(this);
+    this.handleEventUpdate = this.handleEventUpdate.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+  }
+  handleEventRemove(event){
+    const {selectedIntervals} = this.state;
+    const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
+    if (index > -1) {
+      selectedIntervals.splice(index, 1);
+      this.setState({selectedIntervals});
+    }
+
+  }
+
+  handleEventUpdate(event){
+    
+    const {selectedIntervals} = this.state;
+    const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
+    if (index > -1) {
+      selectedIntervals[index] = event;
+      this.setState({selectedIntervals});
+    }
+  }
+
+  handleSelect(newIntervals) {
+   
+    const {lastUid, selectedIntervals} = this.state;
+    const intervals = newIntervals.map( (interval, index) => {
+
+      return {
+        start:interval.start,
+        end:interval.end,
+        value:interval.value,
+        uid: lastUid + index
+      }
+    });
+
+    this.setState({
+      selectedIntervals: selectedIntervals.concat(intervals),
+      lastUid: lastUid + newIntervals.length
+    })
   }
   amenitiesInterestedActive(key, e) {
     let amenitiesInterestedActive = this.state.amenitiesInterestedActive;
@@ -261,7 +305,9 @@ class HomeFinding extends React.Component {
                 <a href="" data-toggle="modal" data-target=".address-modal">
                   <i className="mdi mdi-map-search-outline" />
                 </a>
+                
               </div>
+             
               <ul
                 className="nav nav-pills mb-5 mt-5 properties"
                 id="pills-tab"
@@ -643,6 +689,15 @@ class HomeFinding extends React.Component {
             </div>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
 
         <div
           className="modal fade address-modal modal-main"
