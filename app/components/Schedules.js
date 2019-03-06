@@ -8,6 +8,7 @@ import Header from './common/Header';
 import localizer from 'react-big-calendar/lib/localizers/globalize'
 import globalize from 'globalize'
 import $ from 'jquery'
+import _ from 'lodash'
 
 const globalizeLocalizer = localizer(globalize)
 
@@ -15,24 +16,82 @@ const globalizeLocalizer = localizer(globalize)
 class Schedules extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { events }
+    this.state = { 
+      events,
+      serviceDrodown : "",
+      serviceNote:"",
+      start:"",
+      end:"",
+      Modalerror:false,
+      ErrorMsg:"" 
+    }
    
   this.handleSelect = this.handleSelect.bind(this);
+  this.saveEvent = this.saveEvent.bind(this);
+  this.onChangeEvent = this.onChangeEvent.bind(this);
   }
   
-  handleSelect({ start, end }){
-    const title = window.prompt('Enter Service Note')
-    if (title)
-      this.setState({
+  async handleSelect({ start, end }){
+
+    let result = []; 
+  {/**  let result = this.state.events.filter(d => {
+     if(
+        (d.start.getTime() >= start.getTime() && d.start.getTime() <= end.getTime()) 
+        || (d.end.getTime() >= start.getTime() + 1 && d.end.getTime() <= end.getTime() + 1)
+      ){
+      return d;
+     }
+  });*/}
+
+if(result.length == 0){
+  let date1 = new Date(start);
+    let date2 = new Date(end);
+    let timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+    await this.setState({ Modalerror:false, ErrorMsg:"", serviceDrodown : "", serviceNote:"", start, end});
+  if(diffDays > 0){
+    jQuery(function($) {          
+      $('#myModalService').modal('show');
+    });
+  } 
+}
+   
+    
+   
+   
+    //const title = window.prompt('Enter Service Note')
+    
+  }
+  async onChangeEvent(e){
+    await this.setState({
+      [e.target.name] : e.target.value
+     })
+     await this.setState({Modalerror:false, ErrorMsg:""})
+  }
+  async saveEvent(){
+
+    if (this.state.serviceNote){
+      await this.setState({
         events: [
           ...this.state.events,
           {
-            start,
-            end,
-            title,
+            start: this.state.start,
+            end: this.state.end,
+            title: this.state.serviceDrodown+' - '+this.state.serviceNote,
+            serviceDrodown: this.state.serviceDrodown,
+            serviceNote: this.state.serviceNote
           },
         ],
       })
+      jQuery(function($) {          
+        $('#myModalService').modal('hide');
+      });
+    } else {
+      await this.setState({Modalerror:true, ErrorMsg:"Please enter event details"});
+    }
+    
+
   }
 
   render() {
@@ -47,12 +106,11 @@ class Schedules extends React.Component {
               Schedules
             </h1>
             <BigCalendar
-            
+            selectable
           events={events}
           localizer={globalizeLocalizer}
           events={this.state.events}
-          step={60}
-          timeslots={1}
+          
           min={new Date(2016, 10, 0, 9, 0, 0)}
           max={new Date(2016, 10, 0, 18, 0, 0)}
           defaultView={BigCalendar.Views.WEEK}
@@ -69,14 +127,37 @@ class Schedules extends React.Component {
     
     <div className="modal-content">
       <div className="modal-header">
-        <button type="button" className="close" data-dismiss="modal">&times;</button>
-        <h4 className="modal-title">Modal Header</h4>
+       
+        <h4 className="modal-title">Add Event</h4>
       </div>
       <div className="modal-body">
-        <p>Some text in the modal.</p>
+     {this.state.Modalerror == true ? <div className="alert alert-danger" role="alert">
+        {this.state.ErrorMsg}
+      </div> : null}
+      <div className="input-group input-group-sm mb-3">
+  <div className="input-group-prepend">
+    <span className="input-group-text" id="inputGroup-sizing-sm">Services</span>
+  </div>
+  <select className="custom-select" id="serviceDrodown" name="serviceDrodown" 
+  value = {this.state.serviceDrodown}
+  onChange={this.onChangeEvent}>
+    <option value="">Choose Service</option>
+    <option value="Area tours">Area tours</option>
+    <option value="Home-finding tours">Home-finding tours</option>
+    <option value="Settle in services">Settle in services</option>
+    <option value="Lease sign assistance">Lease sign assistance</option>
+  </select>
+</div>
+<div className="input-group input-group-sm mb-3">
+  <div className="input-group-prepend">
+    <span className="input-group-text" id="inputGroup-sizing-sm">Service Note</span>
+  </div>
+  <input type="text" className="form-control" id="serviceNote" value={this.state.serviceNote} name="serviceNote"  onChange={this.onChangeEvent} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+</div>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary" onClick={this.saveEvent}>Save</button>
       </div>
     </div>
 
