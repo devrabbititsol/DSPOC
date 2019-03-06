@@ -86062,7 +86062,7 @@ var Schedules = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                       'option',
-                      { value: 'Home-finding tours' },
+                      { value: 'Home finding tours' },
                       'Home-finding tours'
                     ),
                     _react2.default.createElement(

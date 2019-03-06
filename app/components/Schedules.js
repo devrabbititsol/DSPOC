@@ -143,7 +143,7 @@ if(result.length == 0){
   onChange={this.onChangeEvent}>
     <option value="">Choose Service</option>
     <option value="Area tours">Area tours</option>
-    <option value="Home-finding tours">Home-finding tours</option>
+    <option value="Home finding tours">Home-finding tours</option>
     <option value="Settle in services">Settle in services</option>
     <option value="Lease sign assistance">Lease sign assistance</option>
   </select>
