@@ -2387,7 +2387,7 @@ ul.landing-modules{
 	left: 0;
 	position: absolute;
 	right: 0;
-	margin-right: 10px;
+	
 	top: 0;
   }
   .rbc-day-slot .rbc-events-container.rbc-is-rtl {
@@ -2616,3 +2616,10 @@ ul.landing-modules{
 	pointer-events: none;
   }
   
+
+
+  .date-in-past {
+	width: 14.3%;
+	background: #ccc;
+	border-right: solid 1px #fff;
+   }

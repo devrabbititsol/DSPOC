@@ -29,19 +29,26 @@ class Schedules extends React.Component {
   this.handleSelect = this.handleSelect.bind(this);
   this.saveEvent = this.saveEvent.bind(this);
   this.onChangeEvent = this.onChangeEvent.bind(this);
+  this.eventStyleGetter = this.eventStyleGetter.bind(this);
   }
-  
-  async handleSelect({ start, end }){
 
-    let result = []; 
-  {/**  let result = this.state.events.filter(d => {
-     if(
-        (d.start.getTime() >= start.getTime() && d.start.getTime() <= end.getTime()) 
-        || (d.end.getTime() >= start.getTime() + 1 && d.end.getTime() <= end.getTime() + 1)
-      ){
-      return d;
-     }
-  });*/}
+  async handleSelect({ start, end }) {
+
+    //let result = [];
+    let result = this.state.events.filter(d => {
+
+      if (
+        (
+          (d.start.getTime() >= start.getTime() && d.start.getTime() < end.getTime())
+          || (d.end.getTime() >= start.getTime() + 1 && d.end.getTime() <= end.getTime() + 1)
+        ) || (
+          (d.start.getTime() <= start.getTime() && d.end.getTime() >= end.getTime())
+
+        )
+      ) {
+        return d;
+      }
+    });
 
 if(result.length == 0){
   let date1 = new Date(start);
@@ -69,6 +76,17 @@ if(result.length == 0){
      })
      await this.setState({Modalerror:false, ErrorMsg:""})
   }
+  eventStyleGetter(event, start, end, isSelected) {
+    console.log(event);
+    var backgroundColor = event.bgColor;
+    var style = {
+        backgroundColor: backgroundColor,
+        
+    };
+    return {
+        style: style
+    };
+}
   async saveEvent(){
 
     if (this.state.serviceNote){
@@ -76,8 +94,8 @@ if(result.length == 0){
         events: [
           ...this.state.events,
           {
-            start: this.state.start,
-            end: this.state.end,
+            start: new Date(this.state.start),
+            end: new Date(this.state.end),
             title: this.state.serviceDrodown+' - '+this.state.serviceNote,
             serviceDrodown: this.state.serviceDrodown,
             serviceNote: this.state.serviceNote
@@ -87,6 +105,7 @@ if(result.length == 0){
       jQuery(function($) {          
         $('#myModalService').modal('hide');
       });
+     
     } else {
       await this.setState({Modalerror:true, ErrorMsg:"Please enter event details"});
     }
@@ -116,7 +135,8 @@ if(result.length == 0){
           defaultView={BigCalendar.Views.WEEK}
           onSelectSlot={this.handleSelect}
           onSelectEvent={(event) => alert(event.title)}
-              
+          eventPropGetter={(this.eventStyleGetter)}
+            
         />
           </div>
         </div>     
@@ -171,3 +191,21 @@ if(result.length == 0){
 }
 
 export default Schedules
+
+{/** 
+const DateCell = ({
+  range,
+  value,
+  children
+ }) => {
+ 
+  const now = new Date();
+  now.setHours(0,0,0,0);
+ 
+  return (
+   <div className={ value < now ? "date-in-past" : "" }>
+    { children }
+   </div>
+  )
+ 
+ }*/}
