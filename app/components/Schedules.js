@@ -134,20 +134,24 @@ class Schedules extends React.Component {
 
   async moveEvent() {
     let eventDetails = this.state.eventDetails;
-    let EditMoveDate = moment(this.state.EditMoveDate).format("YYYY MM DD");
+    let EditMoveDate = moment(this.state.EditMoveDate).format("YYYY/MM/DD");
     if (moment(eventDetails.start).format("YYYY Do MM") != moment(EditMoveDate).format("YYYY Do MM")) {
       let startTime = moment(eventDetails.start).format("HH:MM:SS");
       let endTime = moment(eventDetails.end).format("HH:MM:SS");
-      let start = new Date(EditMoveDate + ' ' + startTime);
+      let start = new Date(EditMoveDate+' '+startTime);
       let end = new Date(EditMoveDate + ' ' + endTime);
+     
       let eventPreviousData = this.state.events;
       let indexEvent = _.findIndex(this.state.events, function (o) {
         return moment(o.start).format("YYYY Do MM HH:MM:SS") == moment(eventDetails.start).format("YYYY Do MM HH:MM:SS")
 
       });
-      eventPreviousData[indexEvent].start = start;
-      eventPreviousData[indexEvent].end = end;
-      await this.setState({ events: eventPreviousData });
+      if(indexEvent >= 0 && start != "Invalid Date"){
+        eventPreviousData[indexEvent].start = start;
+        eventPreviousData[indexEvent].end = end;
+        await this.setState({ events: eventPreviousData });
+      }
+     
       jQuery(function ($) {
         $('#moveDelete').modal('hide');
       });

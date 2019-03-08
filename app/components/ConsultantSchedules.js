@@ -134,7 +134,7 @@ class ConsultantSchedules extends React.Component {
 
   async moveEvent() {
     let eventDetails = this.state.eventDetails;
-    let EditMoveDate = moment(this.state.EditMoveDate).format("YYYY MM DD");
+    let EditMoveDate = moment(this.state.EditMoveDate).format("YYYY/MM/DD");
     if (moment(eventDetails.start).format("YYYY Do MM") != moment(EditMoveDate).format("YYYY Do MM")) {
       let startTime = moment(eventDetails.start).format("HH:MM:SS");
       let endTime = moment(eventDetails.end).format("HH:MM:SS");
