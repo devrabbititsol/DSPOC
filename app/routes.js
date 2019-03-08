@@ -20,6 +20,7 @@ import UnauthorizePage from './components/common/UnauthorizePage'
 import Constants from '../constants';
 import PropertyDetails from './components/PropertyDetails';
 import Schedules from './components/Schedules'
+import ConsultantSchedules from './components/ConsultantSchedules';
 /* Load the components based on Local storage elements empty or not */
 function decide() {
 	//console.log(Object.keys(localStorage).length);
@@ -92,14 +93,23 @@ export default <Router history={browserHistory}>
 	      }} />
 		
       
-		</Switch> : <Switch>
+		</Switch> :  (localStorage.getItem('type') == 'consultant' ? <Switch>
+			<Route exact path="/schedules"
+	                render={(data) => {
+	                return decide() ? <ConsultantSchedules {...data}/> : <Login {...data}/>;
+	      }} />
+		  <Route exact path="/"
+	                render={(data) => {
+	                return decide() ? <ConsultantSchedules {...data}/> : <Login {...data}/>;
+	      }} />
+		  </Switch> : <Switch>
     
 	    <Route exact path="*"
 	                render={(data) => {
 	                return decide() ? <Login {...data}/> : <Login {...data}/>;
 	      }} />
 
-		</Switch>) }
+		</Switch>)) }
 			
 	</div>
 </Router>

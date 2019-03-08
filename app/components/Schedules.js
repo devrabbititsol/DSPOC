@@ -159,9 +159,9 @@ class Schedules extends React.Component {
 
     if (moment(date2).format("YYYY Do MM") == '2019 5th 03') {
       var backgroundColor = '#eaf6ff';
-
+      //backgroundColor: '#eaf6ff',
       var style = {
-        backgroundColor: '#eaf6ff',
+        
         margin: 0
 
       };

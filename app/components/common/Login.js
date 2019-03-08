@@ -54,16 +54,25 @@ class Login extends React.Component {
                 LoginDetails.type = Constants.CLIENT_LOGIN.type;
                 LoginDetails.name = Constants.CLIENT_LOGIN.FirstName;
 
+            } else if(this.state.userName.trim() == Constants.CONSULTANT_LOGIN.userName && this.state.passWord.trim() == Constants.CONSULTANT_LOGIN.passWord){
+                LoginDetails.userName = Constants.CONSULTANT_LOGIN.userName;
+                LoginDetails.passWord = Constants.CONSULTANT_LOGIN.passWord;
+                LoginDetails.type = Constants.CONSULTANT_LOGIN.type;
+                LoginDetails.name = Constants.CONSULTANT_LOGIN.FirstName;
+
             }
+
             if(Object.keys(LoginDetails).length > 0) {
                 this.setState({errorStatus:0});
                 await localStorage.setItem("type", LoginDetails.type);
                 await localStorage.setItem("LoginDetails", JSON.stringify(LoginDetails));
                 if(LoginDetails.type == 'guest'){
                     window.location.href = '/home'
-                } else {
+                } else  if(LoginDetails.type == 'client'){
                     window.location.href = '/send-invitation'
                    
+                } else {
+                    window.location.href = '/schedules'
                 }
                 
             } else {
