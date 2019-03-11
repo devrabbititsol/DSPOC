@@ -29,7 +29,9 @@ class Schedules extends React.Component {
       ErrorMsg: "",
       EditEvent: "",
       EditMoveDate: new Date(),
-      eventDetails: ""
+      eventDetails: "",
+      ErrorMsgExitsMsg:"",
+      moveModalerror:false
 
     }
 
@@ -42,26 +44,25 @@ class Schedules extends React.Component {
     this.deleteEventConfirm = this.deleteEventConfirm.bind(this);
     this.moveEvent = this.moveEvent.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.filterEvents = this.filterEvents.bind(this);
   }
-
+  async componentDidMount(){
+    let localEvents = JSON.parse(localStorage.getItem('events') != "" ? localStorage.getItem('events'):[]);
+    let events = [];
+    _.forEach(localEvents, function(localEve) {
+       localEve.start = new Date(localEve.start);
+       localEve.end = new Date(localEve.end);
+       events.push(localEve)
+    });
+    await this.setState({events})
+    
+  }
   async handleSelect({ start, end }) {
 
-    let result = this.state.events.filter(d => {
-
-      if (
-        (
-          (d.start.getTime() >= start.getTime() && d.start.getTime() < end.getTime())
-          || (d.end.getTime() >= start.getTime() + 1 && d.end.getTime() <= end.getTime() + 1)
-        ) || (
-          (d.start.getTime() <= start.getTime() && d.end.getTime() >= end.getTime())
-
-        )
-      ) {
-        return d;
-      }
-    });
+    let result = await this.filterEvents(start, end);
 
     if (result.length == 0) {
+     
       let date1 = new Date(start);
       let date2 = new Date(end);
       let timeDiff = Math.abs(date2.getTime() - date1.getTime());
@@ -96,7 +97,8 @@ class Schedules extends React.Component {
     await this.setState({ EditMoveDate: new Date(editDate) });
   }
   async moveEdit(event) {
-    await this.setState({ EditEvent: event.title, EditMoveDate: new Date(event.start), eventDetails: event })
+    
+    await this.setState({ moveModalerror:false, ErrorMsgExitsMsg:"", EditEvent: event.title, EditMoveDate: new Date(event.start), eventDetails: event })
     jQuery(function ($) {
       $('#moveDelete').modal('show');
     });
@@ -126,35 +128,65 @@ class Schedules extends React.Component {
     });
     let events = this.state.events;
     events.splice(indexEvent, 1);
-    await this.setState({ events })
+    await this.setState({ events });
+    await localStorage.setItem('events', JSON.stringify(this.state.events));
     jQuery(function ($) {
       $('#moveDelete').modal('hide');
     });
   }
+ async filterEvents(start, end){
+    let result = this.state.events.filter(d => {
 
+      if (
+        (
+          (d.start.getTime() >= start.getTime() && d.start.getTime() < end.getTime())
+          || (d.end.getTime() >= start.getTime() + 1 && d.end.getTime() <= end.getTime() + 1)
+        ) || (
+          (d.start.getTime() <= start.getTime() && d.end.getTime() >= end.getTime())
+
+        )
+      ) {
+        return d;
+      }
+    });
+    return result;
+  }
   async moveEvent() {
+    
     let eventDetails = this.state.eventDetails;
     let EditMoveDate = moment(this.state.EditMoveDate).format("YYYY/MM/DD");
-    if (moment(eventDetails.start).format("YYYY Do MM") != moment(EditMoveDate).format("YYYY Do MM")) {
-      let startTime = moment(eventDetails.start).format("HH:MM:SS");
-      let endTime = moment(eventDetails.end).format("HH:MM:SS");
+    if (moment(eventDetails.start).format("YYYY/MM/DD") != moment(EditMoveDate).format("YYYY/MM/DD")) {
+      let startTime = new Date(eventDetails.start).getHours()+':'+new Date(eventDetails.start).getMinutes()+':00';
+      let endTime =  new Date(eventDetails.end).getHours()+':'+new Date(eventDetails.end).getMinutes()+':00';
+      
       let start = new Date(EditMoveDate+' '+startTime);
       let end = new Date(EditMoveDate + ' ' + endTime);
      
+
+      let result = await this.filterEvents(start, end);
+     
+
+      
+
+
       let eventPreviousData = this.state.events;
       let indexEvent = _.findIndex(this.state.events, function (o) {
         return moment(o.start).format("YYYY Do MM HH:MM:SS") == moment(eventDetails.start).format("YYYY Do MM HH:MM:SS")
 
       });
-      if(indexEvent >= 0 && start != "Invalid Date"){
+      if(result.length > 0){
+        await this.setState({moveModalerror:true, ErrorMsgExitsMsg:"Already one more event is exists in this date, please try with another date"})
+      } else if(indexEvent >= 0 && start != "Invalid Date"){
         eventPreviousData[indexEvent].start = start;
         eventPreviousData[indexEvent].end = end;
         await this.setState({ events: eventPreviousData });
+        await localStorage.setItem('events', JSON.stringify(this.state.events));
+        jQuery(function ($) {
+          $('#moveDelete').modal('hide');
+        });
       }
      
-      jQuery(function ($) {
-        $('#moveDelete').modal('hide');
-      });
+      
 
     }
   }
@@ -190,6 +222,9 @@ class Schedules extends React.Component {
           },
         ],
       })
+      
+     await localStorage.setItem('events', JSON.stringify(this.state.events));
+     
       jQuery(function ($) {
         $('#myModalService').modal('hide');
       });
@@ -285,8 +320,8 @@ class Schedules extends React.Component {
                 <h4 className="modal-title">Event - {this.state.EditEvent}</h4>
               </div>
               <div className="modal-body">
-                {this.state.Modalerror == true ? <div className="alert alert-danger" role="alert">
-                  {this.state.ErrorMsg}
+                {this.state.moveModalerror == true ? <div className="alert alert-danger" role="alert">
+                  {this.state.ErrorMsgExitsMsg}
                 </div> : null}
 
                 <div className="input-group input-group-sm mb-3">
