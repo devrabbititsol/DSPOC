@@ -29,7 +29,9 @@ class ConsultantSchedules extends React.Component {
       ErrorMsg: "",
       EditEvent: "",
       EditMoveDate: new Date(),
-      eventDetails: ""
+      eventDetails: "",
+      ErrorMsgExitsMsg:"",
+      moveModalerror:false
 
     }
 
@@ -42,12 +44,21 @@ class ConsultantSchedules extends React.Component {
     this.deleteEventConfirm = this.deleteEventConfirm.bind(this);
     this.moveEvent = this.moveEvent.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.filterEvents = this.filterEvents.bind(this);
   }
-
-  async handleSelect({ start, end }) {
-
+  async componentDidMount(){
+    let localEvents = JSON.parse(localStorage.getItem('events') != "" ? localStorage.getItem('events'):[]);
+    let events = [];
+    _.forEach(localEvents, function(localEvent) {
+      localEvent.start = new Date(localEvent.start);
+      localEvent.end = new Date(localEvent.end);
+      events.push(localEvent)
+    });
+    await this.setState({events})
+    
+  }
+  async filterEvents(start, end){
     let result = this.state.events.filter(d => {
-
       if (
         (
           (d.start.getTime() >= start.getTime() && d.start.getTime() < end.getTime())
@@ -60,6 +71,11 @@ class ConsultantSchedules extends React.Component {
         return d;
       }
     });
+    return result;
+  }
+  async handleSelect({ start, end }) {
+
+    let result = await this.filterEvents(start, end);
 
     if (result.length == 0) {
       let date1 = new Date(start);
@@ -96,10 +112,12 @@ class ConsultantSchedules extends React.Component {
     await this.setState({ EditMoveDate: new Date(editDate) });
   }
   async moveEdit(event) {
+    if(event.type == 'consultant'){  
     await this.setState({ EditEvent: event.title, EditMoveDate: new Date(event.start), eventDetails: event })
     jQuery(function ($) {
       $('#moveDelete').modal('show');
     });
+  }
   }
   async deleteEventConfirm() {
     let eventDetails = this.state.eventDetails;
@@ -127,6 +145,7 @@ class ConsultantSchedules extends React.Component {
     let events = this.state.events;
     events.splice(indexEvent, 1);
     await this.setState({ events })
+    await localStorage.setItem('events', JSON.stringify(this.state.events));
     jQuery(function ($) {
       $('#moveDelete').modal('hide');
     });
@@ -136,8 +155,8 @@ class ConsultantSchedules extends React.Component {
     let eventDetails = this.state.eventDetails;
     let EditMoveDate = moment(this.state.EditMoveDate).format("YYYY/MM/DD");
     if (moment(eventDetails.start).format("YYYY Do MM") != moment(EditMoveDate).format("YYYY Do MM")) {
-      let startTime = moment(eventDetails.start).format("HH:MM:SS");
-      let endTime = moment(eventDetails.end).format("HH:MM:SS");
+      let startTime = new Date(eventDetails.start).getHours()+':'+new Date(eventDetails.start).getMinutes()+':00';
+      let endTime =  new Date(eventDetails.end).getHours()+':'+new Date(eventDetails.end).getMinutes()+':00';
       let start = new Date(EditMoveDate + ' ' + startTime);
       let end = new Date(EditMoveDate + ' ' + endTime);
       let eventPreviousData = this.state.events;
@@ -145,12 +164,18 @@ class ConsultantSchedules extends React.Component {
         return moment(o.start).format("YYYY Do MM HH:MM:SS") == moment(eventDetails.start).format("YYYY Do MM HH:MM:SS")
 
       });
+      let result = await this.filterEvents(start, end);
+      if(result.length > 0){
+        await this.setState({moveModalerror:true, ErrorMsgExitsMsg:"Already one more event is exists in this date, please try with another date"})
+      } else if(indexEvent >= 0 && start != "Invalid Date"){
       eventPreviousData[indexEvent].start = start;
       eventPreviousData[indexEvent].end = end;
       await this.setState({ events: eventPreviousData });
+      await localStorage.setItem('events', JSON.stringify(this.state.events));
       jQuery(function ($) {
         $('#moveDelete').modal('hide');
       });
+    }
 
     }
   }
@@ -183,10 +208,12 @@ class ConsultantSchedules extends React.Component {
             bgColor:"#CCCCCC",
             title: this.state.serviceDrodown + ' - ' + this.state.serviceNote,
             serviceDrodown: this.state.serviceDrodown,
-            serviceNote: this.state.serviceNote
+            serviceNote: this.state.serviceNote,
+            type:'consultant'
           },
         ],
       })
+      await localStorage.setItem('events', JSON.stringify(this.state.events));
       jQuery(function ($) {
         $('#myModalService').modal('hide');
       });
@@ -280,8 +307,8 @@ class ConsultantSchedules extends React.Component {
                 <h4 className="modal-title">Event - {this.state.EditEvent}</h4>
               </div>
               <div className="modal-body">
-                {this.state.Modalerror == true ? <div className="alert alert-danger" role="alert">
-                  {this.state.ErrorMsg}
+              {this.state.moveModalerror == true ? <div className="alert alert-danger" role="alert">
+                  {this.state.ErrorMsgExitsMsg}
                 </div> : null}
 
                 <div className="input-group input-group-sm mb-3">

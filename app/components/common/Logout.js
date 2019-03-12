@@ -18,8 +18,9 @@ class logout extends React.Component {
 
   }
   async componentWillMount() {
-
+  let localEvents = localStorage.getItem('events');
   localStorage.clear();
+  localStorage.setItem('events', localEvents);
   this.props.history.push('/login');
 
   }

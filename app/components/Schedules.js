@@ -49,10 +49,10 @@ class Schedules extends React.Component {
   async componentDidMount(){
     let localEvents = JSON.parse(localStorage.getItem('events') != "" ? localStorage.getItem('events'):[]);
     let events = [];
-    _.forEach(localEvents, function(localEve) {
-       localEve.start = new Date(localEve.start);
-       localEve.end = new Date(localEve.end);
-       events.push(localEve)
+    _.forEach(localEvents, function(localEvent) {
+      localEvent.start = new Date(localEvent.start);
+      localEvent.end = new Date(localEvent.end);
+      events.push(localEvent)
     });
     await this.setState({events})
     
@@ -97,11 +97,12 @@ class Schedules extends React.Component {
     await this.setState({ EditMoveDate: new Date(editDate) });
   }
   async moveEdit(event) {
-    
+   if(event.type == 'guest'){
     await this.setState({ moveModalerror:false, ErrorMsgExitsMsg:"", EditEvent: event.title, EditMoveDate: new Date(event.start), eventDetails: event })
     jQuery(function ($) {
       $('#moveDelete').modal('show');
     });
+   } 
   }
   async deleteEventConfirm() {
     let eventDetails = this.state.eventDetails;
@@ -136,7 +137,6 @@ class Schedules extends React.Component {
   }
  async filterEvents(start, end){
     let result = this.state.events.filter(d => {
-
       if (
         (
           (d.start.getTime() >= start.getTime() && d.start.getTime() < end.getTime())
@@ -161,14 +161,7 @@ class Schedules extends React.Component {
       
       let start = new Date(EditMoveDate+' '+startTime);
       let end = new Date(EditMoveDate + ' ' + endTime);
-     
-
       let result = await this.filterEvents(start, end);
-     
-
-      
-
-
       let eventPreviousData = this.state.events;
       let indexEvent = _.findIndex(this.state.events, function (o) {
         return moment(o.start).format("YYYY Do MM HH:MM:SS") == moment(eventDetails.start).format("YYYY Do MM HH:MM:SS")
@@ -218,7 +211,8 @@ class Schedules extends React.Component {
             end: new Date(this.state.end),
             title: this.state.serviceDrodown + ' - ' + this.state.serviceNote,
             serviceDrodown: this.state.serviceDrodown,
-            serviceNote: this.state.serviceNote
+            serviceNote: this.state.serviceNote,
+            type:'guest'
           },
         ],
       })
@@ -287,7 +281,7 @@ class Schedules extends React.Component {
                     onChange={this.onChangeEvent}>
                     <option value="">Choose Service</option>
                     <option value="Area tours">Area tours</option>
-                    <option value="Home finding tours">Home-finding tours</option>
+                    <option value="Home finding tours">Home finding tours</option>
                     <option value="Settle in services">Settle in services</option>
                     <option value="Lease sign assistance">Lease sign assistance</option>
                   </select>
